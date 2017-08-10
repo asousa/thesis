@@ -1,0 +1,147 @@
+\documentclass[12pt]{report}
+
+\providecommand{\E}[1]{\ensuremath{\times 10^{#1}}}
+\usepackage{graphicx}% Include figure files
+
+% Vectors in bold font instead of line over
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+% units in math mode
+\newcommand{\unit}[1]{[\mathrm{#1}]}
+\usepackage{suthesis-2e}
+
+\dept{Electrical Engineering}
+
+
+    \begin{document}
+    \title{Global and Seasonal Effects of\\
+            Lightning-Induced Electron Precipitation}
+    \author{Austin Patrick Sousa}
+    \principaladviser{Sigrid Close}
+    \firstreader{Robert Marshall}
+    \secondreader{Antony Fraser-Smith} 
+    \beforepreface
+    \prefacesection{Preface}
+        This thesis tells you all you need to know about...
+    \prefacesection{Acknowledgments}
+        \input{chapters/acknowledgments}
+    \afterpreface
+ 
+    \chapter{Introduction}
+    	\input{chapters/introduction}
+
+    \chapter{Physics and Methods}`
+    	\input{chapters/physics}
+
+
+    \chapter{VLF energy in the Near-Earth Environment}
+    	\input{chapters/lightning}
+
+    \chapter{3D Modeling of LEP}
+    	\input{chapters/3dWIPP}
+
+    \chapter{Global and Seasonal Estimates of LEP}
+    	\input{chapters/global_estimates}
+
+    \chapter{Satellite Instrumentation for LEP Measurement}
+    	\input{chapters/VPM}
+
+    \chapter{Conclusions}
+    	\input{chapters/conclusions}
+
+
+    \bibliographystyle{plain}
+    \bibliography{library}
+    \end{document}
+
+Documentation: 
+    This style file modifies the standard report style to follow the
+    Graduate Degree Support Section of the Registrar's Office's
+    "Directions for Preparing Doctoral Dissertations".  It sets the
+    margins and interline spacing and disallows page breaks at
+    hyphens.
+
+    The \beforepreface command creates the title page, a copyright page
+    (optionally), and a signature page.  Then the user should put
+    preface section(s), using the \prefacesection{section title}
+    command.  The \afterpreface command then produces the tables of
+    contents, tables and figures, and sets things up to start
+    the main body (on arabic page 1).
+    
+    The following commands can control what goes in the front matter
+    material:
+    
+        \title{thesis title}
+        \author{author's name}
+        \dept{author's department}
+                - Computer Science if omitted
+The following switches allow for special title pages (not all are current)
+        \committeethesis - for a thesis in a committee (no dept.)
+                           use \dept{committee name}
+        \programthesis - for a thesis in a program (no dept.)
+                           use \dept{program name}
+        \educationthesis - for the School of Education. \dept doesn't matter
+        \businessthesis - for the GraduateSchool of Business. \dept doesn't matter
+        \lawthesis - for the School of law. \dept doesn't matter
+        \humanitiesthesis - for a thesis also submitted to the Graduate
+                            Program in Humanities
+        \specialthesis  - for a Graduate Special thesis
+        \industrialthesis - for a thesis in Industrial Engineering
+        \dualthesis     - for a thesis in a dual language department.
+                          Also define \languagemajor{language}.
+                          e.g., \dept{French and Italian} 
+                          \languagemajor{Italian}
+         \principaladviser{the principal advisor's name}
+           (or \principaladvisor, if you prefer advisor spelled with o)
+        \coprincipaladviser{optional second principal advisor's name}
+           (or \coprincipaladvisor, use only if you have two principal
+           advisors only for the second one)
+        \firstreader{the first reader's name}
+        \secondreader{the second reader's name}
+        \thirdreader{optional third reader's name}
+        \fourthreader{optional fourth reader's name}
+        \setlength{\signaturespace}{.5in} 
+                - default is .5in, can be adjusted to fit all
+                signatures in one page
+        \submitdate{month year in which submitted to GPO}
+                - date LaTeX'd if omitted
+        \copyrightyear{year degree conferred (next year if submitted
+          in Fall quarter)}
+                - year LaTeX'd (or next year, in December) if omitted
+        \copyrighttrue or \copyrightfalse
+                - produce or don't produce a copyright page (true by default)
+        \thesiscopyrighttrue or \thesiscopyrightfalse
+                - produces the style of copyright page listed by the
+                Thesis Office or the style that everyone else uses
+                (Thesis office by default).
+        \figurespagetrue or \figurespagefalse
+                - produce or don't produce a List of Figures page
+                  (true by default)
+        \tablespagetrue or \tablespagefalse
+                - produce or don't produce a List of Tables page
+                  (true by default)
+
+This style uses interline spacing that is 1.3 times normal, except
+in the figure and table environments where normal spacing is used.
+That can be changed by doing:
+    \setstretch{1.6}
+(or whatever you want instead of 1.6)
+
+This command should be put before the \begin{document} command but
+after loading the packages
+
+You can also set any particular section in singlespacing mode by using
+the singlespace environment.  For example
+
+\begin{quote}
+\begin{singlespace}
+...
+\end{singlespace}
+\end{quote}
+
+makes the quote singlespaced.  See the documentation for setspace.sty
+for more information.
+
+The example at the beginning shows the 12pt substyle being used.  This
+seems to give acceptable looking results, but it may be omitted to get
+smaller print.
