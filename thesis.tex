@@ -2,6 +2,15 @@
 
 \providecommand{\E}[1]{\ensuremath{\times 10^{#1}}}
 \usepackage{graphicx}% Include figure files
+\usepackage{amsmath}
+
+\usepackage{natbib}
+%\bibliographystyle{ieeetr}
+\bibliographystyle{agufull08}
+\setcitestyle{authoryear, square}
+
+\usepackage{cleveref}
+
 
 % Vectors in bold font instead of line over
 \renewcommand{\vec}[1]{\mathbf{#1}}
@@ -30,15 +39,15 @@
     \chapter{Introduction}
     	\input{chapters/introduction}
 
-    \chapter{Physics and Methods}`
+    \chapter{Physics and Methods}
     	\input{chapters/physics}
 
 
     \chapter{VLF energy in the Near-Earth Environment}
     	\input{chapters/lightning}
 
-    \chapter{3D Modeling of LEP}
-    	\input{chapters/3dWIPP}
+%    \chapter{3D Modeling of LEP}
+%  	\input{chapters/3dWIPP}
 
     \chapter{Global and Seasonal Estimates of LEP}
     	\input{chapters/global_estimates}
@@ -50,7 +59,7 @@
     	\input{chapters/conclusions}
 
 
-    \bibliographystyle{plain}
+%    \bibliographystyle{ieeetr}
     \bibliography{library}
     \end{document}
 
