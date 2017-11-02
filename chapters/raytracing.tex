@@ -1,0 +1,23 @@
+\section{Ray Tracing and Landau Damping}
+\subsection{Ray Tracing}
+Whistler-mode waves in the magnetosphere propagate for very large distances, and with relatively little attenuation. Under certain conditions, these waves can persist from a few seconds to 1 or more minutes. Simulating the propagation of these waves using a full-wave method would be extremely intractable with current computational resources. However we can use ray tracing to approximate their behavior.
+
+Ray tracing is a numerical technique which tracks the position and velocity of a coherent wave packet -- essentially, we are simply tracking the group velocity of a wave as it propagates in time. 
+
+We begin with the fundamental ray-tracing equations, as given by \cite{Stix1992}:
+
+\begin{eqnarray}
+\frac{d\vec{r}}{dt} = \frac{\nabla_kF}{\partial F/\partial \omega} \label{eqn:raytracing_position}\\
+\frac{d\vec{k}}{dt} = \frac{\nabla_rF}{\partial F/\partial \omega} \label{eqn:raytracing_wavenormal} \\
+\end{eqnarray}
+Constrained such that:
+\begin{equation}
+F = F(\vec{r},t,\vec{k},\omega) = 0
+\end{equation}
+Equation \ref{eqn:raytracing_position} is simply $\frac{\nabla_kF}{\partial F/\partial \omega} \approx\frac{\partial F/\partial k}{\partial F /\partial \omega} = \frac{\partial \omega}{\partial k} = V_g$, the group velocity of a wave packet. The corresponding equation describing the evolution of the wavenormal vector (\ref{eqn:raytracing_wavenormal}) is less intuitive, although an analogy can be drawn to Hamiltonian mechanics, in which $\omega$ represents a velocity, and $k$ a momentum.
+
+The function F, our ''conserved quantity``, is simply the dispersion relation given by equation \ref{eqn:disp_rln}.
+
+The raytracing equations are a set of coupled, first-order differential equations; solutions to which require some subtlety, but can be addressed using standard numerical techniques.
+
+First, note that we can solve the set at a given time, then evolve the system forward some finite time step. However, the constraint $F=0$ may not be strictly held afterward. We assert that the error in this constraint must be small; which in turn implies that the background medium must be smoothly-varying -- i.e., changing on a spatial scale much greater than our forward step, and of the wavelength of interest. This assumption is known as the \emph{WKB Approximation}. 

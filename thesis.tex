@@ -12,12 +12,18 @@
 \usepackage{cleveref}
 
 
+
+
+
 % Vectors in bold font instead of line over
 \renewcommand{\vec}[1]{\mathbf{#1}}
+% Math-mode vector alternative (greek symbols)
+\newcommand{\mvec}[1]{\boldsymbol{#1}}
 
 % units in math mode
-\newcommand{\unit}[1]{[\mathrm{#1}]}
+\newcommand{\unit}[1]{\quad[\mathrm{#1}]}
 \usepackage{suthesis-2e}
+    \specialthesis
 
 \dept{Electrical Engineering}
 
@@ -43,11 +49,12 @@
     	\input{chapters/physics}
 
 
+
     \chapter{VLF energy in the Near-Earth Environment}
     	\input{chapters/lightning}
 
-%    \chapter{3D Modeling of LEP}
-%  	\input{chapters/3dWIPP}
+    \chapter{3D Modeling of LEP}
+  	\input{chapters/3dWIPP}
 
     \chapter{Global and Seasonal Estimates of LEP}
     	\input{chapters/global_estimates}
@@ -58,10 +65,25 @@
     \chapter{Conclusions}
     	\input{chapters/conclusions}
 
-
-%    \bibliographystyle{ieeetr}
     \bibliography{library}
     \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Documentation: 
     This style file modifies the standard report style to follow the
