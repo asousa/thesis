@@ -128,9 +128,11 @@ iD & S & 0 \\
 The various summations over each constituent species are incorporated into the so-called Stix parameters (\cite{Stix1992}):
 \begin{eqnarray}
 S =\frac{1}{2}(R + L) \qquad D = \frac{1}{2}(R - L)
+\label{eqn:stix_params_1}
 \end{eqnarray}
 \begin{equation}
 R = 1 - \sum_s\frac{\omega_{ps}^2}{\omega(\omega + \omega_{cs})}; \quad L = 1 - \sum_s\frac{\omega_{ps}^2}{\omega(\omega - \omega_{cs})}; \quad P = 1 - \sum_s\frac{\omega_{ps}^2}{\omega^2}
+\label{eqn:stix_params_2}
 \end{equation}
 
 where $\omega_{ps} = n_sq_s^2/{\epsilon_0 m_s}$ and $\omega_{cs}=q_sB_0/m_s$ are the plasma and cyclotron frequencies for species $s$.
@@ -171,11 +173,11 @@ Finally, it is worth noting that when considering a single-species plasma (e.g.,
 
 The dispersion relation in equation \ref{eqn:disp_rln} reveals a wealth of information about the characteristics of waves in plasmas. For various plasma densities and background magnetic field strength, we can infer which wave frequencies may propagate, if any, and which wave polarizations. Through the remainder of this work, we will be concerned with the \emph{Whistler} mode -- a right-hand, circularly-polarized (RHCP) wave. Within a typical magnetospheric plasma, the Whistler mode spans the VLF band, roughly between 30 Hz and 300 kHz.
 
-Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation by plotting frequency vs wavenumber ($\eta = k c/\omega$).
-\begin{figure*}
+Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($\eta = k c/\omega$). The Whistler mode is the lower branch of the RHCP mode.
+\begin{figure*}[ht]
 \begin{center}
 \includegraphics{figures/omega-k_diagram_parallel}
-\caption{An $\omega$-K diagram for the cold plasma dispersion relation, shown here for a wave propagating parallel to $\vec{B}$, in four-component plasma with $N_e \approx  6\E{8}\,e^-/m^3$, and $B\approx 4\,\mu T$. For higher frequencies the dispersion relation asymptotes to the free-space solution, with slope $c$. The Whistler mode is the right-hand, circularly-polarized mode which spans the majority of the frequency band. The shaded region marks the characteristic band in which the Whistler mode cannot propagate. At lower frequencies, the left-hand circular mode resonates with the various ion constituents,  known as the \emph{Ion Cyclotron} modes.}
+\caption{An $\omega$-K diagram for the cold plasma dispersion relation, shown here for a wave propagating parallel to $\vec{B}$, in four-component plasma with $N_e \approx  6\E{8}\,e^-/m^3$, and $B\approx 4\,\mu T$. For higher frequencies the dispersion relation asymptotes to the free-space solution, with slope $c$. The Whistler mode is the right-hand, circularly-polarized mode which spans the majority of the frequency band. The shaded region marks the characteristic band in which the right-hand mode cannot propagate. At lower frequencies, the left-hand circular mode resonates with the various ion constituents,  known as the \emph{Ion Cyclotron} modes.}
 \label{fig:whistler_mode_dispersion}
 \end{center}
 \end{figure*}
