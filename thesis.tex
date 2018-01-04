@@ -3,6 +3,8 @@
 \providecommand{\E}[1]{\ensuremath{\times 10^{#1}}}
 \usepackage{graphicx}% Include figure files
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 
 \usepackage{natbib}
 %\bibliographystyle{ieeetr}
@@ -10,6 +12,8 @@
 \setcitestyle{authoryear, square}
 
 \usepackage{cleveref}
+%\usepackage{caption}
+%\usepackage{subcaption}
 
 
 
@@ -22,6 +26,9 @@
 
 % units in math mode
 \newcommand{\unit}[1]{\quad[\mathrm{#1}]}
+
+% Exponential:
+\renewcommand{\exp}[1]{e^{#1}}
 \usepackage{suthesis-2e}
     \specialthesis
 
@@ -45,7 +52,7 @@
     \chapter{Introduction}
     	\input{chapters/introduction}
 
-    \chapter{Physics and Methods}
+    \chapter[Physics and Methods]{Background Physics and Description of Methods}
     	\input{chapters/physics}
 
 
@@ -64,6 +71,13 @@
 
     \chapter{Conclusions}
     	\input{chapters/conclusions}
+
+   \appendix
+   \chapter{Reference Equations}
+    \input{chapters/appendix_A_equations}
+    
+    \chapter{Runge-Kutta Methods}
+    \input{chapters/runge_kutta_methods}
 
     \bibliography{library}
     \end{document}

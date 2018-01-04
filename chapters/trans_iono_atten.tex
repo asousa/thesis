@@ -1,2 +1,27 @@
 \section{Trans-Ionosphere Attenuation}
+\label{section:trans_ionosphere_atten}
+The ionosphere, extending from $\approx$ 85 km to 1000 km, is a region of high variability, and a significant parameter in the LEP process. As discussed earlier, the majority of VLF energy emitted by a lightning flash propagates efficiently in the Earth-Ionosphere waveguide; however a fraction of emitted energy can propagate upwards through the ionosphere, where the wave experiences significant losses.
 
+Propagation through the ionosphere is ill-suited for a raytracing approach, as in section \ref{section:raytracing}, for several reasons: first, the ionosphere electron density varies significantly across a relatively thin slab, effectively violating the WKB (smoothly-varying) approximation. Second, the Landau calculations used to compute ray damping are designed for warm, but collisionless plasmas; the ionosphere is collisional, and only partially ionized, requiring different treatment.
+
+Ionosphere propagation is further complicated by reflection and transmission at the lower boundary layer, as well as mode-coupling between incident plane waves, the Whistler mode, and various others. 
+
+For computational simplicity, and to more-easily generalize to a variety of conditions, we treat the ionosphere as a single absorbing slab, ranging from 100 to 1000 km in altitude. We assume that waves propagate directly upwards (normal to the Earth's surface), and are not deflected by ionospheric irregularities or the inclination of the background magnetic field.
+
+Numerous researchers \citep{Lauben1998, Bortnik2005, Kulkarni2009, Graf2013} have used the classic ``Helliwell" curves, taken from \cite{Helliwell1965}, figure 3-35. Helliwell performs an analysis similar to Landau damping -- first deriving a dispersion relation for a collisional plasma, then separating out the imaginary component, which will result in a real-valued attenuation term. The resulting attenuation term is dependent on electron density as a function of altitude, which was extrapolated from sounding rocket campaigns for day and night. The net attenuation is then computed by integrating from 65 to 1500 km in altitude.
+
+Helliwell's curves have persisted as the default record of trans-ionospheric attenuation; however it has been shown that Helliwell's curves overestimate trans-ionosphere attenuation by 10 to 20 dB \citep{Starks2008}, due mainly to the coarse measurement of the ionosphere electron density profile.
+
+Rather than Helliwell's curves, we use results from \cite{Graf2013}, which are derived from extensive full-wave simulations using the International Reference Ionosphere (IRI) plasma density profile. Related work using the same full-wave model has been experimentally verified at ~20kHz using DEMETER satellite measurements of VLF transmitters \citep{Cohen2012}. \citeauthor{Graf2013} reports a set of curves in the same manner as Helliwell -- power attenuation as a function of latitude, for two frequencies (2kHz and 20kHz), for dayside and nightside ionospheres. We then interpolate (or extrapolate) in log-space to find an attenuation factor for any latitude or frequency of interest ($\approx 10^\circ - 70^\circ$, and 200Hz - 30kHz).
+
+We transition between the dayside and nightside attenuation curves using a Sigmoid function, with an approximate 1-hour transition width.
+
+Figure \ref{fig:graf_curves} compares the \cite{Graf2013} and \cite{Helliwell1965} attenuation curves.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics{figures/iono_absorp_curves}
+\caption[Trans-Ionosphere attenuation curves for day and night]{Trans-Ionosphere attenuation curves for the dayside and nightside, at 2 kHz and 20 kHz. Reproduced from \cite{Graf2013}, figure 7.}
+\label{fig:graf_curves}
+\end{center}
+\end{figure}

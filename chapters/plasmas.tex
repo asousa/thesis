@@ -4,6 +4,7 @@ A \emph{plasma} is a quasi-neutral gas of ions, electrons, and neutral particles
 A plasma can be analyzed in several different domains: Single particle motion; fluid approximations; and full kinematic solutions. In this work we treat the motions of electrons in the single particle domain, which is a natural choice for the sparse densities and small gyroradii of radiation belt electrons. To understand the behavior of radio waves propagating through a plasma, we treat the background as a smooth dielectric medium. 
 
 \subsection{Single Particle Motion}
+\label{section:single_particle_motion}
 The high energies and sparse densities of the radiation belts lend themselves very well to a single-particle approximation. Many of the basic behaviors and quantities in plasma physics can be understood through studying the motion of a single particle.
 
 The fundamental equation of motion for a charged particle in an electromagnetic field is given by the Lorentz force:
@@ -30,7 +31,7 @@ And the rotation frequency, known as the \emph{gyrofrequency} or \emph{cyclotron
 By integrating the particle's momentum over a single gyrorotation, we arrive at a third fundamental quantity known as the magnetic moment, or the \emph{first adiabatic invariant}:
 \begin{equation}
 \mu = \frac{m v_\perp^2}{2B}
-\label{eqn:mu}
+\label{eqn:first_adiabatic_invariant}
 \end{equation}
 
 In situations where the magnetic field varies slowly (e.g., on spatial scales much greater than the gyroradius), then $\mu$ remains a constant of motion.
@@ -59,11 +60,62 @@ Therefore, a charged particle in a magnetic field will be constrained to rotate 
 \begin{figure}[ht]
 \begin{center}
 \includegraphics{figures/bottle.pdf}
-\caption{An example of a ``magnetic bottle" particle trap. The top plot shows the trajectory of an electron with an initial pitch angle $\alpha_0=20^\circ$. The bottom plot shows the magnetic field ratio $B_0/B_1$, with the particle's reflection points shown as vertical lines. }
+\caption[An example of a ``magnetic bottle'' particle trap]{An example of a ``magnetic bottle" particle trap. The top plot shows the trajectory of an electron with an initial pitch angle $\alpha_0=20^\circ$. The bottom plot shows the magnetic field ratio $B_0/B_1$, with the particle's reflection points shown as vertical lines. }
 \label{fig:bottle}
 \end{center}
 \end{figure}
 
+\subsection{The Loss Cone}
+
+A magnetic bottle trap need not be linearly-arranged, as it is in figure \ref{fig:bottle}; we require only that the magnetic field be slowly-varying with respect to the particle's gyroradius. The Earth's dipole magnetic field forms a natural and effective particle trap, which dominates the morphology of charged particle populations surrounding the Earth.
+
+The motion of a charged particle in the Earth's magnetic field can be broken into three components: 
+\begin{itemize}
+\item A rapid gyrorotation around the background magnetic field
+\item A ``bouncing'' motion between the north and south poles, with periods ranging from milliseconds to several seconds
+\item A slower, longitudinal drift, causing the particles to precess around the earth on the order of minutes to days, resulting from the magnetic field gradient
+\end{itemize}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[draft]{figures/basic_motions.pdf}
+% THIS IS THE STANDARD CARTOON OF THE BOUNCE AND DRIFTS...
+\caption[Adiabatic motion in the Earth's magnetic field]{Illustration of the various motions exhibited by a charged particle in the Earth's magnetic field}
+\label{fig:adiabatic_motions}
+\end{center}
+\end{figure}
+
+We can average the particle's motion over a single gyrorotation to define a \emph{guiding center}, the trajectory of which follows the background magnetic field line. 
+
+As described previously, a trapped particle's reflection points are defined by the particle's initial pitch angle, and the strength of the magnetic field. In the case of the Earth, however, these turning points are limited in feasibility as well -- for instance, a particle naturally cannot have a reflection point lower than the Earth's surface. Moreover, the Earth's neutral atmosphere becomes exponentially more-dense with decreasing altitude; particles reflecting at an altitude below $\approx 100$ km will encounter a significant neutral molecule population, and stand a very good chance of colliding. A collision with atmospheric constituents can result in the particle losing some, or all, of it's kinetic energy through ionization, and may be completely lost from the system, or return onto a different fieldline \citep{Cotts2011}.
+
+With an understanding of the dense neutral atmosphere, we can define a critical altitude -- 100 km here and in related work -- and thus a critical pitch angle, known as the \emph{loss-cone angle}:
+\begin{equation}
+\sin \alpha_{lc} = \sqrt{\frac{B(\vec{r})}{B_{h_m}}}
+\end{equation}
+where $h_m$ is the reflection height, and $B(\vec{r})$ is measured at the reference point -- either the particle's current location for a \emph{local loss cone}, or at the equator along the field line for the \emph{equatorial loss cone}.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/pitchangle_trapping_3up.pdf}
+\caption[Loss cone illustration]{An illustration of the loss cone. The trajectory of a test electron is shown in blue, for three different equatorial pitch angles: (a) a precipitating particle with a pitch angle within the loss cone,  (b) at the edge of the loss cone, and (c), a stably-trapped particle with a pitch angle well outside the loss cone.}
+\label{fig:loss_cone_examples}
+\end{center}
+\end{figure}
+
+
+In the case of a dipole magnetic field model, we can determine the equatorial loss cone explicitly:
+\begin{equation}
+\sin \alpha_{lc} = \sqrt{\frac{\zeta_m^3}{\sqrt{1 + 3 (1 - \zeta_m)}}} \qquad \zeta_m = (R_e + h_m) / (L R_e)
+\end{equation}
+where $R_e = 6371$ km is the radius of the Earth, and L is the \emph{L-shell} of interest (see section \ref{section:dipole_model}).
+
+
+
+\paragraph{Bounce and Drift Loss Cones}
+We have discussed what is known as the \emph{bounce loss cone}. In literature, there is often mention of both the bounce loss cone and a \emph{drift loss cone}. The drift loss cone is the largest loss cone along the same L-shell, as it varies longitudinally -- conceptually, as a particle drifts longitudinally, it may encounter a different loss cone, and could precipitate at certain longitudes, but not others. 
+
+Under a simple dipole magnetic field model, the two are identical. Within this dissertation, we primarily work with a dipole magnetic field model, and consider only the bounce loss cone.
 
 \subsection{Waves in Plasmas}
 Previously, we have described the motion of a charged particle under the influence of an electromagnetic field. the single-particle approximation provides enormous insight into the dynamics of a sparsely-populated plasma. Next, we must consider the inverse system -- how the charged particles in a plasma dictate the characteristic behaviors of an electromagnetic wave propagating through it.
@@ -174,10 +226,10 @@ Finally, it is worth noting that when considering a single-species plasma (e.g.,
 The dispersion relation in equation \ref{eqn:disp_rln} reveals a wealth of information about the characteristics of waves in plasmas. For various plasma densities and background magnetic field strength, we can infer which wave frequencies may propagate, if any, and which wave polarizations. Through the remainder of this work, we will be concerned with the \emph{Whistler} mode -- a right-hand, circularly-polarized (RHCP) wave. Within a typical magnetospheric plasma, the Whistler mode spans the VLF band, roughly between 30 Hz and 300 kHz.
 
 Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($\eta = k c/\omega$). The Whistler mode is the lower branch of the RHCP mode.
-\begin{figure*}[ht]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics{figures/omega-k_diagram_parallel}
-\caption{An $\omega$-K diagram for the cold plasma dispersion relation, shown here for a wave propagating parallel to $\vec{B}$, in four-component plasma with $N_e \approx  6\E{8}\,e^-/m^3$, and $B\approx 4\,\mu T$. For higher frequencies the dispersion relation asymptotes to the free-space solution, with slope $c$. The Whistler mode is the right-hand, circularly-polarized mode which spans the majority of the frequency band. The shaded region marks the characteristic band in which the right-hand mode cannot propagate. At lower frequencies, the left-hand circular mode resonates with the various ion constituents,  known as the \emph{Ion Cyclotron} modes.}
+\caption[An $\omega$-K diagram for the cold, four-component dispersion relation, for parallel propagation at L$\approx$3]{An $\omega$-K diagram for the cold plasma dispersion relation, shown here for a wave propagating parallel to $\vec{B}$, in four-component plasma with $N_e \approx  6\E{8}\,e^-/m^3$, and $B\approx 4\,\mu T$. For higher frequencies the dispersion relation asymptotes to the free-space solution, with slope $c$. The Whistler mode is the right-hand, circularly-polarized mode which spans the majority of the frequency band. The shaded region marks the characteristic band in which the right-hand mode cannot propagate. At lower frequencies, the left-hand circular mode resonates with the various ion constituents,  known as the \emph{Ion Cyclotron} modes.}
 \label{fig:whistler_mode_dispersion}
 \end{center}
-\end{figure*}
+\end{figure}
