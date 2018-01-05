@@ -26,9 +26,9 @@ The raytracing equations are a set of coupled, first-order differential equation
 First, note that we can solve the set at a given time, then evolve the system forward some finite time step. However, the constraint $F=0$ may not be strictly held afterward. We assert that the error in this constraint must be small; which in turn implies that the background medium must be smoothly-varying -- i.e., changing on a spatial scale much greater than our forward step, and of the wavelength of interest. This assumption is known as the \emph{WKB Approximation}.
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[draft]{Figures/raytracing_example.pdf}
+\includegraphics{Figures/raytracing_example.pdf}
 \end{center}
-\caption{Example ray tracing}
+\caption[Example ray tracing]{Example ray families as computed by the raytracer}
 \end{figure}
 \subsubsection{Adaptive Timestepping}
 The process of raytracing, then, is to 1) solve the dispersion relation (\ref{eqn:disp_rln}) to find the refractive index; 2) compute the velocity vector and step the system forward in time; and 3) re-evaluate at the new position to assure that the condition F=0 remains held. However, properly selecting the timestep is of critical importance -- too large a timestep and positional errors will accumulate, or the ray will slip out of a propagating mode; too small and computational speed and memory usage suffers. We use an adaptive \emph{Runge-Kutta-Fehlberg} (RK45) \citep{Fehlberg1969, Mathews2004} method to continuously update the timestep as the raytracer progresses. RK45 is a common technique for solving ordinary differential equations.
