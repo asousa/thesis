@@ -17,29 +17,60 @@ Figure \ref{fig:power_blockdiagram} shows the steps required to compute a single
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{figures/lightning_power_block_diagram.pdf}
-
-
-
 \caption[Energy density calculation block diagram]{Block diagram of the average energy density calculation for a single flash.}
 \label{fig:power_blockdiagram}
 \end{center}
 \end{figure}
 
-
-
 \section{Persistent Energy from a Single Flash}
+
+\begin{table}
+\caption{Simulation Parameters}
+\begin{center}
+\begin{tabular}{c|c}
+Latitude spacing & 1$^\circ$ \\
+Longitude spacing & 1$^\circ$ \\
+Frequency range & 200 Hz - 30 kHz \\
+Coarse Frequencies & 33 (log-spaced) \\
+Fine Frequencies & 20 \\
+\end{tabular}
+\end{center}
+\label{default}
+\end{table}%
 
 \subsection{Radiated power above the ionosphere}
 
+% Illumination pattern
+\begin{figure}
+\begin{center}
+\includegraphics{figures/power_scaling_below_ionosphere.pdf}
+\caption[Illumination pattern below the ionosphere]{Vertically-propagating power density from a single discharge, as a function of frequency and radial distance. Adapted from \cite{Marshall2011}.}
+\label{fig:illumination}
+\end{center}
+\end{figure}
 
 
+% Illumination pattern
+\begin{figure}
+\begin{center}
+\includegraphics{figures/illumination_basemap.png}
+\caption[Illumination pattern above the ionosphere]{Illumination pattern, integrated over frequency, after ionospheric attenuation (altitude = 1000 km).}
+\label{fig:illumination}
+\end{center}
+\end{figure}
 
-
+% Total energy above ionosphere
+\begin{figure}
+\begin{center}
+\includegraphics{figures/total_energy.pdf}
+\caption[Energy above the ionosphere due to a single flash]{Integrated energy above the ionosphere from a single discharge, as a function of geomagnetic latitude. Energy scales quadratically with peak current; totals for 10 kA (an average flash), and 100 kA (a strong, but not unreasonable flash) are overlaid. }
+\label{fig:illumination}
+\end{center}
+\end{figure}
 
 
 \subsection{Gridding and Interpolation}
 
-% EITHER A FIGURE OR A TABLE OF TOTAL INPUT ENERGY PER FLASH (~100kj etc)
     \begin{figure}
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
@@ -58,8 +89,8 @@ Figure \ref{fig:power_blockdiagram} shows the steps required to compute a single
     \label{fig:interpolation_scheme}
 \end{figure}
 
-% CONVEX HULL FIGURE
 
+% Delaunay figure
 \begin{figure}
 \begin{center}
 \includegraphics{figures/delaunay_1.pdf}
@@ -68,6 +99,16 @@ Figure \ref{fig:power_blockdiagram} shows the steps required to compute a single
 \end{center}
 \end{figure}
 
+% Fine-scale frequency interpolation
+\begin{figure}
+\begin{center}
+\includegraphics{figures/delaunay_2.pdf}
+\caption{Fine-scale frequency interpolation.}
+\label{fig:delaunay_2}
+\end{center}
+\end{figure}
+
+% CONVEX HULL FIGURE
 \begin{figure}
 \begin{center}
 \includegraphics{figures/convex_hulls.pdf}
