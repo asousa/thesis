@@ -1,0 +1,68 @@
+\section{Landau Damping}
+\label{appendix:landau}
+
+In raytracing, we calculate wave growth and attenuation according to Landau damping. We use the \citet{Brinca1972} formulation -- itself a reorganization of \cite{Kennel1966} -- which assumes a cold background plasma, onto which a small thermal electron population is ascribed. The following (frustratingly complex) equation set is taken from \cite{Brinca1972}, and reprinted here for organization.
+
+Calculating a growth rate begins simply: we assume a time-varying plane wave in the usual complex (``phasor'') form:
+
+\begin{equation}
+E \sim E_0 \exp{i(\omega t - \vec{k}\cdot\vec{r})}
+\end{equation}
+
+If either $\omega$ or $\vec{k}$ have an imaginary component, then the result will be an additional real-valued term, which we can factor out as $\chi$:
+\begin{eqnarray}
+E & = &E_0 \exp{i( \omega t - (\vec{k_r} + i\vec{k_i})\cdot\vec{r})} \\
+& = &E_0 \exp{-\chi r}\exp{i(\omega t + \vec{k}\cdot\vec{r})}
+\end{eqnarray}
+
+If the new exponential term $-\chi$ is positive, the wave will be amplified; if the term is negative, the wave will be attenuated.
+
+The spatial growth rate $\chi$ is given by equation \ref{eqn:brinca_chi} \citep{Brinca1972,Kennel1966}:
+\begin{equation}
+\chi = -\frac{c k_i}{\omega} = \frac{\delta}{4 \eta (2 A \eta^2 - B)} \big( T_1 - T_2 - T_3 \big) \\ \label{eqn:brinca_chi} 
+\end{equation}
+with the following terms:
+
+\begin{eqnarray}
+&T_1 = & \frac{\eta^2\sin{\theta}^2 - P}{2(S - \eta^2)}\Gamma_I \cdot [(R - \eta^2)J_{m-1} + (L - \eta^2)J_{m+1}]^2 G_1 \\ \nonumber
+&T_2 = & 2[(S - \eta^2 \cos^2\theta)(S - \eta^2) - D^2] \Lambda_I J_m G_2 \\ \nonumber
+&T_3 = & 2\eta^2 \sin \theta \cos \theta \Gamma_I\cdot [(R - \eta^2)J_{m-1} + (L - \eta^2)J_{m+1}]G_2 \\ \nonumber
+\end{eqnarray}
+
+where $\chi > 0$ indicates damping.
+
+Note that \citeauthor{Brinca1972} has related the temporal damping rate $\omega_i$ from \cite{Kennel1966} to a spatial damping rate $k_i$ by assuming a constant propagation at the group velocity $v_g$.
+
+$A, B, C, D, L, P, R,$ and $S$ are the Stix environment parameters given by \ref{eqn:stix_params_1} -- \ref{eqn:stix_params_2}, and are functions of wave frequency, local plasma density, and local magnetic field strength. 
+
+As previous, $\theta$ is the angle between the wavenormal vector and the background magnetic field, and $\eta$ is the wave refractive index, found by solving equation \ref{eqn:disp_rln}.
+
+The terms $J_m, J_{m+1}$ and $J_{m-1}$ are Bessel functions of the first kind, which account for the multiple resonant modes -- $m=0$ indicates the Landau resonance; $m\pm1$ the Cyclotron resonance.
+
+The terms $\Gamma_I$ and $\Lambda_I$ are summations over resonant modes $m\in \{-\infty...\infty\}$ , and integrations over the velocity space $v_\perp$,$v_\parallel$ given by:
+
+\begin{eqnarray}
+&\Gamma_I &= \frac{2\pi^2\omega_p^2}{\omega k_\parallel} \sum_{m=-\infty}^{\infty}\int_0^\infty v_\perp^2 dv_\perp \int_{-\infty}^\infty \delta(v_\parallel - V_m) d v_\parallel \\
+&\Lambda_I &= \frac{2\pi^2\omega_p^2}{\omega k_\parallel} \sum_{m=-\infty}^{\infty}\int_0^\infty v_\perp dv_\perp \int_{-\infty}^\infty v_\parallel \delta(v_\parallel - V_m) d v_\parallel
+\end{eqnarray}
+\begin{equation}
+V_m = \frac{\omega - m\omega_c}{k_\parallel}
+\end{equation}
+
+Finally, the temperature distribution is included in the values $G_1$ and $G_2$ -- each of which are functions of the \emph{gradient} of the phase-space distribution function:
+
+ $f=f(\vec{x}, \vec{v}) = f(\vec{x}, v_\perp, v_\parallel)$:
+
+\begin{equation}
+G_1 = \bigg(1 - \frac{k_\parallel v_\perp}{\omega}\bigg)\frac{\partial f}{\partial v_\perp} + \frac{k_\parallel v_\perp}{\omega}\frac{\partial f}{\partial v_\parallel}
+\end{equation}
+\begin{equation}
+G_2 = J_m\bigg[\bigg(1 + \frac{m \omega_c}{\omega}\bigg)\frac{\partial f}{\partial v_\parallel} - m \frac{\omega_c}{\omega v_\perp} \frac{\partial f}{\partial v_\perp}\bigg]
+\end{equation}
+
+Despite the complexity of these equations, the phase-space distribution function $f$ is the only fundamental new input -- every remaining parameter is an output of the raytracer, and itself a result of our plasma density and magnetic field models.
+
+Our implementation, derived from \cite{Golden2010}, computes the gradients of $f$ numerically using finite differencing, therefore granting the flexibility to use any arbitrary distribution function.
+
+
+%& = & \frac{\delta}{4 \eta (2 A \eta^2 - B)} \big\{\frac{\eta^2\sin{\theta}^2 - P}{2(S - \eta^2)}\Gamma_I \\ \nonumber 

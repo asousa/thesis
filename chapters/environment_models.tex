@@ -32,18 +32,21 @@ R(\lambda) = R_e L \cos^2 \lambda
 
 
 The dipole field can then be used as an orthogonal coordinate system, with any location being specified by a latitude, longitude, and L-shell \citep{McIlwain1961}. 
-\paragraph{IGRF}
 
+Within the plasmasphere, the dipole model works well. However, closer to the Earth's surface the model becomes increasingly inaccurate, necessitating a higher-order model.
+\paragraph{IGRF}
 The International Geomagnetic Reference Field (IGRF) is a 13th-order spherical expansion model, with coefficients updated every few years based on terrestrial measurements \citep{Thebault2015}. Within this work we use the IGRF-12 model as a realistic representation of the Earth's internal magnetic field.
 
 IGRF is quick and simple to calculate at any given location, and is much closer to reality than a simple dipole field. However, due to the added complexity, there are not closed-form expressions for field line trajectories or L-shells, which can make dealing with IGRF (and any higher-order model) more cumbersome.
 
+Figure \ref{fig:Lshell_example} contrasts lines of constant L-shell between the dipole and IGRF models.
+
 \paragraph{Tsyganenko Corrections}
-The dipole and IGRF models represent the Earth's internally-generated magnetic field. However, as one moves further away from the Earth ($L > \approx 8$), the Earth's internal field becomes less dominant, and external fields, namely forcing from the solar wind, cannot be ignored. The total field present in the space environment is the sum of both internal and external contributions.
+The dipole and IGRF models represent the Earth's internally-generated magnetic field. However, as one moves further away from the Earth ($L > \sim 8$), the Earth's internal field becomes less dominant, and external fields, namely forcing from the solar wind, cannot be ignored. The total field present in the space environment is the sum of both internal and external contributions.
 
-Numerous models of the external field exist; within this work we consider the T05 external field model \citep{Tsyganenko2005}. The external field model exhibits seasonal and daily variation. However, for fieldlines below L $\approx$ 7, the external field effects are negligible. 
+Numerous models of the external field exist; within this work we consider the T05 external field model \citep{Tsyganenko2005}. The external field model exhibits seasonal and daily variation. However, for fieldlines below L $\approx$ 6, the external field effects can be ignored. 
 
-Figure \ref{fig:fieldline_example} contrasts the dipole, IGRF, and T05-corrected models in the meridional plane; figure \ref{fig:Lshell_example} illustrates the deviation in fieldline contours along the Earth's surface between the dipole and IGRF models.
+Figure \ref{fig:fieldline_example} contrasts the dipole, IGRF, and T05-corrected models in the meridional plane; Figure \ref{fig:Lshell_example} illustrates the deviation in fieldline contours along the Earth's surface between the dipole and IGRF models.
 
 \begin{figure}[h]
 \begin{center}
@@ -68,22 +71,20 @@ The plasmasphere is a region of the space environment surrounding the Earth, and
 Much like the ionosphere, the plasmasphere is a highly variable region, depending on solar conditions ($K_p$), location (latitude, longitude, field line), and time of day (MLT). The large spatial scales, high variability, and sparse availability of in-situ measurements require us to turn to empirical models of each region. We consider three primary models of electron density, and two of electron temperature.
 
 \subsubsection{Overview of Plasmasphere Density Models}
-
+\label{section:plasmasphere_density_models}
 \paragraph{Ngo Model}
 
-The Ngo model is a legacy model used extensively in research at Stanford from the early 1980s through the mid-2000s, notably by \cite{Lauben1998} and \cite{Bortnik2005}, and has heritage dating back to the early days of radioscience at Stanford \citep{Kimura1966} The model uses a Diffusive Equilibrium (DE) model for the inner and outer plasmasphere, onto which the \cite{Carpenter1992} inner plasmasphere model is overlaid. This model was integrated into the legacy Stanford VLF raytracing code, and provided several adjustable parameters, including plasmapause location, constituent ratios, and the ability to include ducts.
+The Ngo model is a legacy model used extensively in research at Stanford from the early 1980s through the mid-2000s, notably by \cite{Lauben1998} and \cite{Bortnik2005}, and has heritage dating back to the early days of radioscience at Stanford \citep{Kimura1966}. The model uses a Diffusive Equilibrium (DE) \citep{Angerami1963} model for the inner and outer plasmasphere, onto which the \cite{Carpenter1992} inner plasmasphere model is overlaid. This model was integrated into the legacy Stanford VLF raytracing code, and provided several adjustable parameters, including plasmapause location, constituent ratios, and the ability to include ducts.
 
-\paragraph{Global Core Plasmasphere Model}
+\paragraph{Global Core Plasmasphere Model (GCPM)}
 
-The Global Core Plasmasphere Model (GCPM), initially developed in 2000 by \cite{Gallagher1999} with significant updates through the following decade, smoothly transitions between several regional models to provide a continuous model of the plasmasphere. Within this work we use version 2.4, which was released in 2009 and made available by the Space Plasma Physics group at the NASA Marshall Space Flight Center (https://plasmasphere.nasa.gov). GCPM incorporates the \cite{Carpenter1992} inner plasmasphere model and the \cite{Gallagher1995} outer plasmasphere model, with an empirical fit of the plasmapause location between. The polar cap model is derived from \cite{Persoon1983} and \cite{Chandler1991}. All models are connected smoothly to the IRI model of the ionosphere at lower altitudes. The combined GCPM model is parameterized by $K_p$ and MLT.
+The Global Core Plasmasphere Model, initially developed in 2000 by \cite{Gallagher1999} with significant updates through the following decade, smoothly transitions between several regional models to provide a continuous model of the plasmasphere. Within this work we use version 2.4, which was released in 2009 and made available by the Space Plasma Physics group at the NASA Marshall Space Flight Center (https://plasmasphere.nasa.gov). GCPM incorporates the \cite{Carpenter1992} inner plasmasphere model and the \cite{Gallagher1995} outer plasmasphere model, with an empirical fit of the plasmapause location between. The polar cap model is derived from \cite{Persoon1983} and \cite{Chandler1991}. All models are connected smoothly to the IRI model of the ionosphere at lower altitudes. The combined GCPM model is parameterized by $K_p$ and MLT.
 
 \paragraph{Simplified GCPM}
 
 GCPM aims to provide a dynamic, complete picture of the plasmasphere as a function of time and $K_p$; however for our purposes GCPM provides too much variation. Additionally, the combination and smoothing between many models is computationally slow. In order to provide quicker computation and to reduce the number of parameters to adjust, we have implemented a simplified version of GCPM.
 
-This model uses the equatorial-plane GCPM model, including the plasmapause location. However we omit any variation in electron density along latitude, and assume densities are constant along each field line. As our region of interest lies primarily within low and mid latitudes, we omit the polar cap model altogether and simply merge the ionosphere into the equatorial trough model. Finally to simplify computation, we model the ionosphere using an empirical fit to IRI -- one for noon, and one for midnight, with a smooth transition along longitude.
-
-Figure \ref{fig:plasma_model_comparison} shows a side-by-side comparison of the three models.
+This model uses the equatorial-plane GCPM model, including the plasmapause location. However we omit any variation in electron density along latitude, and assume densities are constant along each field line. As our region of interest lies primarily within low and mid latitudes, we omit the polar cap model altogether and simply merge the ionosphere into the equatorial trough model. Finally to simplify computation, we model the ionosphere using an empirical fit to IRI -- one for noon, and one for midnight, with a smooth transition along longitude. Figure \ref{fig:plasma_model_comparison} shows a side-by-side comparison of the three models, for $K_p=2$.
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/plasma_model_comparison_serif.png}
@@ -102,12 +103,41 @@ The International Reference Ionosphere (IRI) is a standard model of several key 
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/iono_profile.pdf}
-\caption[Ionosphere density profile]{The IRI electron density model and derived curve fits. The left panel shows electron density variation as a function of altitude, for day and night. The right panels show electron density variation with respect to latitude, for 1500 km and the $F_2$ peak (approx. 300 km).}
+\caption[Ionosphere density profile]{The IRI electron density model and derived curve fits. The left panel shows electron density variation as a function of altitude, for day and night. The right panels show electron density variation with respect to latitude, for (top) 1500 km and (bottom) the $F_2$ peak (approx. 300 km). Dashed lines indicate the fitted curves used by the simplified IRI model.}
 \label{fig:iono_profile}
 \end{center}
 \end{figure}
 
-In order to both reduce our model parameter space, and to greatly decrease computation time, we pair a simplified version of IRI with a simplified version of GCPM. The IRI-2016 model was run for dayside and nightside ionospheres (12 and 0 MLT), using all default settings, for January 1st, 2000. We then fit a multiple-Gaussian function to the electron density vs latitude, at an altitude of 1500 km, and at the $F_2$ peak. Electron density variation with respect to altitude is approximated by a log-linear fit between 1500 km and the $F_2$ peak. Finally, longitudinal variation is smoothed with a sigmoid function with a width of $\approx$ 1 hr. Figure \ref{fig:iono_profile} shows both the IRI electron density and the derived curve fits.
+In order to both reduce our model parameter space, and to greatly decrease computation time, we pair a simplified version of IRI with a simplified version of GCPM. The IRI-2016 model was run for dayside and nightside ionospheres (12 and 0 MLT), using all default settings, for January 1st, 2000. We then fit a multiple-Gaussian function to the electron density vs latitude, at an altitude of 1500 km, and at the $F_2$ peak. Electron density variation with respect to altitude is approximated by a log-linear fit between 1500 km and the $F_2$ peak. Finally, longitudinal variation is smoothed with a sigmoid function with a width of $\sim$ 1 hr. Figure \ref{fig:iono_profile} shows both the IRI electron density and the derived curve fits.
+
+
+\subsection{The Radiation Belts}
+Section \ref{section:plasmasphere_density_models} describes the density of electrons and ions in the near-Earth environment. Absent from these models, however, is a discussion of electron and ion energies. The model in section \ref{section:thermal_electron_distributions} assigns an energy distribution to electrons in the $\sim$ 1 eV range to model a warm plasma. 
+
+The term ``Radiation Belts'' or ``Van Allen belts'' refer to the trapped distributions of sparse, very-high-energy electrons, which exhibit two shell-like enhancements which comprise the inner and outer radiation belts.
+
+We model the trapped electron population using the AE8 density model \citep{Vette1991}. AE8 provides omnidirectional, integral fluxes of high-energy electrons as a function of L-shell energy. AE8 is the culmination of several decades of radiation belt studies by the National Space Science Data Center (NSSDC), with the first efforts originating with \cite{Vette1966}. AE8 combines measurements from $\sim$ 94 different instruments across $\sim$ 24 satellite missions from the 1960s and 1970s, which spanned a wide range of orbits, from LEO out to geostationary \citep{Cayton2005}.
+
+Figure \ref{fig:AE8_model} shows the AE8 model output for minimally-populated and maximally-populated conditions. 
+
+\begin{figure}
+\begin{center}
+\includegraphics{figures/AE8_fluxes.pdf}
+\caption[AE8 integral flux model]{Integral flux for energetic electrons in the radiation belts, as reported by the AE8 model \citep{Vette1991}. The top frame shows the model of maximum conditions, and the bottom frame minimum conditions. The two radiation belts are visible as enhancements within L$\approx$ 2 -- 3 for the inner belt, and L$\approx$ 4 -- 7 for the outer belt. The belts are separated by a depletion known as the ``slot'' region.}
+\label{fig:AE8_model}
+\end{center}
+\end{figure}
+
+The AE8 model reports omnidirectional, integral fluxes -- that is, the total electron flux integrated over a spherical surface -- at the geomagnetic equator. However we require finer detail in directional flux of electrons, which we model via a distribution of pitch angles. \cite{Lauben1998} assumed the simplest distribution, with electrons uniformly-distributed in pitch angle up to the loss cone. \cite{Bortnik2005} compared the square distribution to a more-realistic, sinusoidal distribution. Here we assume a sinusoidal pitch-angle distribution along with the AE8 flux density model. Figure \ref{fig:pitchangledistributions} contrasts the square and sinusoidal distribution functions.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics{figures/pitch-angle_distributions.pdf}
+\caption[Pitch-angle distribution functions]{Two models of the distribution in pitch angle of radiation belt electrons. The simplest model is a square-shaped distribution, wherein pitch-angles are equally represented within the trapped population. A more realistic model is a sinusoidal distribution. Densities within the loss cone ($\alpha < \alpha_{lc}$) are assumed to be zero.}
+\label{fig:pitchangledistributions}
+\end{center}
+\end{figure}
 
 
 % RADIATION BELTS
