@@ -1,4 +1,4 @@
-The purpose of this chapter is to provide a quantifiable assessment of the persistent radio wave energy in the near-Earth space environment due to lightning-generated Whistlers. The morphology of LEP (time evolution, spatial extent at the Earth's surface, and so forth) are primarily determined by the location of wave-particle interactions; additionally, wave-particle interactions with whistlers are hypothesized to be the primary cause of slot-region electron depletions, and the ``impenetrable barrier'' below L $\sim$ 2.
+The purpose of this chapter is to provide a quantifiable assessment of the persistent radio wave energy in the near-Earth space environment due to lightning-generated whistlers. The morphology of LEP (time evolution, spatial extent at the Earth's surface, and so forth) are primarily determined by the location of wave-particle interactions; additionally, wave-particle interactions with whistlers are hypothesized to be the primary cause of slot-region electron depletions, and the ``impenetrable barrier'' below L $\sim$ 2.
 
 Lightning-generated whistlers are sporadic, and exist alongside a multitude of radio wave activity, such as VLF chorus and plasmaspheric hiss, making a correlated \emph{in-situ} measurement challenging. Within this chapter we simulate the relative VLF energy (L-shell, latitude, longitude) in the near-Earth space environment, in volumetric units [J/$m^3$], as a means of assessing their relative contribution to the persistent radio spectrum.
 
@@ -24,21 +24,49 @@ Figure \ref{fig:power_blockdiagram} shows the steps required to compute the aver
 \end{figure*}
 
 
-\begin{table}
+\begin{table}[h!]
 \caption{Simulation Parameters}
 \begin{center}
+
 \begin{tabular}{c|c}
+Ray Tracing Parameters: & \\
+\hline \hline
+Plasmasphere model & Simplified GCPM \\
+Magnetic field model & Dipole \\
+Maximum error tolerance & 1\E{-3} \\
+Maximum timestep & 5 ms \\
+MLT & 0 and 12 \\
+K$_p$ & $\{0, 2, 4, 6, 8\}$ \\
 Latitude spacing & 1$^\circ$ \\
 Longitude spacing & 1$^\circ$ \\
 Frequency range & 200 Hz - 30 kHz \\
 Coarse Frequencies & 33 (log-spaced) \\
-Fine Frequencies & 20 \\
-\hline
-ray tracing parameters: & \\
-Maximum time & 20 sec \\
-Plasmasphere model & Simplified GCPM \\
-Magnetic field model & Dipole 
+& \\
+Grid and Interpolation Parameters: \\
+\hline \hline
+Fine-scale Frequencies & 50 \\
+Output L-shell range & 1.2 - 8 \\
+Output L-shell spacing & 0.05 \\
+Output latitude spacing & 1$^\circ$ \\
 \end{tabular}
+%\begin{tabular}{r|c|r|c}
+%ray tracing parameters: & & Interpolation parameters: & \\
+%\hline
+%Maximum time & 20 sec & 	Latitude spacing & 1$^\circ$ \\
+%Plasmasphere model & Simplified GCPM & 	Longitude spacing & 1$^\circ$ \\
+%Magnetic field model & Dipole & Frequency range & 200 Hz - 30 kHz \\
+%
+%%Latitude spacing & 1$^\circ$ \\
+%%Longitude spacing & 1$^\circ$ \\
+%%Frequency range & 200 Hz - 30 kHz \\
+%%Coarse Frequencies & 33 (log-spaced) \\
+%%Fine Frequencies & 50
+%%
+%%
+%%Maximum time & 20 sec \\
+%%Plasmasphere model & Simplified GCPM \\
+%%Magnetic field model & Dipole 
+%\end{tabular}
 \end{center}
 \label{tab:simulation_params}
 \end{table}%
@@ -50,25 +78,26 @@ Figure \ref{fig:illumination} shows the illumination below the ionosphere result
 \begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/power_scaling_below_ionosphere.pdf}
-\caption[Illumination pattern below the ionosphere]{Vertically-propagating power density below the ionosphere from a single 100kA cloud-to-ground discharge with $H_E=$5 km, as a function of frequency and radial distance. Adapted from \cite{Marshall2011}.}
+\caption[Illumination pattern below the ionosphere]{Vertically-propagating power density below the ionosphere from a single 100kA cloud-to-ground discharge with $H_E= $5 km, as a function of frequency and radial distance. Adapted from \cite{Marshall2011}.}
 \label{fig:illumination}
 \end{center}
 \end{figure}
-
 % Illumination pattern
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/illumination_basemap.png}
-\caption[Illumination pattern above the ionosphere]{Illumination pattern, integrated over frequency, after ionospheric attenuation (altitude = 1000 km).}
+\caption[Illumination pattern above the ionosphere]{Illumination pattern, integrated over frequency, after ionospheric attenuation (altitude = 1000 km). The ionosphere imparts stronger attenuation at equatorial latitudes, and on the dayside. The pre-ionosphere illumination pattern is toroidal, with a central null directly over the incident flash.}
 \label{fig:illumination}
 \end{center}
 \end{figure}
 
+By integrating over latitude, longitude, and frequency, we can estimate the total energy imparted to the magnetosphere by a flash at a given latitude, for daytime and nighttime conditions, as shown in figure \ref{fig:illumination_totals}. Our illumination model scales with peak current squared; when combined with the updated ionosphere attenuation curves from \ref{fig:graf_curves}, we see significant overlap between day and night. A strong, midlatitude flash on the day side can easily impart similar energy as a less-intense or lower-latitude flash on the nightside.
+
 % Total energy above ionosphere
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/total_energy.pdf}
-\caption[Energy above the ionosphere due to a single flash]{Integrated energy above the ionosphere from a single discharge, as a function of geomagnetic latitude. Energy scales quadratically with peak current; totals for 10 kA (an average flash), and 100 kA (a strong, but not unreasonable flash) are overlaid. The dashed lines indicate the total energy released below the ionosphere, before attenuation.}
+\caption[Energy above the ionosphere due to a single flash]{Integrated energy above the ionosphere from a single discharge, as a function of geomagnetic latitude. Energy scales quadratically with peak current; totals for 10 kA (an average flash), and 100 kA (a strong, but not unreasonable flash) are overlaid. The dashed lines indicate the total energy released below the ionosphere, before attenuation -- $\approx 50$ kJ for 10 kA, and $\approx 4$ MJ for 100 kA.}
 \label{fig:illumination_totals}
 \end{center}
 \end{figure}
@@ -78,7 +107,7 @@ Figure \ref{fig:illumination} shows the illumination below the ionosphere result
 
 We now have a model of the total energy above the ionosphere, at an altitude of 1000 km, divided into gridded bins in latitude, longitude, and frequency. The next step required is to map the energy within each cell out into the plasmasphere. We accomplish this task using a ``guide ray'' formulation, as illustrated in figure \ref{fig:interpolation_scheme}.
 
-Using the ray tracing and Landau damping technique from section \ref{section:raytracing}, we compute rays in 1$^\circ$ steps in both latitude and longitude, within 1000 km of the incident flash, for 33 logarithmically-spaced frequencies between 200 Hz and 30 kHz. Rays are computed for 20 seconds. See table \ref{tab:simulation_params} for a list of various parameters used. The computed rays are then interpolated onto a uniform time axis using one-dimensional linear interpolation for each parameter. 
+Using the ray tracing and Landau damping technique from section \ref{section:raytracing}, we compute rays in 1$^\circ$ steps in both latitude and longitude, within 1000 km of the incident flash, for 33 logarithmically-spaced frequencies between 200 Hz and 30 kHz. Rays are computed for 20 seconds. See table \ref{tab:simulation_params} for a list of various parameters used. In order to generalize across all longitudes, we use the dipole magnetic field model and the simplified GCPM plasmasphere model. Additionally, we restrict raytracing deviation to the meridional plane to omit any numerical instabilities introduced. The computed rays are then interpolated onto a uniform time axis using one-dimensional linear interpolation for each parameter. 
 
 We make the assumption that the energy bounded by the set of 8 guide rays (two latitudes, two longitudes, two frequencies) remains bounded by these rays as they propagate. Furthermore, we assume that our interpolated timesteps are much larger than the envelope of the wave packet (see figure \ref{fig:lightning_spectrum}). Therefore, the initial energy within each cell is bounded by a four-dimensional voxel, determined by two adjacent timesteps $t_{n-1}, t_n$ of the guide ray set \{(lat$_1$, lat$_2$), (lon$_1$, lon$_2$), (f$_1$, f$_2$)\}.
 
@@ -89,7 +118,7 @@ At each timestep, we compute a Delaunay triangulation for the 16 points defined 
 \subsubsection{Fine-scale frequency interpolation}
 Our output grid coordinates are given in three dimensions -- latitude, longitude, and L-shell. However, our Delaunay construction adds an additional dimension, frequency. We can perform a fine-scale interpolation on the frequency axis by selecting a linearly-spaced grid of sub-frequencies between the two ray frequencies $f_1, f_2$. Checking and logging whether or not each new point is within the four-dimensional voxel is equivalent to interpolating and checking in three dimensions, as illustrated in figure \ref{fig:delaunay_2}.
 
-    \begin{figure}
+    \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
     \centering
@@ -109,7 +138,7 @@ Our output grid coordinates are given in three dimensions -- latitude, longitude
 
 
 % Delaunay figure
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/delaunay_1.pdf}
 \caption[Delaunay interpolation method]{Illustration of the Delaunay interpolation method, shown here in three dimensions (e.g., for a single frequency).}
@@ -118,7 +147,7 @@ Our output grid coordinates are given in three dimensions -- latitude, longitude
 \end{figure}
 
 % Fine-scale frequency interpolation
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/delaunay_2.pdf}
 \caption[Fine-scale frequency interpolation]{An illustration of fine-scale frequency interpolation. Here we show a three-dimensional voxel being linearly interpolated between two sets of guide rays, at $f_1=200$ Hz and $f_2=300$ Hz. Our implementation operates on a four-dimensional voxel, facilitating rapid checking across fine-scale frequency interpolation steps.}
@@ -130,10 +159,8 @@ Our output grid coordinates are given in three dimensions -- latitude, longitude
 Our interpolation method differs substantially from \cite{Bortnik2005} and related work. \citeauthor{Bortnik2005} performed an area-weighted interpolation between guide rays in latitude and frequency, and then looked for ray-segment intersections with cross-sectional areas perpendicular to a field line. Crossings, however, are exceedingly rare over the full set of guide rays and output cross-sectional area segments, which requires clever restriction of the output space, or high computational resources. Our method was selected for computational efficiency when relaxing the meridional-plane restriction, and to assure that all input energy is accounted for. Using the \cite{Bortnik2005} method with larger intervals in latitude and longitude can result in undersampling the post-ionosphere illumination pattern, while our method integrates the input energy regardless of grid size.
 
 One caveat of our interpolation algorithm is that the Delaunay triangulation implementation only checks whether or not a point is within the convex hull of the voxel, rather than the voxel itself. For simple voxels, and at early timesteps (e.g., before any magnetospheric reflection), we can be confident that the voxel remains cubic, and the concave and convex hulls are equivalent. However at later timesteps, after the rays have spread and reflected substantially, the concave and convex hulls are likely not equivalent, in which case the interpolation algorithm may artificially disperse the energy over a larger volume, effectively underestimating energy density while overestimating energy spreading. Figure \ref{fig:convex_hulls} shows some simple polygons and their convex hulls.
-
-
 % CONVEX HULL FIGURE
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
 \includegraphics{figures/convex_hulls.pdf}
 \caption{Illustration of a convex hull in two dimensions. (a) A simple polygon, shown in orange, for which the convex hull and concave hulls differ substantially. (b) A collection of random points, and their concave hull.}
@@ -142,42 +169,103 @@ One caveat of our interpolation algorithm is that the Delaunay triangulation imp
 \end{figure}
 
 
-\subsection{Energy stencils for a single flash}
+\subsection{Energy imparted by a single flash}
+The assembled model of a single flash is parameterized by a flash location (latitude, MLT), and K$_p$; the output space can be specified over time, latitude, longitude, L-shell, and frequency. We can reduce the parameter space by integrating over various axes.
 
+Figure \ref{fig:energy_from_single_flash} shows the energy density in the meridional plane, integrated over time and frequency, and averaged over a 0.25$^\circ$ slab in longitude (Note that wave intensity is strongest with a slight offset ($\sim 100$ km) in longitude -- see section \ref{section:longitude_scaling}). Energy launched from lower latitudes remains bounded in latitude as it propagates outward; conversely, higher-latitude flashes exhibit more spread in latitude along a fieldline. Higher-latitude flashes also exhibit a stronger ``duct-like'' enhancement in which energy is well-guided along a fieldline, which we can attribute to the more-gradual curvature of the field line before the first magnetospheric reflection. Lower-latitude flashes encounter stronger field line curvature, and therefore begin to disperse earlier. 
 
-\begin{figure}
+Figure \ref{fig:wave_energy_timeseries} shows similar data, now volume-averaged over each fieldline, to show the time evolution. In all cases, the most-intense and most-coherent portion of the wave packet disperses within the first $\sim$ 3 seconds. Again, lower-latitude flashes exhibit greater spread in L-shell. Increasing K$_p$, which brings the plasmapause closer to the Earth, constrains energy within the plasmasphere, both by reflection from the sharp density gradient, and by increased Landau attenuation due to the increased temperature outside the plasmapause from the thermal model in section \ref{section:damping}. However the closer plasmapause has little effect until at least K$_p \sim 4$; for K$_p$ values less than 4, the plasmapause remains well above the normal extent of wave energy. 
+
+\begin{figure}[h!]
 \begin{center}
-\includegraphics[draft]{figures/energy_from_single_flash_meridonal_plane.pdf}
+\includegraphics{figures/energy_from_single_flash_meridonal_plane.png}
 \caption{Block diagram}
 \label{fig:energy_from_single_flash}
 \end{center}
 \end{figure}
 
-% you'll want to put a figure showing the volume averaging too...
-
 \begin{figure}
 \begin{center}
-\includegraphics[draft]{figures/energy_in_meridional_plane_movieframes.pdf}
-\caption{Block diagram}
-\label{fig:energy_from_single_flash}
-\end{center}
-\end{figure}
-
-
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[draft]{figures/energy_stencils.pdf}
-\caption{Block diagram}
-\label{fig:energy_stencils}
+\includegraphics[angle=-90]{figures/wave_energy_timeseries_vs_L.png}
+\caption[Energy density vs time vs L-shell]{Energy density time series plots, for a range of flash latitudes and geomagnetic conditions. Energy is averaged over a 0.25$^\circ$ section in longitude, centered over the flash.}
+\label{fig:wave_energy_timeseries}
 \end{center}
 \end{figure}
 
 \section{Global Energy Density}
+In order to estimate the global persistent VLF energy density within the magnetosphere, we first precompute the average energy imparted by a flash at an array of latitudes, for the dayside and nightside, which form our stencil array. We note that our illumination model scales with peak current squared ($E \propto I_0^2$), and that the propagation process is assumed to be linear -- that is, spatially-coincident flashes have no cumulative effect on each other. We can then simply shift and scale our stencils according to lightning measured from GLD360, and sum / average the result. 
 
-\begin{figure}
+Stencils are computed for 1$^\circ$ steps, ranging between 15$^\circ$ and 55$^\circ$ in geomagnetic latitude. Noting that the plasmasphere density model is symmetric north / south, and that the magnetic field model is symmetric with the exception of polarity, we assume the impact of a southern hemisphere flash is identical to that of a field-line-coincident northern hemisphere flash. Longitude variation is computed in 0.25$^\circ$ steps, with a maximum extent of 20$^\circ$ from the flash location. We compute stencils for two MLT values, 0 and 12, representing the nightside and dayside, and select a stencil set accordingly for each flash. Finally, we compute stencils for an array of K$_p$ values -- \{0, 2, 4, 6, 8\} -- and linearly interpolate along this axis for measured values of K$_p$.
+
+Figure \ref{fig:energy_stencils} shows a grid of nightside energy stencils for several latitudes and several K$_p$.
+
+\begin{figure}[h!]
 \begin{center}
-\includegraphics[draft]{figures/energy_density_vs_L_vs_freq.pdf}
-\caption[Average energy density vs L and frequency]{Average energy density as a function of L-shell and wave frequency}
+\includegraphics{figures/wave_energy_vs_L_stencils.png}
+\caption[Energy density stencils]{Energy density stencils for a range of flash latitudes and geomagnetic conditions, for a nightside, 10 kA flash. The dashed white lines indicate the location of the plasmapause, which is brought closer to the Earth with increasing $K_p$.}
+\label{fig:energy_stencils}
+\end{center}
+\end{figure}
+
+\subsection{Results of the global model}
+We apply the shifted and scaled stencil technique to the GLD360 dataset, for all detected flashes between August 2014 and April 2016. Flashes are then binned into dayside and nightside by quantizing magnetic local time:
+
+\begin{eqnarray}
+\label{eqn:MLT}
+MLT & = & \mathrm{UT} + (\phi_{flash} - \phi_{ut})/15 \\
+\mathrm{Day} & \equiv & 6 < MLT \leq 18 \\
+\mathrm{Night} & \equiv & (MLT \leq 6) \parallel (MLT > 18)
+\end{eqnarray}
+\noindent where $\phi_{flash}$ is the magnetic longitude of the incident flash, UT is the fractional hour of day in universal time, and $\phi_{ut}$ is the UT reference magnetic longitude of Greenwich \citep{Laundal2016}.
+
+We use historical K$_p$ values corresponding to each flash. However we replace K$_p$ with K$_{p(max)}$, as in \cite{Carpenter1992}, in order to better align with the plasmasphere model used. K$_{p(max)}$ is defined as the maximum value of K$_p$ within the preceding 24-hour period.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics{figures/Energy_density_daynite.png}
+\caption[Average energy density vs longitude and L]{Average energy density as a function of L-shell and geomagnetic longitude. The top plot shows the nightside only, and the middle plot shows dayside only. The bottom plot shows the corresponding peak current distribution input into the model.}
+\label{fig:energy_density_daynite}
+\end{center}
+\end{figure}
+
+Figure \ref{fig:energy_density_daynite} shows the resulting energy density, averaged over the entire date range, broken out into day and night. Figures \ref{fig:energy_density_vs_L_trendline} and \ref{fig:energy_density_vs_L_multiple_kp} show the results averaged across the all longitudes.
+
+As shown in figure \ref{fig:energy_density_vs_L_trendline}, energy density falls off logarithmically with respect to L. The cumulative effect of the plasmapause, the variance of which is taken into effect via multiple K$_p$ values, results in an additional dropoff at L $\sim$ 4.8. Energy along the nightside is an order of magnitude greater than the dayside; however outside the plasmapause, day and night are essentially equivalent.
+
+When broken out over K$_p$ as in figure \ref{fig:energy_density_vs_L_multiple_kp}, it is apparent that the moving plasmapause location effectively constrains energy to within the inner plasmasphere; however it has little effect on the average energy at lower L-shells, within the inner radiation belt and slot region.
+
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics{figures/density_vs_L_with_fit.pdf}
+\caption[Average energy density vs L, longitude-averaged]{Global, longitude-averaged energy density for day and night. The energy density is logarithmic with increasing L. The dashed black line shows an approximate 1/R$^3$ trend, in comparison with an isotropic radiator.}
+\label{fig:energy_density_vs_L_trendline}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics{figures/density_vs_L_multiple_kp.pdf}
+\caption[Average energy density vs L for multiple K$_p$]{Average energy density for day and night, as in figure \ref{fig:energy_density_vs_L_trendline}, broken out over multiple values of K$_p$. At higher K$_p$, the plasmapause effectively confines wave energy to the inner plasmasphere.}
+\label{fig:energy_density_vs_L_multiple_kp}
+\end{center}
+\end{figure}
+
+\paragraph{Frequency dependence}
+We can examine the frequency spectrum resulting from lightning as a function of L-shell, as shown in figure \ref{fig:energy_density_vs_L_vs_freq}. Generally, as seen in figure \ref{fig:raytracing_example}, lower-frequency rays propagate further out into the magnetosphere, while higher-frequency rays are strongly-deflected and impact the Earth before a single magnetospheric reflection. This trend results in rays ``settling'' onto specific fieldlines, dependent on frequency.
+
+The relationship between peak frequency and L-shell is well-defined by a logarithmic fit:
+\begin{equation}
+\label{eqn:frequency_fit}
+\mathrm{log}_{10}(f_{peak}) = 4.56 - 0.48 L
+\end{equation}
+
+An additional feature of note in figure \ref{fig:energy_density_vs_L_vs_freq} is the broad range of frequencies present at L $\sim$ 2.3, the location of which strongly supports the hypothesis of lightning as a key mechanism for slot region depletion. 
+\begin{figure}[hb]
+\begin{center}
+\includegraphics{figures/lightning_spectra_vs_L_logscale.png}
+\caption[Average energy density vs L and frequency]{Average energy density as a function of L-shell and wave frequency. Dashed lines show a log-linear fit to the peak frequency as a function of L-shell in equation \eqref{eqn:frequency_fit}.}
 \label{fig:energy_density_vs_L_vs_freq}
 \end{center}
 \end{figure}

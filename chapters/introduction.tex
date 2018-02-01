@@ -1,4 +1,13 @@
 \section{The Space Environment}
+Surrounding the Earth there exists a sparse gas of ions and electrons called a \emph{plasma}. These particles reside in a state of constant flux, resulting from a tenuous and dynamic balance of energy fluxes -- streaming in from the sun, and back and forth within the Earth's terrestrial atmosphere. Every human-made satellite has passed through it; the vast majority of satellites, with the exception of deep-space probes, live out their entire existence within it. Aside from the lunar astronauts of the Apollo era, every single human in space has spent the duration of their journey within this constantly-evolving cloud of matter. The technology ubiquitous in our day-to-day lives -- instant international communication, satellite-aided global positioning systems -- all require signals to be transmitted through it. We call this region, from say, an altitude of 100 km on out to the moon, the \emph{Space Environment}.
+
 \section{Motivation}
 \section{Previous Work}
 \section{Thesis Organization}
+The bulk of this thesis is divided into the following chapters.
+\begin{itemize}
+\item Chapter \ref{chapter:physics} describes the background physics of the LEP process, the numerical methods used within this study, and the mathematical models of the various environments which we examine. 
+\item Chapter \ref{chapter:power} presents a study of the persistent VLF radio energy within the magnetosphere, resulting from terrestrial cloud-to-ground lightning discharges. 
+\item Chapter \ref{chapter:3dWIPP} provides a simulation of electron precipitation resulting from a canonical cloud-to-ground lightning discharge, and a discussion of various model improvements, notably with our treatment of the longitudinal axis. 
+\item Chapter \ref{chapter:global_estimates} provides seasonal estimates of the global impact of LEP resulting from the GLD360 dataset and a reduced-complexity model. \item Chapter \ref{chapter:VPM}, admittedly a bit of a tangent, presents the design of a CubeSat-based instrumentation suite, designed for direct, \emph{in-situ} measurements of LEP by taking time-and-space-coincident measurements of electron loss cone distributions, and incident VLF waves. The design provides some interesting on-board signal processing to reduce the data bandwidth significantly, and is implemented entirely in fixed-point logic using an FPGA (and \emph{no} onboard CPU). I worked on this design in the earlier years of my time at Stanford; at time of writing it is due to be launched in early 2019.
+\end{itemize}
