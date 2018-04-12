@@ -15,8 +15,9 @@
 %\usepackage{caption}
 \usepackage{subcaption}
 
-
-
+\usepackage{mathtools}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 
 % Vectors in bold font instead of line over
@@ -64,15 +65,11 @@
         \label{chapter:power}
     	\input{chapters/lightning}
 
-    \chapter{3D Modeling of LEP}
-        \label{chapter:3dWIPP}
-  	\input{chapters/3dWIPP}
-
     \chapter{Global and Seasonal Estimates of LEP}
         \label{chapter:global_estimates}
     	\input{chapters/global_estimates}
 
-    \chapter{Satellite Instrumentation for LEP Measurement}
+    \chapter[Satellite Instrumentation]{Satellite Instrumentation for LEP Measurement}
         \label{chapter:VPM}
     	\input{chapters/VPM}
 
@@ -82,9 +79,6 @@
    \appendix
    \chapter{Reference Equations}
     \input{chapters/appendix_A_equations}
-    
-    \chapter{Runge-Kutta Methods}
-    \input{chapters/runge_kutta_methods}
 
     \bibliography{library}
     \end{document}

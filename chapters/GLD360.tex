@@ -11,7 +11,16 @@ Large-scale detection networks became available in the early 1990s, with the U.S
 
 Within the last decade, advances in processing techniques have fostered the ability to perform global lightning detection with a distributed array of sensors. We use the Global Lightning Dataset (GLD360), which uses a combination of time-of-arrival and direction-finding techniques, along with a precomputed waveform bank, to achieve global cloud-to-ground detection ratios on the order of $\sim{60\%}$ \citep{Said2010a}. GLD360 is a commercial service operated by \emph{Vaisala, inc.}.
 
-GLD360 parameterizes cloud-to-ground lightning discharges by their location (latitude, longitude), and their peak current, $I_0$, as given in section \ref{section:input_power}. Figure \ref{fig:flash_rate_density} shows the annual flash rate density reported by GLD360 over a two-year period between August 2014 and April 2016; figure \ref{fig:peak_current_density} shows the average squared current density (from equation \eqref{eqn:farfield_power_td}, $S \propto I_0^2$). Within this work we take the GLD360 dataset to be the ground truth measurement of global lightning activity.
+\begin{figure}[t]
+\begin{center}
+\includegraphics{figures/MLT_and_IO_distribution.pdf}
+\end{center}
+\caption[Distributions of peak current and MLT for the GLD360 dataset]{Histograms of MLT and peak current for the GLD360 dataset, shown for a period between August 2014 and April 2016. The grey shaded regions denote ``nightside'' flashes.}
+\label{fig:Io_and_MLT}
+\end{figure}
+
+
+GLD360 parameterizes cloud-to-ground lightning discharges by their location (latitude, longitude), and their peak current, $I_0$, as given in section \ref{section:input_power}. Figure \ref{fig:flash_rate_density} shows the annual flash rate density reported by GLD360 over a two-year period between August 2014 and April 2016; figure \ref{fig:peak_current_density} shows the average squared current density (from equation \eqref{eqn:farfield_power_td}, $S \propto I_0^2$). Figure \ref{fig:Io_and_MLT} show the distribution of peak currents and time of day. Within this work we take the GLD360 dataset to be the ground truth measurement of global lightning activity.
 
 \begin{figure}[h!]
 \begin{center}

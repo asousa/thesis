@@ -1,5 +1,5 @@
 \section{Wave-Particle Interactions}
-
+\label{section:wpi}
 A trapped particle follows a fixed trajectory, bouncing indefinitely back and forth between its reflection points at the northern and southern hemispheres. The particle's local pitch angle varies with latitude; however in the absence of external interactions, the pitch angle remains the same at each pass. For convenience, we can relate any local pitch angle back to the equatorial pitch angle through conservation of the first adiabatic invariant (\ref{eqn:first_adiabatic_invariant}).
 
 \begin{equation}
@@ -49,15 +49,17 @@ R_1 & = & \frac{E_x^w + E_y^w}{B_x^w + B_y^w}; \qquad R_2 =  \frac{E_x^w - E_y^w
 \label{eqn:dadt_subparams}
 \end{eqnarray}
 
-where $e$ and $m_e$ are the electron charge and rest mass, $p_\perp$ is the perpendicular component of the particle's momentum, $J_i$ are Bessel functions of the first kind, and $E_{x,y,z}^w$, $B_{x,y,z}^w$ are the vector components of the incident wave, oriented such that the z-component is parallel to the background magnetic field.
+where $e$ and $m_e$ are the electron charge and rest mass, $p_\perp$ is the perpendicular component of the particle's momentum, $J_i$ are Bessel functions of the first kind, and $E_{x,y,z}^w$, $B_{x,y,z}^w$ are the vector components of the incident wave, oriented such that the z-component is parallel to the background magnetic field. The wavenormal angle (the angle between $\vec{k}$ and the background magnetic field, taken to be along the z axis) is given by $\theta$.
 
 A full derivation of equations \eqref{eqn:bell_dadt} - \eqref{eqn:dadt_subparams} is beyond the scope of this dissertation; however the full derivation is explained in the theses of \cite{Bortnik2005}, \cite{Ristic1993}, and \cite{Bell1984}.
 
-While the full set of equations \eqref{eqn:bell_dadt} - \eqref{eqn:dadt_subparams} is complex, we can identify several broad trends: First, $\partial \alpha / \partial t \propto \sin \eta$, which implies that, when the resonance condition is not met, oscillating changes will have no cumulative effect. Second, $\partial \alpha / \partial t \propto \alpha$, which increases the complexity of the solution space; however we can introduce a simplification by assuming that changes in pitch-angle are small, and therefore only particles with pitch angles very near the loss cone will be of significance. We can therefore introduce a relationship between pitch angle and $v_\perp$ and $p_\perp$ \citep{Bortnik2006}:
+While the full set of equations \eqref{eqn:bell_dadt} - \eqref{eqn:dadt_subparams} is complex, we can identify several broad trends: First, $\partial \alpha / \partial t \propto \sin \eta$, which implies that, when the resonance condition is not met, oscillating changes will have no cumulative effect. Second, $\partial \alpha / \partial t \propto \cos \alpha$, which increases the complexity of the solution space; however we can introduce a simplification by assuming that changes in pitch-angle are small, and therefore only particles with pitch angles very near the loss cone will be of significance. 
 
-\begin{eqnarray}
-v_z^{res} & = & \bigfrac{\pm \sqrt{\omega^2 k_z^2 + [(m \omega_c)^2 - \omega^2] [k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2]} - \omega k_z}{k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2}
-\end{eqnarray}
+%By examining only particles at the edge of the loss cone, we can derive an expression for a resonant particle`s velocity, as a function of the incident wave \citep{Bortnik2006}:
+%
+%\begin{eqnarray}
+%v_z^{res} & = & \bigfrac{\pm \sqrt{\omega^2 k_z^2 + [(m \omega_c)^2 - \omega^2] [k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2]} - \omega k_z}{k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2}
+%\end{eqnarray}
 
 \subsection{Recovering Wave Amplitudes from Poynting Flux}
 Required in our modeling is the ability to link the results of raytracing to the wave-particle interaction model. However, raytracing tracks only coarse-grained wave parameters -- wavenormal vector, propagation angle with respect to the background magnetic field, and the background plasma parameters. We use the formulation from \cite{Bell1984}, which has since been used by \cite{Ristic1993, Lauben1998, Bortnik2006}, to relate the Poynting flux and the individual wave components $B_x^w, B_y^w, B_z^w$.

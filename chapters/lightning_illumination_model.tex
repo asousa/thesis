@@ -13,7 +13,7 @@ We relate the time-domain current profile to radiated power using the far-field 
 \begin{equation}
 \label{eqn:griffiths_power}
 S(t) 
- \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0}{16\pi^2c}\left[\ddot{p}(t)\right]^2 \left(\frac{\sin^2\theta}{r^2}\right)\mathbf{\hat{r}}
+ \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0}{16\pi^2c}\left[\frac{d^2\mathrm{p}(t)}{dt^2}\right]^2 \left(\frac{\sin^2\theta}{r^2}\right)\mathbf{\hat{r}}
 \end{equation}
 
 where $p(t)$ is the dipole moment given by $p=2 H_E \int_0^t{I(t)}dt$, r is the distance from the flash in meters, and $\theta$ is the angle to the flash. Taking the second derivative of the dipole moment (the first derivative of the current profile) gives us the far-field time-domain power equation:
@@ -34,7 +34,7 @@ S(\omega) = \frac{1}{Z_0}\left(\frac{\mu_0 H_E I_0}{2 \pi}\right)^2\left(\frac{\
 
 which gives spectral energy flux, in units of J/m$^2$/Hz.
 
-Throughout this work we assume a flash height $H_E$ = 5 km, and model parameters $a=5\E{3}\,\mathrm{sec}^{-1}$ and $b=1\E{5}\,\mathrm{sec}^{-1}$, resulting in a spectrum peaked at approximately 4 kHz; any lightning flash can be parameterized solely by its peak current $I_0$ and its location on the surface of the Earth. Figure \ref{fig:lightning_spectrum} shows the current profile and associated spectrum.
+Throughout this work we assume a flash height $H_e$ = 5 km, and model parameters $a=5\E{3}\,\mathrm{sec}^{-1}$ and $b=1\E{5}\,\mathrm{sec}^{-1}$, resulting in a spectrum peaked at approximately 4 kHz; any lightning flash can then be parameterized solely by its peak current $I_0$ and its location on the surface of the Earth. Figure \ref{fig:lightning_spectrum} shows the current profile and associated spectrum.
 
 The total energy released in a single discharge is determined by integrating equation \ref{eqn:farfield_power_td} over time and a half-sphere surface:
 

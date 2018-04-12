@@ -113,9 +113,9 @@ We have discussed what is known as the \emph{bounce loss cone}. Also of interest
 Under a simple dipole magnetic field model, the bounce loss cone is uniform around the globe, and the bounce and drift loss cones are identical. Within this dissertation, we primarily work with a dipole magnetic field model, and consider only the bounce loss cone.
 
 \subsection{Waves in Plasmas}
-Previously, we have described the motion of a charged particle under the influence of an electromagnetic field. the single-particle approximation provides enormous insight into the dynamics of a sparsely-populated plasma. Next, we must consider the inverse system: how the charged particles in a plasma dictate the characteristic behaviors of an electromagnetic wave propagating through it.
+Previously, we have described the motion of a charged particle under the influence of an electromagnetic field. the single-particle approximation provides enormous insight into the dynamics of a sparsely-populated plasma. Next, we must consider the corresponding case: how the charged particles in a plasma dictate the characteristic behaviors of an electromagnetic wave propagating through it.
 
-An electromagnetic wave can accelerate a charged particle; conversely, an accelerating or decelerating particle induces its own electromagnetic field. It would seem, then, that the behavior of an electromagnetic field in a plasma is simply the summation of the contributions of each particle and some incident wave source. However, the complexity of this brute-force approach quickly becomes intractable for even a handful of particles. The universal approach taken then is to abstract the complicated interplay of waves and particles into a wave moving through a dielectric medium, described only by the various constituent densities, temperatures, and background fields within a given volume. 
+An electromagnetic wave can accelerate a charged particle; conversely, an accelerating or decelerating particle induces its own electromagnetic field. It would seem, then, that the behavior of an electromagnetic field in a plasma is simply the summation of the contributions of each particle and some incident wave source. However, the complexity of this brute-force approach quickly becomes intractable for even a handful of particles. One common approach taken is to abstract the complicated interplay of waves and particles into a wave moving through a dielectric medium, described only by the various constituent densities, temperatures, and background fields within a given volume. 
 
 As with any electromagnetic problem, we begin with Maxwell's equations, shown here in their non-relativistic, differential form, in SI units:
 
@@ -147,7 +147,7 @@ Next, we search for harmonic perturbations of the form:
 \vec{J(\vec{r},t)} = \vec{J_1}e^{{i (\omega t - \vec{k}\cdot \vec{r}})}\label{eqn:linear3} 
 \end{eqnarray}
 
-where $\omega$ is the wave angular frequency, $\vec{k}$ is the wave vector, or spatial frequency, and $\vec{r}$ is the spatial coordinate. Two fundamental parameters of an electromagnetic wave are the \emph{phase velocity}, $\omega/k$, and the \emph{group velocity}, $\partial\omega/\partial k$. The relation between the temporal and spatial frequencies is known as the \emph{dispersion relation}.
+where $\omega$ is the wave angular frequency, $\vec{k}$ is the wave vector, or spatial frequency, and $\vec{r}$ is the spatial coordinate. Two fundamental parameters of an electromagnetic wave are the \emph{phase velocity}, $\omega/k$, and the \emph{group velocity}, $\partial\omega/\partial k$. The relation between the temporal and spatial frequencies is known as the \emph{dispersion relation}, expressible as either $\omega(k)$ or $k(\omega)$. 
 
 From here we follow the derivation and convention used by \cite{Stix1992} and \cite{Bittencourt2004}. In general, a plasma is comprised of several different species of constituent particles -- positively and negatively charged particles necessary to maintain a quasi-neutral plasma. While the dispersion relations of different species cannot be simply added, their effects can be summed to form the displacement current $\vec{J}$:
 \begin{equation}
@@ -219,9 +219,9 @@ Finally, it is worth noting that when considering a single-species plasma (e.g.,
 
 %For a simpler derivation of the Appleton-Hartree equation alone, see the classic, approachable text by \cite{Chen1983}.  %% (CHEN DOESN'T SEEM TO DO IT x.x) 
 
-The dispersion relation in equation \ref{eqn:disp_rln} reveals a wealth of information about the characteristics of waves in plasmas. For various plasma densities and background magnetic field strength, we can infer which wave frequencies may propagate, if any, and which wave polarizations. Through the remainder of this work, we will be concerned with the \emph{whistler} mode -- a right-hand, circularly-polarized (RHCP) wave. Within a typical magnetospheric plasma, the whistler mode spans the VLF band, roughly between 30 Hz and 300 kHz.
+The dispersion relation in equation \ref{eqn:disp_rln} reveals a wealth of information about the characteristics of waves in plasmas. For various plasma densities and background magnetic field strength, we can infer which wave frequencies may propagate, if any, and with which wave polarizations. Through the remainder of this work, we will be concerned with the \emph{whistler} mode -- a right-hand, circularly-polarized (RHCP) wave. Within a typical magnetospheric plasma, the whistler mode spans the VLF band, roughly between 30 Hz and 300 kHz.
 
-It is difficult to gain much insight directly from the dispersion relation (equations \ref{eqn:disp_rln} or \ref{eqn:appleton_hartree}). However, we can plot the spatial vs temporal frequencies for a fixed angle with respect to the background magnetic field, known as an $\omega$-K diagram, to reveal the various modes of propagation.
+It is difficult to gain much insight directly from the dispersion relation (equations \ref{eqn:disp_rln} or \ref{eqn:appleton_hartree}). However, we can plot the spatial vs temporal frequencies for a fixed angle with respect to the background magnetic field, known as an $\omega$-k diagram, to reveal the various modes of propagation.
 
 Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($\eta = k c/\omega$). The whistler mode is the lower branch of the RHCP mode.
 \begin{figure}[!ht]
