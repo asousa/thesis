@@ -271,6 +271,7 @@ An additional feature of note in figure \ref{fig:energy_density_vs_L_vs_freq} is
 \end{figure}
 
 \section{Longitude Dependence}
+\label{section:longitude_scaling}
 As mentioned previously, our ray tracing is confined to the meridional plane axis, with no deviation along the longitudinal axis. In order to greatly reduce computation time and storage requirements, it is desirable to find a scaling function with respect to longitude, so that we need only compute power densities along a single meridional plane slice (e.g., a fixed longitude, offset from the initial flash), and simply weight it accordingly to compute a full 3D solution. \citeauthor{Lauben1998} chose a longitude scaling function according to the assumed peak resonance frequency; similarly, \citeauthor{Bortnik2005}, noting that the model is entirely linear, chose a longitude scaling function to be the ratio of input powers from equation \eqref{eqn:farfield_power_fd}
 
 \begin{eqnarray}

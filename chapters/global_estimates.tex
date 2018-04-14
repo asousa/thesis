@@ -53,10 +53,10 @@ The fundamental pitch-angle scattering equation is given in \eqref{eqn:bell_dadt
 Terms $T_1$ and $T_3$ are slowly-varying, and can be treated as pseudo-constant at a fixed position in space. Term $T_2$ in \eqref{eqn:bell_dadt_with_labels} is the resonant component. Outside of resonance this term varies from $\pm 1$. At resonance, however, this term remains constant, allowing coherent changes to accumulate over the interaction period. Resonance implies only that $d\eta/dt = 0$, and provides no information on the value of $\eta$. We assume $\eta$ is uniformly distributed, in which case the perturbation in pitch angle will be sinusoidally distributed, symmetrically about 0 \citep{Inan1977}. Since we are concerned only with the distribution of particles which are perturbed into the loss cone ($d\alpha/dt < 0$), we can then track the RMS-average pitch angle change $\Delta \alpha_{RMS}$, and calculate the precipitated fraction using the uniform distribution (see section \ref{section:flux_from_pitch_angle}).
 Figure \ref{fig:test_particle_sims} shows an example of a test-particle simulation, in which a set of particles with different initial $\eta$ values are subjected to the same perturbing wave.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}
-\includegraphics[draft]{figures/test_particle_sims.pdf}
-\caption{test particle sim}
+\includegraphics{figures/Bortnik_RMS_scattering.pdf}
+\caption[RMS pitch angle scattering from a test particle simulation]{Comparison of RMS and peak deflection in pitch angle from a test particle simulation. On the left is shown the relative gyrophase angle, which must be constant in order for changes to accumulate. On the right is the pitch angle of an array of particles, each with a different initial gyrophase. After the interaction has occurred, the perturbed pitch angles are symmetric about the initial pitch angle. The red curve shows the RMS change. Figure taken from \cite{Bortnik2006}, figure 7.}
 \label{fig:test_particle_sims}
 \end{center}
 \end{figure}
@@ -123,7 +123,7 @@ Figure \ref{fig:dA_spectra} shows a typical pitch-angle scattering matrix, as a 
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/dA_E-t_spectra.png}
-\caption{Pitch angle scattering matrix along a fieldine with L=3, for a 10 kA flash at 35$^\circ$ latitude, through a nightside ionosphere at $K_p=0$. Scattering is centered directly over the input flash longitude, within a width of $\pm0.25^\circ.$}
+\caption[Pitch angle scattering matrix for a flash at 35$^\circ$ latitude and L=3]{Pitch angle scattering matrix along a fieldine with L=3, for a 10 kA flash at 35$^\circ$ latitude, through a nightside ionosphere at $K_p=0$. Scattering is centered directly over the input flash longitude, within a width of $\pm0.25^\circ.$}
 \label{fig:dA_spectra}
 \end{center}
 \end{figure}
@@ -372,7 +372,7 @@ The two sources of stochasticity in our model are 1) the location and intensity 
 \end{center}
 \end{figure}
 
-By integrating over latitude and longitude, rather than time, we can examine any seasonal trends which may be present. Figure \ref{fig:seasonal_precip_rates_global} shows the global energy flux in kilowatts, across the globe, as a function of time, for maximal and minimal filling conditions. The global energy deposition rate shows very weak seasonal dependence, and can range from a few kilowatts to several megawatts. The disperse energy deposition rate suggests that LEP is not a prominent driver of energy in the lower ionosphere. However, sporadic energy deposition due to LEP is measurable by sub-ionosphere VLF remote sensing (\cite{AN IONOSPHERE PAPER HERE}), and may still be capable of inducing turbulence in the upper ionosphere.
+By integrating over latitude and longitude, rather than time, we can examine any seasonal trends which may be present. Figure \ref{fig:seasonal_precip_rates_global} shows the global energy flux in kilowatts, across the globe, as a function of time, for maximal and minimal filling conditions. The global energy deposition rate shows very weak seasonal dependence, and can range from a few kilowatts to several megawatts. The disperse energy deposition rate suggests that LEP is not a prominent driver of energy in the lower ionosphere. However, sporadic energy deposition due to LEP is measurable by sub-ionosphere VLF remote sensing (\cite{SomeIonoPaper}), and may still be capable of inducing turbulence in the upper ionosphere.
 
 The lack of seasonal dependence, however, suggests that LEP can provide a constant, year-round loss mechanism for radiation belt electrons, especially when considering that radiation belt electrons can drift in longitude around the Earth, on timescales of minutes to days \citep{Walt1994}, and can thereby interact with lightning activity across the globe.
 
