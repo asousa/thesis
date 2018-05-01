@@ -12,21 +12,21 @@ We assume any perturbation in pitch angle is small, and can therefore only conce
 
 Plugging in the above terms for $\gamma$ and $v_z$ gives us the following closed expression for the resonant particle velocity for an incident wave:
 \begin{eqnarray}
-v_z^{res} & = & \bigfrac{\pm \sqrt{\omega^2 k_z^2 + [(m \omega_c)^2 - \omega^2] [k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2]} - \omega k_z}{k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2}
+v_z^{res} & = & \bigfrac{\pm \sqrt{\omega^2 k_z^2 + \left[ (m \omega_c)^2 - \omega^2 \right] \left[k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2\right]} - \omega k_z}{k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2} \unit{m/sec}
 \label{eqn:vzres}
 \end{eqnarray}
 
 % The resonant kinetic energy can then be related by:
 \begin{eqnarray}
-v_{res} = \|v_z^{res}\|\cos\alpha_{lc} \\
-E = \frac{E_{rest}}{\sqrt{1 - v_{res}^2/c^2}} - 1
+v_{res} = \|v_z^{res}\|\cos\alpha_{lc}  \unit{m/sec}\\ 
+E = \frac{E_{0}}{\sqrt{1 - v_{res}^2/c^2}} - 1 \unit{J}
 \end{eqnarray}
 
-where $E_{rest}$ is the particle rest energy ($\approx 5.1\E{5}$ eV for an electron).
+where $E_{0}$ is the particle rest energy ($\approx$ 511 keV for an electron).
 
-Equation \eqref{eqn:vzres} is a function of the incident wave, which is dependent on the wavenormal angle and the background plasma through $k_z$. We can illustrate broad trends by plotting resonant frequency vs E along the geomagnetic equator, for normal incidence ($k = k_z$). Figure \ref{fig:vzres_vs_modes} shows the resonant frequency for a range of L-shells, for m = $\{0,1,2\}$. Somewhat counterintuitively, lower-energy particles resonate with higher-frequency waves.
+Equation \eqref{eqn:vzres} is a function of the incident wave, which is dependent on the wavenormal angle and the background plasma through $k_z$. We can illustrate broad trends by plotting resonant frequency vs kinetic energy along the geomagnetic equator, for normal incidence ($k = k_z$). Figure \ref{fig:vzres_vs_modes} shows the resonant frequency for a range of L-shells, for m = $\{0,1,2\}$. Somewhat counterintuitively, lower-energy particles resonate with higher-frequency waves.
 
-L-shell dependence is due both to the background electron density through $k_z$, and the background magnetic field through $\omega_c$. particles along higher L-shells resonate with lower-frequency waves.
+L-shell dependence is due both to the background electron density through $k_z$, and the background magnetic field through $\omega_c$. Particles at higher L-shells resonate with lower-frequency waves.
 
 \begin{figure}[h]
 \begin{center}
@@ -42,39 +42,39 @@ At lower energies, the resonant modes are integer multiples of each other; howev
 
 \subsection{Calculating pitch-angle scattering vs time}
 
-Calculating pitch-angle perturbation incurs additional complexity as compared to the energy density estimate in section \ref{chapter:power}. Pitch-angle scattering is dependent on wave amplitude and frequency, as well as incident wavenormal angle $\theta$ and gyrophase $\eta$. Additionally, the formulation for pitch-angle scattering requires wave amplitudes with units $\sim 1/m^2/s$ cross-sectional area rather than volumetric densities, $\sim 1/m^3$.
+Calculating pitch-angle perturbation incurs additional complexity as compared to the energy density estimate in section \ref{chapter:power}. Pitch-angle scattering is dependent on wave amplitude and frequency, as well as incident wavenormal angle $\theta$ and gyrophase $\eta$. Additionally, the formulation for pitch-angle scattering requires wave amplitudes with units of (Poynting) energy flux, $\sim 1/m^2/s$, rather than volumetric densities, $\sim 1/m^3$.
 
 The fundamental pitch-angle scattering equation is given in \eqref{eqn:bell_dadt}, and reproduced below:
 \begin{equation}
-\frac{d\alpha}{dt} = \underbrace{\frac{m_e \omega_{\tau m}^2}{k_z p_\perp} \bigg( 1 + \frac{\cos^2\alpha}{m\,\omega_c / \omega - 1}\bigg)}_{T_1}\underbrace{\sin \eta}_{T_2} + \underbrace{\frac{1}{m_e \gamma}\frac{p_\perp}{2 \omega_c}\frac{\partial \omega_c}{\partial z}}_{T_3}
+\frac{d\alpha}{dt} = \underbrace{\frac{m_e \omega_{\tau m}^2}{k_z p_\perp} \bigg( 1 + \frac{\cos^2\alpha}{m\,\omega_c / \omega - 1}\bigg)}_{T_1}\underbrace{\sin \eta}_{T_2} + \underbrace{\frac{1}{m_e \gamma}\frac{p_\perp}{2 \omega_c}\frac{\partial \omega_c}{\partial z}}_{T_3} \unit{rad/sec}
 \label{eqn:bell_dadt_with_labels}
 \end{equation}
 
-Terms $T_1$ and $T_3$ are slowly-varying, and can be treated as pseudo-constant at a fixed position in space. Term $T_2$ in \eqref{eqn:bell_dadt_with_labels} is the resonant component. Outside of resonance this term varies from $\pm 1$. At resonance, however, this term remains constant, allowing coherent changes to accumulate over the interaction period. Resonance implies only that $d\eta/dt = 0$, and provides no information on the value of $\eta$. We assume $\eta$ is uniformly distributed, in which case the perturbation in pitch angle will be sinusoidally distributed, symmetrically about 0 \citep{Inan1977}. Since we are concerned only with the distribution of particles which are perturbed into the loss cone ($d\alpha/dt < 0$), we can then track the RMS-average pitch angle change $\Delta \alpha_{RMS}$, and calculate the precipitated fraction using the uniform distribution (see section \ref{section:flux_from_pitch_angle}).
+Terms $T_1$ and $T_3$ are slowly-varying, and can be treated as pseudo-constant at a fixed position in space. Term $T_2$ in \eqref{eqn:bell_dadt_with_labels} is the resonant component. Outside of resonance this term oscillates between $\pm 1$. At resonance, however, this term remains constant, allowing coherent changes to accumulate over the interaction period. Resonance implies only that $d\eta/dt = 0$, and provides no information on the value of $\eta$. We assume $\eta$ is uniformly distributed, in which case the perturbation in pitch angle will be sinusoidally distributed, symmetrically about 0 \citep{Inan1977}. Since we are concerned only with the distribution of particles which are perturbed into the loss cone ($d\alpha/dt < 0$), we can then track the RMS-average pitch angle change $\Delta \alpha_{RMS}$, and calculate the precipitated fraction using the uniform distribution (see section \ref{section:flux_from_pitch_angle}).
 Figure \ref{fig:test_particle_sims} shows an example of a test-particle simulation, in which a set of particles with different initial $\eta$ values are subjected to the same perturbing wave.
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics{figures/Bortnik_RMS_scattering.pdf}
-\caption[RMS pitch angle scattering from a test particle simulation]{Comparison of RMS and peak deflection in pitch angle from a test particle simulation. On the left is shown the relative gyrophase angle, which must be constant in order for changes to accumulate. On the right is the pitch angle of an array of particles, each with a different initial gyrophase. After the interaction has occurred, the perturbed pitch angles are symmetric about the initial pitch angle. The red curve shows the RMS change. Figure taken from \cite{Bortnik2006}, figure 7.}
+\caption[RMS pitch angle scattering from a test particle simulation]{Comparison of RMS and peak deflection in pitch angle from a test particle simulation. On the left is shown the relative gyrophase angle, which must be constant in order for changes to accumulate. On the right is the pitch angle of an array of particles, each with a different initial gyrophase. After the interaction has occurred, the perturbed pitch angles are symmetric about the initial pitch angle. The red curve shows the RMS change. Figure taken from \cite{Bortnik2006}, Figure 7.}
 \label{fig:test_particle_sims}
 \end{center}
 \end{figure}
 
 From here, we follow the numerical solution method from \cite{Bortnik2005, Bortnik2006}. 
 
-A key assumption in our scattering calculation is that the interactions on a single particle from each discrete frequency are independent from one another. Furthermore, we discretize each fieldline into 1$^\circ$ segments, and assume the scattering within each segment is independent from each other. While neither of these assumptions are exactly true, together they provide a critical and substantial reduction in complexity: we no longer have to track the action of the entire set of waves on a discrete set of particles (as in a test particle simulation such as \cite{Chang1985}), but rather can track the stochastic pitch-angle change on a distribution of particles. Additionally, by assuming incoherent scattering across frequencies, the problem becomes much more well-suited to a parallel processing solution, as we can spread computation for each frequency across an array of nodes.
+A key assumption in our scattering calculation is that the interactions on a single particle from each discrete frequency are independent from one another. Furthermore, we discretize each fieldline into 1$^\circ$ segments, and assume the scattering within each segment is independent from each other. While neither of these assumptions are exactly true, together they provide a critical and substantial reduction in complexity: we no longer have to track the action of the entire set of waves on a discrete set of particles (as in a test particle simulation such as \cite{Chang1985}), but rather can track the stochastic pitch-angle change on a distribution of particles. Additionally, by assuming incoherent scattering across frequencies, the problem becomes much more well-suited to a parallel processing solution, as we can spread computation for each frequency across an array of nodes.\footnote{The coherent-incoherent assumption is based on test particle simulations such as \cite{Chang1985} and \cite{Ristic1993}; however a modernized test-particle (time domain) validation of the approach would be an excellent opportunity for future work!}
 
-Thus, for each set of guide rays F, using the interpolation scheme from section \ref{chapter:power}, we can calculate $\Delta \alpha_{RMS}$ as a function of magnetic fieldline, particle energy, and time; the effective change in pitch angle is then determined by summing over the set in quadrature: 
+Thus, for each set of guide rays $F$, using the interpolation scheme from section \ref{chapter:power}, we can calculate $\Delta \alpha_{RMS}$ as a function of magnetic fieldline, particle energy, and time; the effective change in pitch angle is then determined by summing over the set in quadrature: 
 \begin{equation}
 \Delta \alpha(E, \vec{x}, t) = \frac{1}{2}\sqrt{\sum_{F} \Delta \alpha_{RMS}^2(E, \vec{x},t, F)}.
 \end{equation}
 
-The decision to calculate RMS pitch-angle scattering vs a full test-particle approach is the fundamental difference between \cite{Lauben1998} and \cite{Bortnik2005}, the two most-closely related works to ours. \citeauthor{Bortnik2006} uses the above method, while \citeauthor{Lauben1998} infers expected distributions from a set of test particles. 
+The decision to calculate RMS pitch-angle scattering versus a full test-particle approach is the fundamental difference between \cite{Lauben1998} and \cite{Bortnik2005}, the two most-closely related works to ours. \citeauthor{Bortnik2005} uses the above method, while \citeauthor{Lauben1998} infers expected distributions from a set of test particles. 
 
 As noted by \cite{Lauben1998, Lauben2001}, a subset of particles, when subjected to ideal conditions, can ``ride'' a perturbing wavefront across several degrees in latitude, and experience sustained, coherent perturbation. These particles would then precipitate very deeply into the ionosphere, which may account for the lowest-altitude ionization as measured using VLF sub-ionosphere sensing. However these particles represent only a small fraction of the precipitating electrons, the bulk of which experience a random walk through the set of perturbing waves, and are well-modeled by the stochastic RMS formulation of \citeauthor{Bortnik2005}.
 
-\citeauthor{Bortnik2005} makes several approximations which allow for quick numerical integration of \eqref{eqn:bell_dadt_with_labels}, the details of which are beyond the scope of this dissertation. For a concise description of the methodology, see \cite{Bortnik2006}.
+\citeauthor{Bortnik2005} makes several approximations which allow for quick numerical integration of \eqref{eqn:bell_dadt_with_labels}, the details of which are beyond the scope of this dissertation. For a concise description of the methodology, see \cite{Bortnik2006}. Table \ref{alg:RMS_change} shows the algorithm in pseudocode. Using the assumptions of incoherence described above, we can independently calculate squared pitch-angle change for every enumerated combination of: a) guide ray sets $F$, b) latitudes along an output fieldline $\lambda$, c) time steps $t$, d) resonant modes $m$, and e) resonant particle energies $E$. 
 
 \begin{algorithm}[t]
 \caption{RMS change in pitch angle}\label{alg:RMS_change}
@@ -106,9 +106,7 @@ As noted by \cite{Lauben1998, Lauben2001}, a subset of particles, when subjected
 \end{algorithm}
 
 
-Table \ref{alg:RMS_change} shows the algorithm in pseudocode. Using the assumptions of incoherence described above, we can independently calculate squared pitch-angle change for every enumerated combination of: a) guide ray sets F, b) latitudes along an output fieldline $\lambda$, c) time steps $t$, d) resonant modes $m$, and e) resonant particle energies $E$. 
-
-To account for variation in precipitation time, we record the perturbation in pitch angle at the time in which a perturbed particle would precipitate into the ionosphere. This time is dependent on both particle energy and the latitude along the field line where the perturbation occurred, and may be asymmetric between the northern and southern hemispheres.
+To account for variation in precipitation time, we record the perturbation in pitch angle at the time in which a perturbed particle would precipitate into the atmosphere. This time is dependent on both particle energy and the latitude along the field line where the perturbation occurred, and may be asymmetric between the northern and southern hemispheres.
 
 We compute the time of flight from the interaction latitude $\lambda$ to the ionosphere by assuming a perturbed particle continues along a fixed fieldline, by numerically evaluating the expression from \cite{Walt1994}, equation 4.25:
 
@@ -128,14 +126,14 @@ Figure \ref{fig:dA_spectra} shows a typical pitch-angle scattering matrix, as a 
 \end{center}
 \end{figure}
 
-Several key features are apparent: First, the descending curve shape is due to the time delay from the interaction region to the precipitation altitude, with slower moving electrons taking longer to reach the ionosphere. Two banded structures are visible with respect to energy: the dominant band, below $E \sim 10$ keV, is due to the 0-order resonance mode. The upper band with energies above $E  \sim 100$ keV, is due largely to the $\pm$ 1 resonance modes. Scattering efficiency decreases with increasing resonance order. While some asymmetry exists between the northern and southern hemispheres, the magnitude remains similar due to the numerous bounces of the incident waves, and that the higher-order modes resonate with particles traveling in either direction.
+Several key features are apparent: First, the descending curve shape is due to the time delay from the interaction region to the precipitation altitude, with slower moving electrons taking longer to reach the ionosphere. Two banded structures are visible with respect to energy: the dominant band, below $E \sim 10$ keV, is due to the 0-order resonance mode. The upper band with energies above $E  \sim 100$ keV, is due largely to the $\pm$ 1 resonance modes. Scattering efficiency decreases with increasing resonance order, due to the presence of order number $m$ in the denominator of equation \eqref{eqn:bell_dadt_with_labels}, term T1. While some asymmetry exists between the northern and southern hemispheres, the magnitude remains similar due to the numerous bounces of the incident waves, and because the higher-order modes resonate with particles traveling in either direction.
 
 Perturbations in pitch angle due to LEP are generally small; well below $0.1^\circ$. However, due to the exponentially-increasing density of the ionosphere below our threshold height of 100 km, and thus the very small change in reflection altitude required, small changes in pitch angle can greatly increase an electron's likelihood of precipitating. Figure \ref{fig:pitch_angle_vs_altitude}(a) shows the perturbed reflection altitudes versus L-shell, for an array of $\Delta \alpha$ values. Figure \ref{fig:pitch_angle_vs_altitude}(b) shows the minimum perturbation value required in order for a particle to reflect at a given altitude.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}
 \includegraphics{figures/pitch_angle_vs_depth.pdf}
-\caption{(a) Reflection altitude vs L-shell for a particle, for an array of equatorial pitch-angle perturbations. (b) The minimum perturbation required to drive a particle with pitch angle $\alpha = \alpha_{lc}$ to a fixed reflection altitude, as a function of L-shell, for an array of target altitudes.}
+\caption[Reflection altitudes vs L-shell for a set of pitch angle perturbations]{(a) Reflection altitude vs L-shell for a particle, for an array of equatorial pitch-angle perturbations. (b) The minimum perturbation required to drive a particle with pitch angle $\alpha = \alpha_{lc}$ to a fixed reflection altitude, as a function of L-shell, for an array of target altitudes.}
 \label{fig:pitch_angle_vs_altitude}
 \end{center}
 \end{figure}
@@ -143,9 +141,9 @@ Perturbations in pitch angle due to LEP are generally small; well below $0.1^\ci
 
 \section{Calculating flux from pitch-angle perturbations}
 \label{section:flux_from_pitch_angle}
-We have now computed the RMS change in pitch angle along a single field line, as a function of electron energy and time, for a single lightning flash. Next we must convert our scattering matrices (figure \ref{fig:dA_spectra}) into electron fluxes (or energy fluxes). Again, we follow the method used by \cite{Bortnik2005} (section 5.1.3).
+We have now computed the RMS change in pitch angle along a single field line, as a function of electron energy and time, for a single lightning flash. Next we must convert our scattering matrices (Figure \ref{fig:dA_spectra}) into electron fluxes (or energy fluxes). Again, we follow the method used by \cite{Bortnik2005} (section 5.1.3).
 
-Along each target fieldline, we use our calculated pitch angle changes $\Delta \alpha(E,t)$ to perturb a collection of electrons with an assumed distribution in pitch angle. Perturbation is accomplished by convolving an assumed distribution of particles $G(E,t,\alpha)$ with the perturbing function $\Delta \alpha(E,t)$ for each energy and time bin. The resulting particle flux is the number of electrons within the loss cone ($\alpha < \alpha_{lc}$) after perturbation. We assume that scattering is independent with respect to both the time and energy axes, and can thus be evaluated independently for each E-t bin. Solving the convolution analytically greatly improves computational efficiency.
+Along each target fieldline, we use our calculated pitch angle changes $\Delta \alpha(E,t)$ to perturb a collection of electrons with an assumed distribution in pitch angle. Perturbation is accomplished by convolving an assumed distribution of particles $G(E,t,\alpha)$ with the perturbing function $\Delta \alpha(E,t)$ for each energy and time bin. The resulting particle flux is the number of electrons within the loss cone ($\alpha < \alpha_{lc}$) after perturbation. We assume that scattering is independent with respect to both the time and energy axes, and can thus be evaluated independently for each $E-t$ bin. Solving the convolution analytically greatly improves computational efficiency.
 
 We use the solution from \cite{Bortnik2005} for a ``ramp'' distribution in pitch angle, which can be applied to any general pitch angle distribution by computing a series approximation about $\alpha = \alpha_{lc}$.
 
@@ -158,7 +156,7 @@ We use the solution from \cite{Bortnik2005} for a ``ramp'' distribution in pitch
 \begin{figure}[t]
 \begin{center}
 \includegraphics{figures/da_dist_and_pdf.pdf}
-\caption[Pitch angle perturbation vs gyrophase, and corresponding PDF]{(a) Pitch angle perturbation vs particle gyrophase, with $\Delta \alpha_{rms}$ marked, and (b) The corresponding probability density function (PDF, equation \ref{eqn:pdf}). Modified from \cite{Bortnik2005}, figure 5.8.}
+\caption[Pitch angle perturbation vs gyrophase, and corresponding PDF]{(a) Pitch angle perturbation vs particle gyrophase, with $\Delta \alpha_{rms}$ marked, and (b) The corresponding probability density function (PDF, equation \ref{eqn:pdf}). Modified from \cite{Bortnik2005}, Figure 5.8.}
 \label{fig:da_vs_eta_and_pdf}
 \end{center}
 \end{figure}
@@ -166,19 +164,19 @@ We use the solution from \cite{Bortnik2005} for a ``ramp'' distribution in pitch
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/da_dist_and_perturbation.pdf}
-\caption[Perturbed pitch-angle distribution]{(a) The initial pitch-angle distribution function and its linear expansion at $\alpha = \alpha_{lc}$. (b) The perturbed distribution, resulting from the convolution of plot (a) with \ref{fig:da_vs_eta_and_pdf}(b). The shaded region indicates particles which have been pushed into the loss cone ($\alpha < \alpha_{lc}$). Modified from \cite{Bortnik2005}, figure 5.8.}
+\caption[Perturbed pitch-angle distribution]{(a) The initial pitch-angle distribution function and its linear expansion at $\alpha = \alpha_{lc}$. (b) The perturbed distribution, resulting from the convolution of plot (a) with \ref{fig:da_vs_eta_and_pdf}(b). The shaded region indicates particles which have been pushed into the loss cone ($\alpha < \alpha_{lc}$). Modified from \cite{Bortnik2005}, Figure 5.8.}
 \label{fig:da_dist_and_perturbation}
 \end{center}
 \end{figure}
 
-Implicit in this calculation is the distribution in gyrophase, which is taken to be uniform. This allows us to use our RMS pitch angle perturbations in place of an explicit distribution of perturbations across gyrophase. Figure \ref{fig:da_vs_eta_and_pdf} (a) shows the assumed pitch-angle perturbation as a function of gyrophase, $\eta$, and $\Delta \alpha_{RMS}$. We then convert this distribution to its cumulative distribution function F$(\alpha)$, and its probability density function $f(x)$, shown in figure \ref{fig:da_vs_eta_and_pdf} (b):
+Implicit in this calculation is the distribution in gyrophase, which is taken to be uniform. This allows us to use our RMS pitch angle perturbations in place of an explicit distribution of perturbations across gyrophase. Figure \ref{fig:da_vs_eta_and_pdf} (a) shows the assumed pitch-angle perturbation as a function of gyrophase, $\eta$, and $\Delta \alpha_{RMS}$. We then convert this distribution to its cumulative distribution function F$(\alpha)$, and its probability density function $f(x)$, shown in Figure \ref{fig:da_vs_eta_and_pdf} (b):
 
 \begin{eqnarray}
-F(\alpha) & = & P(X < a) = \int_{-\infty}^a f(x) dx \nonumber \\
+F(\alpha) & = & P(X < \alpha) = \int_{-\infty}^\alpha f(x) dx \nonumber \\
 & = & P((\Delta \alpha_{peak}\sin Y) < x) \nonumber \\
 & = & P(Y < \arcsin(x/(\Delta\alpha_{peak})) \nonumber \\  
-& = & \frac{\arcsin(a/(\Delta\alpha_{peak}))}{\pi} + \frac{1}{2}  \\
- f(x) & = & \frac{\mathrm{d}F(a)}{\mathrm{d}x} = \frac{1}{\pi\sqrt{(\Delta \alpha_{peak})^2 - (a)^2}}
+& = & \frac{\arcsin(\alpha/(\Delta\alpha_{peak}))}{\pi} + \frac{1}{2}  \\
+ f(x) & = & \frac{\mathrm{d}F(\alpha)}{\mathrm{d}x} = \frac{1}{\pi\sqrt{(\Delta \alpha_{peak})^2 - (\alpha)^2}}
  \label{eqn:pdf}
 \end{eqnarray}
 
@@ -191,7 +189,7 @@ G(E,t,\alpha) = G_1(E, t_0)G_2(\alpha)
 \end{equation}
 where $G_2(\alpha)$ is the dependence on pitch angle, and $G_1(E, t_0)$ is the energy-differential electron flux at the equator for a given energy band $E$, and time of day $t_0$, along the target field line.
 
-We model $G(\alpha)$ with a sinusoidal distribution between $\alpha=\alpha_{lc}$ and $\alpha = \pi - \alpha_{lc}$, as in figure \ref{fig:pitchangledistributions}. The background radiation belt density $G(E,t_0)$ is modeled using the AE8 numerical model for both maximal and minimal filling, as in figure \ref{fig:AE8_model}.
+We model $G(\alpha)$ with a sinusoidal distribution between $\alpha=\alpha_{lc}$ and $\alpha = \pi - \alpha_{lc}$, as in Figure \ref{fig:pitchangledistributions}. The background radiation belt density $G(E,t_0)$ is modeled using the AE8 numerical model for both maximal and minimal filling, as in Figure \ref{fig:AE8_model}.
 
 The perturbed flux density $\Phi(E,t,\alpha)$ is given by convolving equations \eqref{eqn:pdf} and \eqref{eqn:background_density}:
 \begin{equation}
@@ -207,7 +205,7 @@ The perturbed flux density $\Phi(E,t,\alpha)$ is given by convolving equations \
 \end{center}
 \end{figure}
 
-Equation \eqref{eqn:convolution} is evaluated analytically using a linear expansion of $G(E,t,\alpha)$ about $\alpha = \alpha_{lc}$ (\cite{Bortnik2005}, figure 5.8, section d).
+Equation \eqref{eqn:convolution} is evaluated analytically using a linear expansion of $G(E,t,\alpha)$ about $\alpha = \alpha_{lc}$ (\cite{Bortnik2005}, Figure 5.8, section d).
 
 %The resulting convolution gives a perturbed distribution of pitch angles for each energy band $f_\mathrm{p}(E,t,\alpha)$, a portion of which is within the loss cone. To convert the loss-cone pitch angle distribution to a number (or energy) electron flux density $\Phi_\mathrm{p}(E,t,\alpha)$, we apply the formula from \cite{Chang1983}:
 %
@@ -238,7 +236,7 @@ Q(t) &=& \int_{E_1}^{E_2} E \Phi(E,t)\,dE
 
 \section{LEP stencils and the behavior of a single flash}
 \label{section:lep_stencils}
-Having developed a method of computing the precipitating electron energy-time spectrum along a single fieldline, we can compute the global precipitation flux due to terrestrial lightning, using a similar ``stencil'' structure as in chapter \ref{chapter:power}. We then sum over the time axis to compute the electron flux density in equation \eqref{eqn:phi} for each flash, repeating the calculation for a grid of output L-shells and longitudes, for an array of input latitudes, MLT, and $K_p$.
+Having developed a method of computing the precipitating electron energy-time spectrum along a single fieldline, we can compute the global precipitation flux due to terrestrial lightning, using a similar ``stencil'' structure as in chapter \ref{chapter:power}. We then sum over the time axis to compute the electron flux density in equation \eqref{eqn:phi} for each flash, repeating the calculation for a grid of output L-shells and longitudes, for an array of input latitudes, MLT, and K$_p$.
 
 Table \ref{tab:stencil_params} lists the various parameters used in the stencil simulation. The collection of guide rays are the same as those in chapter \ref{chapter:power}.
 
@@ -283,7 +281,7 @@ After integrating over the time axis, the resulting stencils each have dimension
 \end{center}
 \end{figure}
 
-By integrating over latitude and longitude, we can compute the total energy precipitated from a single flash, as shown in figure \ref{fig:total_energy_per_stencil}. A 10-kA flash precipitates on the order of 1 to 10 kJ on the nightside, and 1 to 1000 J on the dayside.
+By integrating over latitude and longitude, we can compute the total energy precipitated from a single flash, as shown in Figure \ref{fig:total_energy_per_stencil}. A 10-kA flash precipitates on the order of 1 to 10 kJ on the nightside, and 1 to 1000 J on the dayside.
 
 \begin{figure}[]
 \begin{center}
@@ -295,26 +293,28 @@ By integrating over latitude and longitude, we can compute the total energy prec
 
 Several trends are apparent in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}: First, it is apparent that increased K$_p$ has little impact on precipitation, up until high activity (K$_p > \sim 6$). We can attribute this to our plasmasphere density model, which is consistent across K$_p$ values within the plasmapause. Generally, if a flash is launched within the plasmapause (at a latitude lower than that of the plasmapause), then the rays experience relatively little attenuation due to Landau damping in the cold medium, and reflect back and forth several times. Rays launched outside the plasmapause are attenuated much more quickly. The sharp gradient of the plasmapause constrains energy within the plasmasphere, as indicated by the sharp dropoff of precipitation around the plasmasphere latitude. At the highest values of K$_p$, the plasmapause is brought in to L $\sim$, about 45$^\circ$, at which point substantial energy is launched outside the plasmapause (and quickly damped), or is very strongly deflected by the plasmapause gradient. The effect of the plasmapause is consistent in both the nightside and dayside stencils.
 
-Examining the dayside stencils in figure \ref{fig:precip_stencils_day}, the increased attenuation of the ionosphere becomes apparent, notably at lower-latitude flashes. The effect of both ionosphere attenuation and of the lower-latitude plasmapause is apparent when looking at the integrated totals in figure \ref{fig:total_energy_per_stencil}.
+Examining the dayside stencils in Figure \ref{fig:precip_stencils_day}, the increased attenuation of the ionosphere becomes apparent, notably at lower-latitude flashes. The effect of both ionosphere attenuation and of the lower-latitude plasmapause is apparent when looking at the integrated totals in Figure \ref{fig:total_energy_per_stencil}.
 
-Precipitation is not always symmetric between the northern and southern hemispheres. We can attribute any asymmetry in total flux to the relative efficiency of each resonant mode. Higher-order modes ($\pm 1$, $\pm 2$...) are symmetric, with the positive calculation resonating with particles moving in one direction, and the negative with particles moving in the opposite. However, the lowest resonant mode interacts only with counterstreaming particles. Accordingly, precipitation is strongest at the same hemisphere as the incident flash.
+Precipitation is not always symmetric between the northern and southern hemispheres. We can attribute any asymmetry in total flux to the relative efficiency of each resonant mode. Higher-order modes (m = $\pm 1$, $\pm 2$...) are symmetric, with the positive calculation resonating with particles moving in one direction, and the negative with particles moving in the opposite. However, the lowest resonant mode (m = 0) interacts only with counterstreaming particles. Accordingly, precipitation is strongest at the same hemisphere as the incident flash.
 
 In both figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}, precipitation is strongest along a $\sim 0.8^\circ$ offset in longitude, which results from the $\sin^2\theta$ term in equation \eqref{eqn:farfield_power_fd}. In this case, $\theta$ represents the elevation angle from the flash to the lower ionosphere (taken to be 100 km), which is maximized at $\theta = 45^\circ$. The result is a central null in radiated energy directly above the flash, and maximal radiated energy offset by 100 km in the longitudinal direction.
 
-An additional point of interest is the ratio of precipitated energy in figure \ref{fig:total_energy_per_stencil} vs the radiated energy above the ionosphere in figure \ref{fig:illumination_totals}. Radiation on the order of megajoules will induce precipitation several orders of magnitude lower in energy. 
+An additional point of interest is the ratio of precipitated energy in Figure \ref{fig:total_energy_per_stencil} vs the radiated energy above the ionosphere in Figure \ref{fig:illumination_totals}. Radiation on the order of megajoules will induce precipitation several orders of magnitude lower in energy. 
 
-Finally we can examine the energy spectrum of precipitating electrons, as shown in figure \ref{fig:stencil_energy_spectrum}. As in the precipitation stencil maps, increasing K$_p$ has little effect until very active conditions. The flux is dominated by lower-energy electrons, owing to the stronger scattering of the lowest resonant mode (also visible in figure \ref{fig:phi_E-t_spectra}).
+Finally we can examine the energy spectrum of precipitating electrons, as shown in Figure \ref{fig:stencil_energy_spectrum}. As in the precipitation stencil maps, increasing K$_p$ has little effect until very active conditions. The flux is dominated by lower-energy electrons, owing to the stronger scattering of the lowest resonant mode (also visible in Figure \ref{fig:phi_E-t_spectra}).
 
-\begin{figure}[]
+\begin{figure}[t]
 \begin{center}
-\includegraphics{figures/stencil_energy_spectrum.pdf}
-\caption[Energy spectrum of LEP stencils]{Energy spectrum of precipitating electrons, for K$_p$= 0 and 8, for a range of input latitudes, for day and night. Fluxes are drawn from the AE8MAX population model.}
+\includegraphics[clip]{figures/stencil_energy_spectrum.pdf}
+\includegraphics[clip]{figures/stencil_energy_spectrum_AE8MIN_flux_0.pdf}
+\caption[Energy spectrum of LEP stencils]{Energy spectrum of precipitating electrons, for K$_p$= 0 and 8, for a range of input latitudes, for day and night. Fluxes are drawn from the AE8MAX population model in the top row, and from the AE8MIN population model in the bottom row.}
 \label{fig:stencil_energy_spectrum}
 \end{center}
 \end{figure}
 
+
 \section{Coordinate deformation}
-The stencils in section \ref{section:lep_stencils} are computed using a dipole magnetic field, and the simplified GCPM model, both to reduce computational complexity and to better generalize to multiple longitudes. However, we can approximate the effect of a more-complex magnetic field model via a coordinate transformation, in which we rotate input coordinates to an equivalent dipole-model coordinate, and perform an inverse operation on the stencil output. On the stencil output, this approximation is justified by noting that trapped electrons are bound to their respective field lines, regardless of model used. Justification on the input side (deforming the input coordinates of a lightning flash) is less-concrete, but still a reasonable assumption. First, experimentation with the raytracer reveals that, given a longitudinally-symmetric plasma density model, rays generally follow the longitude deviation of the magnetic field model. Second, while the IGRF and Dipole models differ greatly in its footprint on the ground (as in figure \ref{fig:Lshell_example}), within the plasmasphere the two models have reasonable agreement (as in figure \ref{fig:fieldline_example}).
+The stencils in section \ref{section:lep_stencils} are computed using a dipole magnetic field, and the simplified GCPM model, both to reduce computational complexity and to better generalize to multiple longitudes. However, we can approximate the effect of a more-complex magnetic field model via a coordinate transformation, in which we rotate input coordinates to an equivalent dipole-model coordinate, and perform an inverse operation on the stencil output. On the stencil output, this approximation is justified by noting that trapped electrons are bound to their respective field lines, regardless of model used. Justification on the input side (deforming the input coordinates of a lightning flash) is less-concrete, but still a reasonable assumption. First, experimentation with the raytracer reveals that, given a longitudinally-symmetric plasma density model, rays generally follow the longitude deviation of the magnetic field model. Second, while the IGRF and Dipole models differ greatly in its footprint on the ground (as in Figure \ref{fig:Lshell_example}), within the plasmasphere the two models have reasonable agreement (as in Figure \ref{fig:fieldline_example}).
 
 The \emph{Corrected Geomagnetic Coordinate} (CGM) \citep{Hakura1965} system is especially well-suited for this task. CGM coordinates are defined by fieldline tracing between the IGRF and Dipole models. To transform from geographic to CGM coordinates, we first trace a fieldline using IGRF from the surface, up to its intersection with the geomagnetic equatorial plane. We then follow the dipole model back down to the surface, to get an equivalent dipole-model coordinate. The inverse transformation is accomplished by following the dipole field line back up to the equator, and the IGRF model down to its footprint \citep{Laundal2016}.
 
@@ -372,7 +372,7 @@ The two sources of stochasticity in our model are 1) the location and intensity 
 \end{center}
 \end{figure}
 
-By integrating over latitude and longitude, rather than time, we can examine any seasonal trends which may be present. Figure \ref{fig:seasonal_precip_rates_global} shows the global energy flux in kilowatts, across the globe, as a function of time, for maximal and minimal filling conditions. The global energy deposition rate shows very weak seasonal dependence, and can range from a few kilowatts to several megawatts. The disperse energy deposition rate suggests that LEP is not a prominent driver of energy in the lower ionosphere. However, sporadic energy deposition due to LEP is measurable by sub-ionosphere VLF remote sensing (\cite{SomeIonoPaper}), and may still be capable of inducing turbulence in the upper ionosphere.
+By integrating over latitude and longitude, rather than time, we can examine any seasonal trends which may be present. Figure \ref{fig:seasonal_precip_rates_global} shows the global energy flux in kilowatts, across the globe, as a function of time, for maximal and minimal filling conditions. The global energy deposition rate shows very weak seasonal dependence, and can range from a few kilowatts to several megawatts. The disperse energy deposition rate suggests that LEP is not a prominent driver of energy in the upper atmosphere. However, sporadic energy deposition due to LEP is measurable by sub-ionosphere VLF remote sensing \citep{Inan1990, Johnson1999, Cotts2011}, and may still be capable of inducing turbulence in the upper ionosphere, either by precipitating particles or the interaction of the upgoing whistler wave \citep{Berthelier2008}.
 
 The lack of seasonal dependence, however, suggests that LEP can provide a constant, year-round loss mechanism for radiation belt electrons, especially when considering that radiation belt electrons can drift in longitude around the Earth, on timescales of minutes to days \citep{Walt1994}, and can thereby interact with lightning activity across the globe.
 
@@ -386,7 +386,7 @@ The lack of seasonal dependence, however, suggests that LEP can provide a consta
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/seasonal_precip_rates_US_only.pdf}
-\caption[Global energy deposition due to LEP over the continental United States]{Average energy deposition due to LEP over the continental United States (20$^\circ$ to 50$^\circ$ geomagnetic latitude, -50$^\circ$ to +10$^\circ$ geomagnetic longitude). Seasonal variation is much more apparent than in the global integration (figure \ref{fig:seasonal_precip_rates_global}).}
+\caption[Global energy deposition due to LEP over the continental United States]{Average energy deposition due to LEP over the continental United States (20$^\circ$ to 50$^\circ$ geomagnetic latitude, -50$^\circ$ to +10$^\circ$ geomagnetic longitude). Seasonal variation is much more apparent than in the global integration (Figure \ref{fig:seasonal_precip_rates_global}).}
 \label{fig:seasonal_precip_rates_US_only}
 \end{center}
 \end{figure}
@@ -409,15 +409,15 @@ Our precipitation model is linearly proportional to the current population of el
 \label{eqn:tau}
 \end{eqnarray}
 
-Once summed over the GLD360 dataset, our model delivers electron losses impinging on a cross-sectional area at 100km, with units [$\#$/cm$^2$/ev/sec]. To compute the percentage loss, we must determine the number of electrons (per energy) which occupy the fieldline above the same cross-sectional area, resulting in $\tau \sim sec$.
+Once summed over the GLD360 dataset, our model delivers electron losses impinging on a cross-sectional area at 100 km, with units [$\#$/cm$^2$/eV/sec]. To compute the percentage loss, we must determine the number of electrons (per energy) which occupy the fieldline above the same cross-sectional area, resulting in $\tau \sim sec$.
 
-The total electrons along a given fieldline above a cm$^2$ ionosphere patch is computed by integrating the (energy) differential, omnidirectional equatorial flux, such as from the AE8 model. As in the precipitation code, we ascribe a sinusoidal pitch-angle distribution (e.g., figure \ref{fig:pitchangledistributions}) to the electrons in the omnidirectional flux value. 
+The total electrons along a given fieldline above a cm$^2$ ionosphere patch is computed by integrating the (energy) differential, omnidirectional equatorial flux, such as from the AE8 model. As in the precipitation code, we ascribe a sinusoidal pitch-angle distribution (e.g., Figure \ref{fig:pitchangledistributions}) to the electrons in the omnidirectional flux value. 
 
 The AE8 energy-differential, omnidirectional flux models have units J $\sim$ [$\#$/cm$^2$/sec/ev], which represent the total flux of electrons through a cross-sectional area at the equator, per unit energy. We use a change of variables and integrate over the sinusoidal pitch-angle distribution P(L, $\alpha$), using the relationship in equation \eqref{eqn:bounce_time} to relate an electron's bounce time $\tau_b$ to it's pitch angle $\alpha$ and total kinetic energy $E$.
 
 \begin{equation}
   P(L,\alpha)=\begin{cases}
-    \bigfrac{1}{1 - 2\alpha_{lc}/\pi}\sin{\bigfrac{\alpha - \alpha_{lc}}{1 - 2\alpha_{lc}/\pi}}, & \text{$\alpha_{lc} < \alpha < \pi - \alpha_{lc}$}.\\
+    \bigfrac{1}{1 - 2\alpha_{lc}/\pi}\sin{\bigfrac{\alpha - \alpha_{lc}}{1 - 2\alpha_{lc}/\pi}}, & \text{$\alpha_{lc} < \alpha < \pi - \alpha_{lc}$}. \unit{rad^{-1}}\\
     0, & \text{otherwise}.
   \end{cases}
 \end{equation}
@@ -425,36 +425,34 @@ The AE8 energy-differential, omnidirectional flux models have units J $\sim$ [$\
 
 \begin{equation}
  % There's more to this -- I'm not showing the whole integrand after the change of variables and addition of the pitch-angle distribution
-N_{0,equator} = \int_0^{\pi/2} J(E)P(L,\alpha) \tau_b(L, \alpha)\,\sin{\alpha}\,\cos{\alpha}\,d\alpha 
+N_{0,equator} = \int_0^{\pi/2} J(E)P(L,\alpha) \tau_b(L, \alpha)\,\sin{\alpha}\,\cos{\alpha}\,d\alpha \unit{\#/cm^2/eV}
 \end{equation}
 
-We then convert the integrated value $N_0$ from an equatorial cross-sectional area to an equivalent cross-sectional area at the ionosphere, using a ``crunch'' term according to the constricting dipole magnetic field:
+We then convert the integrated value $N_0$ from an equatorial cross-sectional area to an equivalent cross-sectional area at the ionosphere, using a ``crunch'' term $C_b$ according to the constricting dipole magnetic field:
 
 \begin{eqnarray}
 \epsilon_m &= & \frac{1}{L}(R_E + H_{iono})/R_E \\
-C_b & = & \sqrt{1 + 3(1 - \epsilon_m)} / \epsilon_m^3 \\
-N_{0, iono} &=& C_b\,N_{0, equator}
+C_b & = & \sqrt{1 + 3(1 - \epsilon_m)} / \epsilon_m^3 \\ 
+N_{0, iono} &=& C_b\,N_{0, equator} \unit{\#/cm^2/eV}
 \label{eqn:fieldline_density}
 \end{eqnarray}
 
-In order to examine the effectiveness of LEP across all energies, and avoid numerical issues where the AE8 model values are small, we compute an additional set of stencils, using a ``flat'' radiation belt population, by setting $J(E) = 1$ [1/cm$^2$/sec/ev].  Figure \ref{fig:stencil_energy_spectrum_flat_distribution} shows the precipitated energy distribution from a flat radiation belt population, in the same format as figure \ref{fig:stencil_energy_spectrum}. The bimodal peaks resulting from the multiple resonant interaction modes are more-readily visible, without the additional loss due to reduced radiation belt populations at higher energies.
+In order to examine the effectiveness of LEP across all energies, and avoid numerical issues where the AE8 model values are small, we compute an additional set of stencils, using a uniform radiation belt population, by setting $J(E) = 1$ [1/cm$^2$/sec/ev].  Figure \ref{fig:stencil_energy_spectrum_flat_distribution} shows the precipitated energy distribution from a flat radiation belt population, in the same format as Figure \ref{fig:stencil_energy_spectrum}. The bimodal peaks resulting from the multiple resonant interaction modes are more-readily visible, without the additional loss due to reduced radiation belt populations at higher energies.
 
 \begin{figure}[]
 \begin{center}
 \includegraphics{figures/stencil_energy_spectrum_flat_distribution.pdf}
-\caption[Energy spectrum of LEP stencils, drawn from a uniform radiation belt population]{Energy spectrum of precipitating electrons, for K$_p$= 0 and 8, for a range of input latitudes, for day and night, from a uniform (differential flux = 1/cm$^2$/eV) fieldline population.}
+\caption[Energy spectrum of LEP stencils, drawn from a uniform radiation belt population]{Energy spectrum of precipitating electrons, for K$_p$= 0 and 8, for a range of input latitudes, for day and night, from a uniform (differential flux = 1/cm$^2$/sec/eV) fieldline population.}
 \label{fig:stencil_energy_spectrum_flat_distribution}
 \end{center}
 \end{figure}
 
-We then compute an equivalent precipitation map using the GLD360 dataset, and the flat-distribution stencils. We average the resulting precipitation over all latitudes to obtain a typical flux estimate. The loss timescale, $\tau$, is then obtained using equation \eqref{eqn:tau}, with the fieldline population N computed using equation \eqref{eqn:fieldline_density}, and the loss rate $dN/dt$ given by the global average precipitation estimate, both using the flat distribution for J.
+We then compute an equivalent precipitation map using the GLD360 dataset, and the flat-distribution stencils. We average the resulting precipitation over all latitudes to obtain a typical flux estimate. The loss timescale, $\tau$, is then obtained using equation \eqref{eqn:tau}, with the fieldline population $N$ computed using equation \eqref{eqn:fieldline_density}, and the loss rate $dN/dt$ given by the global average precipitation estimate, both using the flat distribution for $J$.
 
-Figure \ref{fig:electron_lifetimes} shows the estimated lifetime for radiation belt electrons, subjected solely to LEP-induced losses, versus electron energy and fieldline. 
-
-Two prominent results are apparent in figure \ref{fig:electron_lifetimes}: First, we see two enhancement regions, centered at lower energies ($\sim$100 eV), and at higher energies ($\sim$ 10 MeV). We can attribute this bimodal pattern to the preferential energy bands of each resonant mode, as in figure \ref{fig:stencil_energy_spectrum_flat_distribution}. Interestingly, our model shows a null in precipitation effectiveness in the band between 100 keV and 1 MeV; this band has generally been thought to be the dominant precipitation region (\cite{Voss1984}, \cite{Voss1998}) . Second, LEP is only an effective loss mechanism for inner belt and slot-region fieldlines (L $<$ 3), owing to the much much greater volume traversed by higher-L fieldlines.
+Figure \ref{fig:electron_lifetimes} shows the estimated lifetime for radiation belt electrons, subjected solely to LEP-induced losses, versus electron energy and fieldline. Two prominent results are apparent in Figure \ref{fig:electron_lifetimes}: First, we see two enhancement regions, centered at lower energies ($\sim$100 eV), and at higher energies ($\sim$ 10 MeV). We can attribute this bimodal pattern to the preferential energy bands of each resonant mode, as in Figure \ref{fig:stencil_energy_spectrum_flat_distribution}. Interestingly, our model shows a null in precipitation effectiveness in the band between 100 keV and 1 MeV; this band has generally been thought to be the dominant precipitation region (for example, the analysis of a single LEP event in \cite{Voss1998} shows a precipitation spectrum between $\sim$ 100  -- 300 keV. The instrument used, SEEP, measured fluxes binned into 8 energy channels between 2 keV and 10 MeV.) . Second, LEP is only an effective loss mechanism for inner belt and slot-region fieldlines (L $<$ 3), owing to the much much greater volume traversed by higher-L fieldlines.
 \begin{figure}[t]
 \begin{center}
-\includegraphics{figures/electron_lifetimes_updated_power.png}
+\includegraphics{figures/electron_lifetimes_updated_power_with_labels.png}
 \caption[Estimated lifetime of radiation belt electrons subject to LEP losses only]{Estimated lifetimes ($\tau$, the time required for a population to decay by 1/e) for radiation belt electrons subjected solely to LEP-induced losses.}
 \label{fig:electron_lifetimes}
 \end{center}
@@ -462,9 +460,9 @@ Two prominent results are apparent in figure \ref{fig:electron_lifetimes}: First
 
 
 \section{Comparison to other research}
-We can compare our resulting precipitation estimates to two related works: \cite{Gemelos2009} used data from the DEMETER spacecraft, along with seasonal lightning fluxes as measured by the NLDN network, to examine seasonal trends in LEP at 126 keV, and \cite{Meredith2007}, which uses \emph{in situ} VLF wave measurements to estimate lifetimes of radiation belt electrons due to various scattering mechanisms (LEP, chorus, hiss).
+We can compare our resulting precipitation estimates to two related works: \cite{Gemelos2009} used data from the DEMETER spacecraft, along with seasonal lightning fluxes as measured by the NLDN network, to examine seasonal trends in LEP at 126 keV, and \cite{Meredith2007}, which uses \emph{in situ} VLF wave measurements to estimate lifetimes of radiation belt electrons due to various scattering mechanisms (LEP, chorus, hiss), using an incoherent interaction model.
 
-Figure \ref{fig:gemelos_comparison} shows our modeled electron precipitation at 123 keV for August and December, averaged over 2014 - 2017, along with the corresponding northern hemisphere lightning activity as measured by GLD360, to facilitate comparison with \cite{Gemelos2009}, figure 1. Geographically, our model shows very good agreement with \citeauthor{Gemelos2009}; however our modeled fluxes are several orders of magnitude lower. Possible explanations for the discrepancy in precipitation amplitude are that the DEMETER spacecraft orbited at 710 km altitude, while our fluxes are estimated at 100 km. Additionally, the DEMETER particle detector viewed particles with local pitch angles near $\sim 85^\circ$, and a full-width, half maximum viewing angle of $30^\circ$. While this orientation and viewing angle should measure only particles within the loss cone, the detector measures precipitation due to a variety of additional scattering mechanisms beyond LEP. 
+Figure \ref{fig:gemelos_comparison} shows our modeled electron precipitation at 123 keV for August and December, averaged over 2014 - 2017, along with the corresponding northern hemisphere lightning activity as measured by GLD360, to facilitate comparison with \cite{Gemelos2009}, Figure 1. Geographically, our model shows very good agreement with \citeauthor{Gemelos2009}; however our modeled fluxes are several orders of magnitude lower. Possible explanations for the discrepancy in precipitation amplitude are that the DEMETER spacecraft orbited at 710 km altitude, while our fluxes are estimated at 100 km. Additionally, the DEMETER particle detector viewed particles with local pitch angles near $\sim 85^\circ$, and a full-width, half maximum viewing angle of $30^\circ$. Both \citeauthor{Gemelos2009} and \cite{Sauvaud2006} state that at this orientation the detector measures particles within or near the \emph{drift} loss cone, which may be considerably shallower than the bounce loss cone as modeled by our work.
 
 \begin{figure}[]
 \begin{center}
@@ -474,7 +472,7 @@ Figure \ref{fig:gemelos_comparison} shows our modeled electron precipitation at 
 \end{center}
 \end{figure}
 
-Figure \ref{fig:Meredith_comparison} compares our estimated electron lifetimes to those reported by \cite{Meredith2007}. \citeauthor{Meredith2007} estimates electron lifetimes using a database of magnetosphere VLF wave measurements from the CRRES spacecraft; they then compute pitch angle scattering using the PADIE code, for a variety of assumed wave conditions. \citeauthor{Meredith2007} concludes that pitch angle scattering due to magnetospherically-reflecting whistlers (e.g., LEP) is of little relevance to relativistic electron lifetimes.
+Figure \ref{fig:Meredith_comparison} compares our estimated electron lifetimes to those reported by \cite{Meredith2007}. \citeauthor{Meredith2007} estimates electron lifetimes using a database of magnetosphere VLF wave measurements from the CRRES spacecraft; they then compute pitch angle scattering using the PADIE code, for a variety of assumed wave conditions. \citeauthor{Meredith2007} concludes that pitch angle scattering due to magnetospherically-reflecting whistlers (e.g., LEP) is of little relevance to relativistic electron lifetimes. However, \citeauthor{Meredith2007} uses an incoherent, quasilinear diffusion model, and therefore may not capture the effects of resonant pitch-angle scattering.
 
 Our work is somewhat consistent, in that within the specified energy band, both works show lifetimes much greater than expected, suggesting that LEP is not a dominant loss mechanism. However, our model does show shorter lifetimes at lower L-shells. Additionally, \citeauthor{Meredith2007} does not examine lifetimes of lower energy electrons, for which our model shows the strongest losses. 
 \begin{figure}[]

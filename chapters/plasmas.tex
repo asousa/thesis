@@ -9,7 +9,7 @@ The high energies and sparse densities of the radiation belts lend themselves ve
 
 The fundamental equation of motion for a charged particle in an electromagnetic field is given by the Lorentz force:
 \begin{equation}
-\vec{F} = \frac{d\vec{p}}{d\emph{t}} = q(\vec{E} + \vec{v}\times\vec{B})
+\vec{F} = \frac{d\vec{p}}{d\emph{t}} = q(\vec{E} + \vec{v}\times\vec{B}) \unit{N}
 \label{eqn:lorentz_force}
 \end{equation}
 Where $q$ represents the particle's charge, $\vec{E}$ and $\vec{B}$ represent the electric and magnetic fields, and $\vec{v}$ the particle's velocity, shown here in a non-relativistic frame.
@@ -44,7 +44,7 @@ Combining the first adiabatic invariant with conservation of kinetic energy, we 
 \begin{eqnarray}
 & E &= \frac{1}{2}mv^2 \\
 & &= \frac{1}{2}m(v_\parallel^2 + v_\perp^2) \\
- & &= \frac{1}{2}mv^2(\mathrm{cos}^2\alpha + \mathrm{sin}^2\alpha)
+ & &= \frac{1}{2}mv^2(\mathrm{cos}^2\alpha + \mathrm{sin}^2\alpha) \unit{Joules}
 \end{eqnarray}
 
 \noindent At a reflection point, the particle's kinetic energy will be entirely in the perpendicular mode:
@@ -54,7 +54,7 @@ Combining the first adiabatic invariant with conservation of kinetic energy, we 
 \mathrm{sin}^2(\alpha)=\frac{B_0}{B_1} 
 \label{eqn:loss_cone_def}
 \end{eqnarray}
-\noindent A charged particle in a magnetic field will therefore be constrained to rotate around a field line, and feel an opposing longitudinal force as the field intensity increases. If the magnetic field is such that there are two regions of increasing intensity, separated by a reasonable distance,  the particle may bounce back and forth, reflecting at turning points given by equation \ref{eqn:loss_cone_def}. Such a field configuration is known as a ``magnetic bottle'' particle trap, as shown in figure \ref{fig:bottle}. A key observation is that the reflection point is independent of energy, and depends only on the ratio of magnetic field strengths and the particle's initial pitch angle.
+\noindent A charged particle in a magnetic field will therefore be constrained to rotate around a field line, and feel an opposing longitudinal force as the field intensity increases. If the magnetic field is such that there are two regions of increasing intensity, separated by a reasonable distance,  the particle may bounce back and forth, reflecting at turning points given by equation \ref{eqn:loss_cone_def}. Such a field configuration is known as a ``magnetic bottle'' particle trap, as shown in Figure \ref{fig:bottle}. A key observation is that the reflection point is independent of energy, and depends only on the ratio of magnetic field strengths and the particle's initial pitch angle.
 \begin{figure}[ht]
 \begin{center}
 \includegraphics{figures/bottle.pdf}
@@ -65,7 +65,7 @@ Combining the first adiabatic invariant with conservation of kinetic energy, we 
 
 \subsection{The Loss Cone}
 
-A magnetic bottle trap need not be linearly-arranged, as it is in figure \ref{fig:bottle}; we require only that the magnetic field be slowly-varying with respect to the particle's gyroradius. The Earth's dipole magnetic field forms a natural and effective particle trap, which dominates the morphology of charged particle populations surrounding the Earth. The motion of a charged particle in the Earth's magnetic field can be broken into three components (see figure \ref{fig:adiabatic_motions}): 
+A magnetic bottle trap need not be linearly-arranged, as it is in Figure \ref{fig:bottle}; we require only that the magnetic field be slowly-varying with respect to the particle's gyroradius. The Earth's dipole magnetic field forms a natural and effective particle trap, which dominates the morphology of charged particle populations surrounding the Earth. The motion of a charged particle in the Earth's magnetic field can be broken into three components (see Figure \ref{fig:adiabatic_motions}): 
 \begin{itemize}
 \item a rapid gyrorotation around the background magnetic field
 \item a ``bouncing'' motion between the north and south poles, with periods ranging from milliseconds to several seconds; and
@@ -108,7 +108,7 @@ where $R_e = 6371$ km is the radius of the Earth, and L is the \emph{L-shell} of
 
 
 \paragraph{Bounce and Drift Loss Cones}
-We have discussed what is known as the \emph{bounce loss cone}. Also of interest in the study of the space environment is the \emph{drift loss cone}. The drift loss cone is the largest loss cone along the same L-shell, as it varies longitudinally. Conceptually, as a particle drifts longitudinally, it may encounter a different loss cone, and could precipitate at certain longitudes, but not others. At some point along this longitudinal precession, the particle will encounter the maximum bounce loss cone, and precipitate (see \cite{Cotts2011}, figure 2.3). 
+We have discussed what is known as the \emph{bounce loss cone}. Also of interest in the study of the space environment is the \emph{drift loss cone}. The drift loss cone is the largest loss cone along the same L-shell, as it varies longitudinally. Conceptually, as a particle drifts longitudinally, it may encounter a different loss cone, and could precipitate at certain longitudes, but not others. At some point along this longitudinal precession, the particle will encounter the maximum bounce loss cone, and precipitate (see \cite{Cotts2011}, Figure 2.3). 
 
 Under a simple dipole magnetic field model, the bounce loss cone is uniform around the globe, and the bounce and drift loss cones are identical. Within this dissertation, we primarily work with a dipole magnetic field model, and consider only the bounce loss cone.
 
@@ -225,7 +225,7 @@ The dispersion relation in equation \ref{eqn:disp_rln} reveals a wealth of infor
 It is difficult to gain much insight directly from the dispersion relation (equations \ref{eqn:disp_rln} or \ref{eqn:appleton_hartree}). However, we can plot the spatial vs temporal frequencies for a fixed angle with respect to the background magnetic field, known as an $\omega$-k diagram, to reveal the various modes of propagation.
 
 Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($\eta = k c/\omega$). The whistler mode is the lower branch of the RHCP mode.
-\begin{figure}[!ht]
+\begin{figure}[!t]
 \begin{center}
 \includegraphics{figures/omega-k_diagram_parallel}
 \caption[An $\omega$-K diagram for the cold, four-component dispersion relation, for parallel propagation at L$\approx$3]{An $\omega$-K diagram for the cold plasma dispersion relation, shown here for a wave propagating parallel to $\vec{B}$, in four-component plasma with $N_e \approx  6\E{8}\,e^-/m^3$, and $B\approx 4\,\mu T$. For higher frequencies the dispersion relation asymptotes to the free-space solution, with slope $c$. The whistler mode is the right-hand, circularly-polarized mode which spans the majority of the frequency band. The shaded region marks the characteristic band in which the right-hand mode cannot propagate. At lower frequencies, the left-hand circular mode resonates with the various ion constituents,  known as the \emph{Ion Cyclotron} modes.}

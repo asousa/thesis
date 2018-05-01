@@ -19,7 +19,6 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
-
 % Vectors in bold font instead of line over
 \renewcommand{\vec}[1]{\mathbf{#1}}
 % Math-mode vector alternative (greek symbols)
@@ -37,8 +36,12 @@
 \usepackage{suthesis-2e}
     \specialthesis
 
+
+
 %\usepackage{hyperref}
 \dept{Electrical Engineering}
+
+
 
 
     \begin{document}
@@ -49,13 +52,22 @@
     \firstreader{Prof. Robert Marshall, \\ University of Colorado Boulder}
     \secondreader{Prof. Antony Fraser-Smith} 
     \beforepreface
-    \prefacesection{Preface}
-        This thesis tells you all you need to know about...
+    
+    % Dedication
+    \clearpage
+	\begin{center}
+	\emph{For Mill}
+	\end{center}
+    
+    
+    \prefacesection{Abstract}
+	\input{chapters/abstract}
     \prefacesection{Acknowledgments}
         \input{chapters/acknowledgments}
     \afterpreface
  
     \chapter{Introduction}
+    	\label{chapter:introduction}
     	\input{chapters/introduction}
 
     \chapter[Physics and Methods]{Background Physics and Description of Methods}

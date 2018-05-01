@@ -12,7 +12,7 @@ E \sim E_0 \exp{i(\omega t - \vec{k}\cdot\vec{r})}
 If either $\omega$ or $\vec{k}$ have an imaginary component, then the result will be an additional real-valued term, which we can factor out as $\chi$:
 \begin{eqnarray}
 E & = &E_0 \exp{i( \omega t - (\vec{k_r} + i\vec{k_i})\cdot\vec{r})} \\
-& = &E_0 \exp{-\chi r}\exp{i(\omega t + \vec{k}\cdot\vec{r})}
+& = &E_0 \exp{-\chi r}\exp{i(\omega t + \vec{k_r}\cdot\vec{r})}
 \end{eqnarray}
 
 If the new exponential term $-\chi$ is positive, the wave will be amplified; if the term is negative, the wave will be attenuated.
@@ -33,11 +33,11 @@ where $\chi > 0$ indicates damping.
 
 Note that \citeauthor{Brinca1972} has related the temporal damping rate $\omega_i$ from \cite{Kennel1966} to a spatial damping rate $k_i$ by assuming a constant propagation at the group velocity $v_g$.
 
-$A, B, C, D, L, P, R,$ and $S$ are the Stix environment parameters given by \ref{eqn:stix_params_1} -- \ref{eqn:stix_params_2}, and are functions of wave frequency, local plasma density, and local magnetic field strength. 
+$A, B, C, D, L, P, R,$ and $S$ are the Stix environment parameters given by equations (\ref{eqn:stix_params_1} -- \ref{eqn:stix_params_2}), and are functions of wave frequency, local plasma density, and local magnetic field strength. 
 
-As previous, $\theta$ is the angle between the wavenormal vector and the background magnetic field, and $\eta$ is the wave refractive index, found by solving equation \ref{eqn:disp_rln}.
+$\theta$ is the angle between the wavenormal vector and the background magnetic field, and $\eta$ is the wave refractive index, found by solving equation \eqref{eqn:disp_rln}.
 
-The terms $J_m, J_{m+1}$ and $J_{m-1}$ are Bessel functions of the first kind, which account for the multiple resonant modes -- $m=0$ indicates the Landau resonance; $m\pm1$ the Cyclotron resonance.
+The terms $J_m, J_{m+1}$ and $J_{m-1}$ are Bessel functions of the first kind, which account for the multiple resonant modes; $m=0$ indicates the Landau resonance, while $m\pm1$ the Cyclotron resonance, with the sign denoting co-streaming (positive) or counter-streaming (negative) resonances. Higher order resonant modes remain unnamed. 
 
 The terms $\Gamma_I$ and $\Lambda_I$ are summations over resonant modes $m\in \{-\infty...\infty\}$ , and integrations over the velocity space $v_\perp$,$v_\parallel$ given by:
 

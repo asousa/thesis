@@ -22,7 +22,7 @@ The function F, our ``conserved quantity'', is simply the cold plasma dispersion
 
 The raytracing equations are a set of coupled, first-order differential equations; solutions to which require some subtlety, but can be addressed using standard numerical techniques.
 
-First, note that we can solve the set at a given time, then evolve the system forward some finite time step. However, the constraint $F=0$ may not be strictly held afterward. We assert that the error in this constraint must be small; which in turn implies that the background medium must be smoothly-varying (i.e., changing on a spatial scale much greater than our forward step and of the wavelength of interest). This assumption, known as the \emph{WKB Approximation}, is fundamental to numerical methods for solving linear differential equations with spatially-varying coordinates \cite{WKB}.
+First, note that we can solve the set at a given time, then evolve the system forward some finite time step. However, the constraint $F=0$ may not be strictly held afterward. We assert that the error in this constraint must be small; which in turn implies that the background medium must be smoothly-varying (i.e., changing on a spatial scale much greater than our forward step and of the wavelength of interest). This assumption, known as the \emph{WKB Approximation}, is fundamental to numerical methods for solving linear differential equations with spatially-varying coordinates \cite{Bender1999}.
 
 \begin{figure}[ht]
 \begin{center}
@@ -35,6 +35,8 @@ First, note that we can solve the set at a given time, then evolve the system fo
 The process of raytracing, then, is to 1) solve the dispersion relation (\ref{eqn:disp_rln}) to find the refractive index; 2) compute the velocity vector and step the system forward in time; and 3) re-evaluate at the new position to assure that the condition F=0 is satisfied. However, properly selecting the timestep is of critical importance -- too large a timestep and positional errors will accumulate, or the ray will slip out of a propagating mode; too small and computational speed and memory usage suffers. We use an adaptive \emph{Runge-Kutta-Fehlberg} (RK45) \citep{Fehlberg1969, Mathews2004} method to continuously update the timestep as the raytracer progresses. RK45 is a common technique for solving ordinary differential equations.
 
 The RK45 method approximates a solution with an initial stepsize $dt$ using two spline fits: a fourth-order and a fifth-order. The error in the step is taken to be the difference between the two estimates. If the error is above a specified tolerance $\epsilon$, the stepsize is reduced and the evaluation is repeated. Additionally, if the error is below a specified tolerance ($\epsilon/10$ in our implementation), the stepsize is increased. The result is a variable time axis with finer resolution in regions of high variability, while enabling longer timesteps in smooth regions for computational efficiency.
+
+Figure \ref{fig:raytracing_example} shows a typical family of ray paths computed by the raytracer. Rays are launched from 1000 km altitude, in 1$^\circ$ increments in latitude, for three frequencies. Low frequency waves propagate out into space, while higher frequency waves experience stronger deflection and impact the Earth before a single bounce. Mid-frequency waves, however, can experience multiple bounces, and persist for 30 seconds or more.
 
 \subsection{Landau Damping}
 \label{section:damping}

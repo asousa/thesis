@@ -1,22 +1,22 @@
-Having discussed the various steps in the LEP process, and the nuance required in modeling, we now turn to a more-practical discussion, regarding direct measurement of pitch-angle scattering due to wave-particle interactions. 
+Having discussed the various steps in the LEP process, and the nuance required in modeling, we now turn to a more practical discussion, regarding direct measurement of pitch angle scattering due to wave-particle interactions. 
 
-The following chapter represents somewhat of a detour from the preceding chapters. In the first few years of my time at Stanford, I worked on a hardware design for a CubeSat-based measurement platform, designed specifically for the study of these interactions. The project, named the VLF Wave-Particle Precipitation Mapper, or VPM, formed a nexus of several research projects within the Stanford VLF group -- numerical modeling, fault-tolerant chip design, and embedded systems development -- and granted our small team of graduate students and research scientists design experience for a space-based mission.
+In the first few years of my time at Stanford, I worked on a hardware design for a CubeSat-based measurement platform, designed specifically for the study of these interactions. The project, named the VLF Wave-Particle Precipitation Mapper, or VPM, formed a nexus of several research projects within the Stanford VLF group -- numerical modeling, fault-tolerant chip design, and embedded systems development -- and granted our small team of graduate students and research scientists design experience for a space-based mission. VPM was designed to provide simultaneous measurements of electron pitch angle distributions and incident whistler waves, which will provide direct and quantitative measurements of whistler-induced pitch angle scattering efficiency.
 
-In order to quantify the relative effect of waves on particle distributions, one needs to measure two quantities: The incident wave, in the form of electric and magnetic fields, and the pitch angles of the particles impinging on the satellite. VPM samples the wave by measuring two of the six wave components -- one E and one B measurement, perpendicular to each other -- and the distribution of pitch angle distribution using two electron spectrometers, oriented such that one samples only particles within the loss cone, and the other only trapped particles.
+In order to quantify the relative effect of waves on particle distributions, one needs to measure two quantities: The incident wave, in the form of electric and magnetic fields, and the pitch angles of the particles impinging on the satellite. VPM samples the wave by measuring two of the six wave components -- one $E$ and one $B$ field measurement, perpendicular to each other -- and the electron pitch angle distribution using two energetic particle spectrometers, oriented such that one samples only particles within the loss cone, and the other only trapped particles.
 
-The VPM team was led by Dr. Robert Marshall and Dr. Ivan Linscott; the bulk of the hardware design was done by Jeff Chang and Steven Ingram. Additional software and hardware design was done by Christopher Young, Jordan Lenoach, and Alex Cousland. My primary contribution was the design and implementation of all the onboard firmware and digital signal processing. Design of the electron pitch-angle spectrometer system was contracted to a group at Lockheed Martin, as we lacked the facilities or the expertise to work with energetic particles.
+The VPM team was led by Dr. Robert Marshall and Dr. Ivan Linscott; the bulk of the hardware design was done by Jeff Chang and Steven Ingram. Additional software and hardware design was done by Christopher Young, Jordan Lenoach, and Alex Cousland. My primary contribution was the design and implementation of all the onboard firmware and digital signal processing. Design of the electron pitch-angle spectrometer system was contracted to a group at Lockheed Martin.
 
 %One disclaimer to those embarking on a CubeSat design, or other space-based system: It seems to me that the final design of a project is dictated as much by well-intentioned engineering practices as it is by the constraints levied on the project. 
-Our design was dictated by two primary constraints: 1) Design with the ability to exchange all commercial-grade components with space-rated components, and in an effort to reduce the risk of catastrophic computer failures, 2) that the system include no embedded firmware or programs stored in volatile memory. These constraints left a marked imprint on our final design. In a sense, we designed for a conventional satellite mission, with the notable exception that our instrument was small.
+The design was dictated by two primary constraints: 1) design with the ability to exchange all commercial-grade components with space-rated components, and 2) in an effort to reduce the risk of catastrophic computer failures, to include no embedded firmware or programs stored in volatile memory. These constraints left a marked imprint on our final design. In a sense, we designed for a conventional satellite mission, with the notable exception that our instrument was small.
 
-Were I to do this project again, from scratch, I would strongly advocate following the CubeSat ethos: Sacrifice bulletproof reliability in exchange for rapid design and prototyping, and affordability of flight components. CubeSat missions generally fly in low-earth orbit ($\sim 400$ km altitude), and have mission lifetimes on the order of a few years, at maximum, due to atmospheric drag. While the idea of a fully radiation-tolerant design is alluring, it is hard to justify the price increase in parts (often $\sim$1000 x greater), and the difficulty in designing for them, for a short-duration, academic mission.
+Were I to do this project again, from scratch, I would strongly advocate following the CubeSat ethos: Sacrifice bulletproof reliability in exchange for rapid design and prototyping, and affordability of flight components. CubeSat missions generally fly in low-earth orbit ($\sim 400$ km altitude), and have mission lifetimes on the order of a few years, at maximum, due to atmospheric drag. While the idea of a fully radiation-tolerant design is alluring, it is hard to justify the price increase in parts (often $\sim 1000$ times greater than commercial, off-the-shelf components), and the difficulty in designing for them, for a short-duration, academic mission.
 
-This chapter was mostly written shortly after delivery of the initial VPM prototype, in January, 2015. Both VPM and DSX were delayed several years afterward; as of writing, VPM has been picked up by a new group at AFRL, and is slated to launch in January, 2019.
+The initial VPM prototype was delivered to the Air Force Research Lab (AFRL) in January, 2015. Both VPM and DSX were delayed several years afterward; as of this writing, VPM has been scheduled to launch in January, 2019.
 
 \section{VPM Mission Overview}
 The VLF Wave and Particle Precipitation Mapper (VPM) is a 3U CubeSat designed to measure wave activity and relativistic electrons in the Earth's radiation belts from low-Earth orbit (LEO). The VPM payload consists of an electric field dipole antenna and a magnetic field search coil to measure waves in the VLF frequency band from 100 Hz to 30 kHz; and two electron detectors, designed to measure electron energies from 100 keV to 1 MeV. In addition to single-spacecraft scientific goals outlined below, VPM is a companion to the Wave-Induced Precipitation of Electron Radiation (WIPER) experiment on the Demonstration and Science Experiments (DSX) mission \citep{Schoenberg2006, Spanjers2006}, a small spacecraft designed to investigate the Earth's radiation belts using active probing techniques. Both spacecraft are scheduled to be launched in 2019.
 
-VPM will study the Earth's radiation belts from Low-Earth Orbit (LEO). The radiation belts are comprised of relativistic electrons from hundreds of keV to tens of MeV, and protons from tens to hundreds of MeV. These energetic particles can be highly damaging to spacecraft and to astronauts \citep[e.g.][]{Barth2003}, and comprise a vital component of space weather which affects satellite navigation and communication \citep{Bothmer:2007}. The distribution and evolution of radiation belt populations are controlled by geomagnetic activity and by wave activity in the plasmasphere. Radiation belt particles can be scattered in energy and pitch angle by magnetic reconfiguration, and by wave activity, which can include Alfvenic, electrostatic and electromagnetic waves. Waves can energize these particles, or cause them to precipitate and be lost to the Earth's upper atmosphere. The extent to which wave activity of different sources controls radiation belt distributions and lifetimes is still under considerable investigation. For example, the current Van Allen Probes (VAP) mission, launched in 2012, is particularly investigating the processes that accelerate and transport radiation belt electrons; radiation belt loss mechanisms; and the effects of geomagnetic storms on the radiation belts \citep{Spence2014}. %, Lanzerotti:2013 
+VPM will study the Earth's radiation belts from Low-Earth Orbit (LEO). The radiation belts are comprised of relativistic electrons from hundreds of keV to tens of MeV, and protons from tens to hundreds of MeV. As described in chapter \ref{chapter:introduction}, these energetic particles can be highly damaging to spacecraft and to astronauts \citep[e.g.][]{Barth2003}, and comprise a vital component of space weather which affects satellite navigation and communication \citep{Bothmer:2007}. The distribution and evolution of radiation belt populations are controlled by geomagnetic activity and by wave activity in the plasmasphere. Radiation belt particles can be scattered in energy and pitch angle by magnetic reconfiguration, and by wave activity, which can include Alfvenic, electrostatic and electromagnetic waves. Waves can energize these particles, or cause them to precipitate and be lost to the Earth's upper atmosphere. The extent to which wave activity of different sources controls radiation belt distributions and lifetimes is still under considerable investigation. For example, the Van Allen Probes (VAP) mission, launched in 2012, is investigating the processes that accelerate and transport radiation belt electrons; radiation belt loss mechanisms; and the effects of geomagnetic storms on the radiation belts \citep{Spence2014}. %, Lanzerotti:2013 
 
 Specific science goals of the VPM mission are:
 
@@ -26,9 +26,9 @@ Specific science goals of the VPM mission are:
 	\begin{enumerate}
 	\item Measure the Antenna Radiation Pattern of the WIPER VLF transmitter known as the TNT (Transmitter, Narrow-band receiver, and Tuners)
 	\item Measure the Radiation Efficiency of the TNT
-	\item Estimate the efficiency of Wave-Particle interactions using WIPER-injected waves
+	\item Estimate the efficiency of wave-particle interactions using WIPER-injected waves
 	\end{enumerate}
-\item Improve understanding of the effects of Lightning in the near-Earth space environment
+\item Improve understanding of the effects of lightning in the near-Earth space environment
 	\begin{enumerate}
 	\item Improve climatology models of lightning and whistler activity
 	\item Estimate the efficiency of lightning whistler-induced wave-particle interactions
@@ -44,14 +44,14 @@ Specific science goals of the VPM mission are:
 \end{enumerate}
 
 
-Here we present the design of the VPM payload instrumentation and data processing, with an emphasis on the VLF wave instrumentation and data processing unit. The VPM payload is unique in a number of ways: i) four science instruments have been collocated in 1.5U of payload space; ii) all data processing is handled in firmware, reducing the power requirements and eliminating any software from the payload; and iii) data products are delivered with maximum flexibility thanks to the unique implementation of processing methods. These unique aspects of VPM will be discussed in sections to follow.
+Here we present the design of the VPM payload instrumentation and data processing, with an emphasis on the VLF wave instrumentation and data processing unit. The VPM payload is unique in a number of ways: i) four science instruments have been collocated in 1.5U of payload space; ii) all data processing is handled in firmware, reducing the power requirements and eliminating any software from the payload; and iii) data products are delivered with maximum flexibility thanks to the unique implementation of processing methods.
 
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=20pc]{figures/vpm_figures/payload_figure_annotated.png}
 
-\caption[Drawing of the assembled VPM payload on a 6U cubesat bus]{Drawing of an assembled VPM payload, shown in one possible configuration integrated into a 6U CubeSat bus, with both antennas deployed. Conical shapes indicate fields of view of the Lost-Electron Spectrometer (LES) and Trapped Electron Spectrometer (TES). }
+\caption[Drawing of the assembled VPM payload on a 6U cubesat bus]{Drawing of an assembled VPM payload, shown in one possible configuration integrated into a 6U CubeSat bus, with both antennas deployed. Conical shapes indicate fields of view of the Loss Cone Electron Spectrometer (LES) and the Trapped Electron Spectrometer (TES). }
 \label{fig:VPM_full}
 \end{center}
 \end{figure}
@@ -71,20 +71,20 @@ Here we present the design of the VPM payload instrumentation and data processin
 \section{Hardware Architecture}
 VPM's system design was governed by three primary constraints:
 \begin{enumerate}
-\item Facilitate integration with a 3U CubeSat bus. The payload must fit into a 1.5U (10x10x15 cm) volume. The bus provides 3.3v and 5v power rails, an RS422 connection, and a single, 1-Hz-sampled analog connection.
+\item Facilitate integration with a 3U CubeSat bus. The payload must fit into a 1.5U (10 $\times$ 10 $\times$ 15 $\times$ cm) volume. The bus provides 3.3V and 5V power rails, an RS422 serial data communication connection, and a single, 1-Hz-sampled analog connection.
 \item Provide an upgrade path for high-reliability, radiation-tolerant components wherever possible.
 \item Design simple operation modes with high reliability and low verification complexity. 
 \end{enumerate}
 
-The VPM payload consists of five hardware systems:
+\noindent The VPM payload consists of five hardware systems:
 \begin{enumerate}
-\item a power and interface board
-\item a two-channel VLF broadband receiver ($\mu$BBR)
-\item two deployable VLF antennas for sampling the electric and magnetic field respectively
-\item a digital data processing system (DPU)
+\item A power and interface board;
+\item A two-channel VLF broadband receiver ($\mu$BBR);
+\item Two deployable VLF antennas for sampling the electric and magnetic field respectively;
+\item A digital data processing system (DPU);
 \item and a Loss-Cone Spectrometer (LCS), a pair of electron energy spectrometers designed to sample the energy distribution of the local loss cone. 
 \end{enumerate}
-All circuit boards are connected by a common stack connector and housed in an aluminum enclosure to reduce parasitic RF interference. A rendering of the system is shown in figure \ref{fig:hardware_stack}.
+All circuit boards are connected by a common stack connector and housed in an aluminum enclosure to reduce parasitic RF interference. A rendering of the system is shown in Figure \ref{fig:hardware_stack}.
 
 \begin{figure*}[htbp]
 \begin{center}
@@ -96,43 +96,41 @@ All circuit boards are connected by a common stack connector and housed in an al
 
 
 \subsection{FPGAs}
-Full-scale space systems commonly use radiation-tolerant, multiple-redundant single-board computers. While robust and flight-verified, such systems are cost, size, and power-prohibitive for a cubesat mission. Several commercial cubesat single-board computers exist (such as those from Pumpkin or Tyvak); however these systems are designed for general satellite operations, and provide more functionality than necessary for an isolated payload. Additionally, single-CPU solutions are not well-suited for realtime, parallel streaming tasks, as data from multiple sources must be buffered and processed serially, increasing memory and clock speed requirements. VPM omits any such embedded CPU and instead uses a realtime streaming solution implemented entirely in a Field-Programmable Gate Array (FPGA). 
+Full-scale space systems commonly use radiation-tolerant, multiple-redundant single-board computers. While robust and flight-verified, such systems are cost, size, and power-prohibitive for a CubeSat mission. Several commercial CubeSat single-board computers exist (such as those from Pumpkin or Tyvak); however these systems are designed for general satellite operations, and provide more functionality than necessary for an isolated payload. Additionally, single-CPU solutions are not well-suited for real-time, parallel streaming tasks, as data from multiple sources must be buffered and processed serially, increasing memory and clock speed requirements. VPM omits any such embedded CPU and instead uses a realtime streaming solution implemented entirely in a Field-Programmable Gate Array (FPGA). 
 
 FPGAs consist of a network of assignable logic gates and interconnections, which allow for gate-level circuits to be implemented using a hardware development language such as VHDL or Verilog, achieving ASIC-like performance without the burden of IC development. By working at the gate level, multiple-input designs can operate in clock-cycle-accurate lock step, allowing for low-power designs with minimal wasted circuitry. Additionally, gate-level designs inherently have fewer operating states, and once implemented, provide a high degree of reliability without risk of segmentation faults, memory leaks, or other higher-level issues common in CPU systems.
 
-FPGAs find common use in embedded systems for peripheral interfacing and low-level data handling. A hybrid CPU / FPGA design was considered, wherein a ``soft" CPU is implemented within the FPGA fabric -- however such a design needlessly increased verification complexity, while similarly reducing system reliability. It should be noted, however, that VPM acts only as a peripheral for a separate satellite bus, and is not tasked with a myriad of other responsibilities required of a satellite mission -- telemetry, communication, power management and so forth -- the complexity of which necessitate a full CPU solution.
+FPGAs find common use in embedded systems for peripheral interfacing and low-level data handling. A hybrid CPU / FPGA design was considered, wherein a ``soft" CPU is implemented within the FPGA fabric -- however such a design needlessly increased verification complexity, while similarly reducing system reliability. It should be noted, however, that the VPM instrument acts only as a peripheral for a separate satellite bus, and is not tasked with a myriad of other responsibilities required of a satellite mission -- telemetry, communication, power management and so forth -- the complexity of which would necessitate a full CPU solution.
 
-VPM uses the Actel ProAsic3 series of FPGAs. Actel FPGAs were selected largely for their focus on reliability, and simple upgrade path to a radiation-tolerant model. Development and prototyping was done using an A3PE/3000 chip (the largest available at time of design), which provides 3 million gates assignable in 75,264 tiles, and 604 kilobits of onboard SRAM . Additional functionality onboard the ProAsic3 series include clock conditioning circuits, differential signaling drivers, and 1 kilobit of flash ROM used to store lookup tables, which combined allow for a single-chip data processing system. %\citep{actel_a3pe_datasheet}.
+VPM uses the Actel ProAsic3 series of FPGAs. Actel FPGAs were selected largely for their focus on reliability, and simple upgrade path to a radiation-tolerant model. Development and prototyping was done using an A3PE/3000 chip (the largest available at time of design), which provides 3 million gates assignable in 75,264 tiles, and 604 kilobits of onboard SRAM . Additional functionality onboard the ProAsic3 series includes clock conditioning circuits, differential signaling drivers, and 1 kilobit of flash ROM used to store lookup tables, which combined allow for a single-chip data processing system. %\citep{actel_a3pe_datasheet}.
 
 
 \subsection{Power and GPS}
-The lowest circuit board in the VPM stack houses power systems, antenna deployer drivers, and a GPS daughterboard. VPM requires three power connections from the host spacecraft -- +5v, +3.3v, and an unregulated, high-current-capacity supply at $\approx$ 9v, on a single micro-D connector. Additional connections are provided for two antenna deployers. A 100-pin stack connector is used for all inter-board power and communication.
+The lowest circuit board in the VPM stack houses power systems, antenna deployer drivers, and a GPS daughterboard. VPM requires three power connections from the host spacecraft: +5V, +3.3V, and an unregulated, high-current-capacity supply at $\sim$ 9v, on a single micro-D connector. Additional connections are provided for two antenna deployers. A 100-pin stack connector is used for all inter-board power and communication.
 
-VPM contains two deployable antennas -- a 1-meter flexible dipole antenna for sampling the electric field, and a magnetic-field search coil, which is deployed away from the system to reduce parasitic noise. Both antennas are tensioned and held in place using a burn-wire deployer in which a thin plastic filament is held against a conductive wire. To deploy, VPM drives a current through the wire until the plastic filament melts through, allowing the  antenna to extend on its own.
+VPM contains two deployable antennas: a 1-meter flexible dipole antenna for sampling the electric field, and a magnetic-field search coil, which is deployed away from the system to reduce parasitic noise. Both antennas are tensioned and held in place using a burn-wire deployer in which a thin plastic filament is held against a conductive wire. To deploy, VPM drives a current through the wire until the plastic filament melts through, allowing the antenna to unfurl without additional power, via stored tension.
 
-The power and GPS board contains two drive transistors to provide the necessary burn-wire current, and are fed from the unregulated supply. Connections are made to deployers via a pair of micro-D connectors.
+The power and GPS board contains two drive transistors to provide the necessary burn-wire current, and are fed from the unregulated supply. Connections are made to deployers via a pair of micro-D connectors. Bipolar $\pm$ 12V power for the loss-cone spectrometer and searchcoil preamp is provided via a Picosat DC/DC converter. % \citep{picosat}. 
 
-Bipolar $\pm 12v$ power for the loss-cone spectrometer and searchcoil preamp is provided via a Picosat DC/DC converter. % \citep{picosat}. 
-
-GPS timing and location are provided by a NovAtel OEM615 embedded GPS receiver. While not radiation-tolerant, this card has flight heritage on multiple CubeSat and nanosatellite missions, and can be configured to operate without altitude restrictions \citep{Spangelo2013}.
+GPS timing and location are provided by a NovAtel OEM719 embedded GPS receiver. While not radiation-tolerant, this card has flight heritage on multiple CubeSat and nanosatellite missions, and can be configured to operate without altitude restrictions \citep{Spangelo2013}. Additionally, the OEM719 provides a GPS-disciplined sampling clock, which assures sample-accurate timing.
 
 \subsection{DPU}
-Data processing and system commanding is performed on the DPU board. The DPU board contains a single Actel A3PE/3000 FPGA housed in an FG484 ball-grid array package. Local power for the FPGA is supplied by linear regulator circuits -- 3.3v and 2.5v for IO banks, and switchable 1.5v or 1.2v for the FPGA core voltage, depending on whether an A3PE or A3PL part is populated. The FPGA is programmed through a 10-pin JTAG header.
+Data processing and system commanding is performed on the DPU board. The DPU board contains a single Actel A3PE/3000 FPGA housed in an FG484 ball grid array package. Local power for the FPGA is supplied by linear regulator circuits: 3.3V and 2.5V for IO banks, and switchable 1.5V or 1.2V for the FPGA core voltage, depending on whether an A3PE or A3PL part is populated. The FPGA is programmed through a 10-pin JTAG header.
 
 Clocking onboard the DPU is provided by a 20 MHz temperature-controlled oscillator, which feeds a clock-conditioning circuit on the FPGA. Processing is done at a divided 10 MHz clock, with the exception of memory operations which operate at full speed.
 
-Temporary data storage is provided by a 3D-Plus 128-megabyte SDRAM, which is clocked and controlled by firmware within the FPGA. The 3D-Plus SDRAM was selected primarily for availability of a pin-compatible, radiation-tolerant upgrade. The SDRAM uses a 32-bit wide data buss, and includes an internal refreshing algorithm.
+Temporary data storage is provided by a 3D-Plus 128-megabyte SDRAM, which is clocked and controlled by firmware within the FPGA. The 3D-Plus SDRAM was selected primarily for availability of a pin-compatible, radiation-tolerant upgrade. The SDRAM uses a 32-bit wide data bus, and includes an internal refreshing algorithm.
 
 Communication between VPM and the host satellite is implemented using a standard UART protocol over an RS422 connection, made through a pair of differential line drivers, again selected for a pin-compatible radiation-tolerant upgrade. % \citep{intersil_linedrivers}
 
-VPM provides low-level housekeeping and debug signals over an analog connection, intended to be sampled by the host spacecraft. A variety of signals are connected through an analog multiplexing chip, including analog and digital power rails; system temperature as measured by a thermocouple near the GPS receiver; the bipolar 12v supply; and five channels allocated to the loss-cone spectrometer. Outputs can be selected via a system command, or set to cycle through at 5 seconds per input.
+VPM provides low-level housekeeping and debug signals over an analog connection, intended to be sampled by the host spacecraft. A variety of signals are connected through an analog multiplexing chip, including analog and digital power rails; system temperature as measured by a thermocouple near the GPS receiver; the bipolar 12V supply; and five channels allocated to the loss-cone spectrometer. Outputs can be selected via a system command, or set to cycle through at 5 seconds per input.
 
 RS422 and analog housekeeping connections are made through a single micro-D connector. Connections are provided for an FTDI UM232H USB interface used extensively in development; however on flight, all connections are made through micro-D connectors or the 100-pin stack connector.
 
 \subsection{VLF Receiver Boards}
-VPM uses a modified version of the Stanford Micro Broadband Receiver ($\mu$BBR) as used on the SpriteSat mission, and the GLIMS payload onboard the International Space Station \citep{Ushio2011}. The VPM $\mu$BBR provides two channels of amplification, filtering, and digitization at an 80 kHz sampling rate. VPM uses a pair of proprietary chips -- a combination low-noise amplifier (LNA) and anti-ailiasing filter (AAF), and an analog-to-digital converter (ADC) -- which were the result of two PhD theses \citep{Wang2009, Mossawir2009}. The chips were designed for low power consumption and high radiation tolerance.
+VPM uses a modified version of the Stanford Micro Broadband Receiver ($\mu$BBR) as used on the SpriteSat mission, and the GLIMS payload onboard the International Space Station \citep{Ushio2011}. The VPM $\mu$BBR provides two channels of amplification, filtering, and digitization at an 80 kHz sampling rate. VPM uses a pair of proprietary chips -- a combination low-noise amplifier (LNA) and anti-ailiasing filter (AAF), and an analog-to-digital converter (ADC) -- which were the result of two Stanford PhD theses \citep{Wang2009, Mossawir2009}. The chips were designed for low power consumption and high radiation tolerance.
 
-An intermediate buffering stage provides an additional 10 V/V gain; an active two-pole high-pass filter with a 3-dB point at 3 kHz can be inserted between the LNA and ADC sections, or bypassed completely using sealed, mechanical relays. Gain at the LNA can be remotely selected, either 1 or 10, for a total system gain of 20 or 40 dB. The assembled system gives a spurious-free dynamic range (SFDR) of approximately 55 dB across the passband. The analog stage operates on a single, 2.5v supply, which is derived locally using a 2.5v reference source and a radiation-tolerant op-amp. A simplified schematic of the receiver chain is shown in figure \ref{fig:ubbr_schem}.
+An intermediate buffering stage provides an additional 10 V/V gain; an active two-pole high-pass filter with a 3-dB point at 3 kHz can be inserted between the LNA and ADC sections, or bypassed completely using sealed, mechanical relays. Gain at the LNA can be remotely selected, either 1 or 10, for a total system gain of 20 or 40 dB. The assembled system gives a spurious-free dynamic range (SFDR) of approximately 55 dB across the passband. The analog stage operates on a single, 2.5V supply, which is derived locally using a 2.5V reference source and a radiation-tolerant op-amp. A simplified schematic of the receiver chain is shown in Figure \ref{fig:ubbr_schem}.
 
 \begin{figure*}[t]
 \begin{center}
@@ -155,7 +153,7 @@ All digital communication between the $\mu$BBR and the DPU is done via different
 
 
  \subsubsection{Calibration Tone}
-The $\mu$BBR signal chain features an onboard calibration signal generator, which can be used to assess the frequency response of the system on-orbit. A pseudorandom digital signal is generated using the $\mu$BBR FPGA, using the feedback register methodology described by \cite{Paschal2005}. VPM uses a 7-bit feedback register for a maximal-length sequence of 128 samples. This signal is passed through a voltage divider and capacitively coupled to the input of each analog channel. The Fourier transform of the resulting signal features a comb of uniformly-spaced frequencies, as shown in figure \ref{fig:caltone}. When calibration mode is entered, the system will generate one minute of calibration tone, which can be recorded by a 30-second, full-resolution burst. Results of a typical calibration are shown in figure  \ref{fig:bbr_calibration}.
+The $\mu$BBR signal chain features an onboard calibration signal generator, which can be used to assess the frequency response of the system on-orbit. A pseudorandom digital signal is generated using the $\mu$BBR FPGA, using the feedback register methodology described by \cite{Paschal2005}. VPM uses a 7-bit feedback register for a maximal-length sequence of 128 samples. This signal is passed through a voltage divider and capacitively coupled to the input of each analog channel. The Fourier transform of the resulting signal features a comb of uniformly-spaced frequencies, as shown in Figure \ref{fig:caltone}. When calibration mode is entered, the system will generate one minute of calibration tone, which can be recorded by a 30-second, full-resolution burst. Results of a typical calibration are shown in Figure \ref{fig:bbr_calibration}.
 
 Finally, an onboard digital sine-wave generator can be enabled; in this mode the $\mu$BBR ignores any analog signal and delivers a full-scale sine wave. While not scientifically useful, this mode enables diagnosis of communications issues, and confirmation of survey-mode processing.
 
@@ -194,15 +192,13 @@ The electric dipole antenna is comprised of a conductive strip on a flexible tap
 
 %Within the VLF band, the dipole resistance becomes trivially small. The antenna is capacitively-coupled to the $\mu$BBR input terminals, with a DC rolloff at 1 Hz. Assuming an infinite plane wave with right-angle incidence and ignoring plasma effects, the conversion between input voltage at the $\mu$BBR terminals and electric field magnitude $V_{in}/E_0$ (Volts per Volts / meter) is $\approx$ 1.
 
-In the presence of a plasma, the electric dipole antenna's impedance can vary substantially with plasma parameters (density, temperature), and orientation with respect to the background magnetic field. For analytic, closed-form expressions, see \cite{Balmain1964}, and thethe series of papers by Wang and Bell \citep{Wang1969, Wang_Bell_1972}. For a full numerical treatment of plasma-immersed VLF electric dipoles, see the thesis work of Chevalier \citep{Chevalier2007}. 
+In the presence of a plasma, the electric dipole antenna's impedance can vary substantially with plasma parameters (density, temperature), and orientation with respect to the background magnetic field. For analytic, closed-form expressions, see \cite{Balmain1964}, and the series of papers by Wang and Bell \citep{Wang1969, Wang_Bell_1972}. For a full numerical treatment of plasma-immersed VLF electric dipoles, see the thesis work of \cite{Chevalier2007}. 
 
 For purposes of system characterization, we assume the antenna and receiver are perfectly matched; assuming an infinite plane wave with right-angle incidence and ignoring plasma effects, the conversion between input voltage at the $\mu$BBR terminals and electric field magnitude $V_{in}/E_0$ (Volts per Volts / meter) is $\approx$ 1.
 
-The search-coil antenna is also deployed from the payload to reduce electrical interference. The antenna includes a dedicated preamp which operates on $\pm$12v power. Sensitivity of the antenna and preamplifier are shown in figure \ref{fig:searchcoil}.
+The search-coil antenna is also deployed from the payload to reduce electrical interference. The antenna includes a dedicated preamp which operates on $\pm$12V power. Sensitivity of the antenna and preamplifier are shown in Figure \ref{fig:searchcoil}.
 
-Both antennas use a single-deploy burn-wire system. VPM includes options for each deployer to be armed and deployed separately, and can be repeated in the event that the retaining filament fails to release the antenna.
-
-Deployed antennas are shown in figure \ref{fig:VPM_full}.
+Both antennas use a single-deploy burn-wire system. VPM includes options for each deployer to be armed and deployed separately, and can be repeated in the event that the retaining filament fails to release the antenna. Deployed antennas are shown in Figure \ref{fig:VPM_full}.
 
 Figure \ref{fig:detectable_ranges} gives a rough estimate of the maximum and minimum detectable field amplitudes. Maximum levels are calculated assuming the low gain setting and a clipping voltage at the ADC; minimum levels are those which are below the system's noise floor at the high gain setting. Note that, for a plane wave in free space, the magnitudes of E and B are related by $B_0 = \frac{E_0}{c}$, where c is the speed of light; For an electric field $E_0 \approx 1$ V/m, the corresponding magnetic field has $B_0 \approx 0.3$ nT.
 
@@ -213,7 +209,7 @@ The range of measurable amplitudes is comparable to other in-situ VLF measuremen
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=20pc]{figures/vpm_figures/searchcoil_response_2up.eps}
-\caption[Characteristics of the search coil and associated preamp]{Characteristics of the search coil and associated preamp. Plot (a) shows the transfer function in dB-scaled volts per nanotesla. Plot (b) shows the search coil and preamp's noise spectral density in units of nanotesla per $Hz^{1/2}$}
+\caption[Characteristics of the search coil and associated preamp]{Characteristics of the search coil and associated preamp. Plot (a) shows the transfer function in dB-scaled volts per nanotesla. Plot (b) shows the search coil and preamp's noise spectral density in units of $nT/Hz^{1/2}$}
 \label{fig:searchcoil}
 \end{center}
 \end{figure}
@@ -239,16 +235,14 @@ The range of measurable amplitudes is comparable to other in-situ VLF measuremen
 \label{fig:firmware_arch}
 \end{center}
 \end{figure*}
-VPM delivers two data products -- a low-resolution survey mode, which runs constantly, and a commandable burst mode, which will accumulate an equivalent of 30 seconds of full-resolution data. All data processing is performed on a single Actel ProAsic3 FPGA, using fixed-point, twos-compliment arithmetic. Survey and burst mode streams operate in parallel, feeding data to a common memory controller, which packetizes and buffers data using a radiation-tolerant 128MB SDRAM. Fixed-size packets are then transmitted at the soonest availability to the host spacecraft at 400 kilobaud using a standard RS422 / UART protocol.
-
-Figure \ref{fig:firmware_arch} shows a block diagram of the firmware architecture.
+VPM delivers two data products -- a low-resolution survey mode, which runs constantly, and a commandable burst mode, which will accumulate an equivalent of 30 seconds of full-resolution data. All data processing is performed on a single Actel ProAsic3 FPGA, using fixed-point, twos-compliment arithmetic. Survey and burst mode streams operate in parallel, feeding data to a common memory controller, which packetizes and buffers data using a radiation-tolerant 128MB SDRAM. Fixed-size packets are then transmitted at the soonest availability to the host spacecraft at 400 kilobaud using a standard RS422 / UART protocol. Figure \ref{fig:firmware_arch} shows a block diagram of the firmware architecture.
 
 
 \subsection{Reduced-Resolution (Survey) Data}
 Survey data consists of a reduced-resolution energy spectrogram for each VLF channel, and if installed, an energy histogram of each particle detector. Survey-mode time resolution can be selected from one of three presets -- short, medium, and long -- corresponding to 1024, 2048, or 4096 FFTs, or 6.5536, 13.1072, or 26.2144 seconds respectively. VLF spectrograms consist of 512 frequency bins, with energies mapped to 8 bits on a logarithmic scale.
 
 \subsubsection{Frequency Mapping and Accumulation}
-VLF data is delivered to the DPU as 16-bit, twos-compliment integers, which are buffered locally, overlapped by 50\% (512 samples), and multiplied by a Chebyshev window function. Data is then mapped to the frequency domain using a 1024-point, decimation-in-time Fast Fourier Transform, as described in \citep{Oppenheim_Schafer}. Buffering within the FFT is sized such that the full resolution of multiplications are kept without overflow. Real and imaginary components are rounded to 16 bits.
+VLF data is delivered to the DPU as 16-bit, twos-compliment integers, which are buffered locally, overlapped by 50\% (512 samples), and multiplied by a Chebyshev window function. Data is then mapped to the frequency domain using a 1024-point, decimation-in-time Fast Fourier Transform, as described in \cite{Oppenheim_Schafer}. Buffering within the FFT is sized such that the full resolution of multiplications are kept without overflow. Real and imaginary components are rounded to 16 bits.
 
 Absolute values of the real and imaginary components are then squared and summed, resulting in a 512-point vector of 32-bit integers, representing the squared magnitude of the frequency content.
 
@@ -280,13 +274,13 @@ VPM's accumulators deliver 44-bit integers, which must be passed into the 32-bit
 \rm{log}(\frac{a}{b}) = \rm{log}(a) - \rm{log}(b) 
 \end{eqnarray}
 
-In the event that simply taking the most-significant 32 bits will result in a truncated fractional portion, we shift the input by $Nb_{frac}$ bits; equivalent to multiplying by $2^{Nb_{frac}}$. We then pass the top 32 bits to the lookup tables, sum the result, and subtract the added portion $S\cdot Nb_{frac}$. The complete module is shown in figure \ref{fig:logscaling}, and performs within $\pm 1$ bit from the equivalent floating-point computation in Matlab when $x$ is greater than $2^{12} = 4096$.
+In the event that simply taking the most-significant 32 bits will result in a truncated fractional portion, we shift the input by $Nb_{frac}$ bits; equivalent to multiplying by $2^{Nb_{frac}}$. We then pass the top 32 bits to the lookup tables, sum the result, and subtract the added portion $S\cdot Nb_{frac}$. The complete module is shown in Figure \ref{fig:logscaling}, and performs within $\pm 1$ bit from the equivalent floating-point computation in Matlab when $x$ is greater than $2^{12} = 4096$.
 
 
 
 For each frequency, the equivalent survey-mode computation is given by:
 \begin{equation}
-{\rm round}(S \cdot {\rm log}_2(\frac{1}{n}\sum_1^n{(\rm{re}(x_f)^2 + \rm{im}(x_f)^2)})
+y_f = {\rm round}(S \cdot {\rm log}_2(\frac{1}{n}\sum_1^n{(\rm{re}(x_f)^2 + \rm{im}(x_f)^2)})
 \end{equation}
 where $x_f$ are the outputs of the windowed, overlapped FFT.
 
@@ -311,7 +305,7 @@ where $x_f$ are the outputs of the windowed, overlapped FFT.
 \end{figure}
 Each column of the survey product includes a complete GPS timestamp containing time, location, and velocity. GPS timestamps are collected every second; however no provisions are made to snap columns to the exact start time. Rather, survey columns are transmitted every 1024, 2048, or 4096 FFTs, depending on current configuration, with the GPS timestamp corresponding to the last whole second before the column is requested. In order to eliminate storage requirements for staging a survey column, data from the VLF receiver channels are interleaved, along with data from the particle spectrometers if present, into a 4-byte output stream.
 
-Each column begins with a 4-byte header, 0xABCD-1234. Survey data is then presented four bytes at a time, alternating between the two VLF channels and spectrometer data when available. The data stream alternates between the two VLF channels when the spectrometer data has been fully read out. When available, the survey data is followed by a 180-byte GPS timestamp. Each survey column ends with a four-byte footer, 0x6789-1234, and an appropriate number of zeroes to assure a complete 32-bit word is passed to the memory controller. When both GPS and spectrometer data are present, the resulting column is 1280 bytes. The data format is illustrated in figure \ref{fig:survey_data_format}.
+Each column begins with a 4-byte header, 0xABCD-1234. Survey data is then presented four bytes at a time, alternating between the two VLF channels and spectrometer data when available. The data stream alternates between the two VLF channels when the spectrometer data has been fully read out. When available, the survey data is followed by a 180-byte GPS timestamp. Each survey column ends with a four-byte footer, 0x6789-1234, and an appropriate number of zeroes to assure a complete 32-bit word is passed to the memory controller. When both GPS and spectrometer data are present, the resulting column is 1280 bytes. The data format is illustrated in Figure \ref{fig:survey_data_format}.
 
 %Each column begins with a 4-byte header, 0xABCD-1234, followed by a 180-byte GPS timestamp (omitted when GPS timestamps are not available). Survey data is then presented four bytes at a time, alternating between the two VLF channels and spectrometer data when available. The data stream alternates between the two VLF channels when the spectrometer data has been fully read out. Each survey column ends with a four-byte footer, 0x6789-1234. When both GPS and spectrometer data are present the resulting column is 1260 bytes. The data format is illustrated in figure \ref{fig:survey_data_format}.
 
@@ -325,9 +319,9 @@ Time-domain experiments can be taken at their full 80 kHz sampling rate, or deci
 
 Maximum possible filter lengths are constrained both by available system resources, and by data sampling rate -- that is for each new data sample, we require $n$ multiplications. Given VPM's 10 MHz system clock and 80 kHz sample rate, a maximum filter is $\approx \frac{10e6}{80e3} = 125 $. $n=105$ was chosen to give sufficient padding for possible clock drift.
 
-Frequency-domain experiments can be used to effectively reduce storage and transmission requirements in the event that only a small frequency band is of interest. The frequency range -- 512 bins, spaced uniformly between 0 and 40 kHz -- is split into 16 bands, which can be selectively enabled with each experiment. VPM uses two parallel FFT engines, which implement a 1024-point FFT, using a 50\% overlap and a Chebyshev window function with 75 dB sidelobe attenuation. Frequency data is accurate to a MATLAB or similar floating-point FFT computation to within 16 bits. 
+Frequency-domain experiments can be used to effectively reduce storage and transmission requirements in the event that only a small frequency band is of interest. The frequency range -- 512 bins, spaced uniformly between 0 and 40 kHz -- is split into 16 bands, which can be selectively enabled with each experiment. Each band contains 32 FFT bins for a bandwidth of 2500 Hz. VPM uses two parallel FFT engines, which implement a 1024-point FFT, using a 50\% overlap and a Chebyshev window function with 75 dB sidelobe attenuation. Frequency data is accurate to a MATLAB or similar floating-point FFT computation to within 16 bits. 
 
-Burst experiments are selected using a 24-bit command structure as shown in figure \ref{fig:burst_commands}. Each burst command begins with a header 2'b01. Bit three selects time-domain (1) or frequency-domain (0) data collection. Bit four enables time-axis duty-cycle modulation (``windowing"); bits 5 through 8 select the windowing pattern as shown in table \ref{tab:windowing}. For time-domain experiments, bit 9 enables downsampling and decimation. The downsampling factor is set by bits 10 and 11 -- 2'b00, 2'b01, 2'b10, and 2'b11 corresponding to 40 kHz, 20 kHz, 10 kHz and 5 kHz sampling rates respectively. For time-domain experiments, the remaining 13 bits are ignored. For frequency-domain experiments, bits 9 through 24 enable storage of each frequency band, from highest-frequency to lowest-frequency. Each band contains 32 FFT bins for a bandwidth of 2500 Hz.
+Burst experiments are selected using a 24-bit command structure as shown in Figure \ref{fig:burst_commands}. Each burst command begins with a header 2'b01. Bit three selects time-domain (1) or frequency-domain (0) data collection. Bit four enables time-axis duty-cycle modulation (``windowing"); bits 5 through 8 select the windowing pattern as shown in table \ref{tab:windowing}. For time-domain experiments, bit 9 enables downsampling and decimation. The downsampling factor is set by bits 10 and 11 -- 2'b00, 2'b01, 2'b10, and 2'b11 corresponding to 40 kHz, 20 kHz, 10 kHz and 5 kHz sampling rates respectively. For time-domain experiments, the remaining 13 bits are ignored. For frequency-domain experiments, bits 9 through 24 enable storage of each frequency band, from highest-frequency to lowest-frequency. 
 
 
 \begin{table}
@@ -355,7 +349,7 @@ Burst experiments are selected using a 24-bit command structure as shown in figu
 
 
 \subsection{GPS Timestamps}
-VPM uses a NovAtel OEM 615 embedded GPS receiver which communicates directly with the DPU via RS232. When the system is reset, or when GPS synchronization is selected, the DPU requests two data products -- BESTPOSB and BESTVALB -- which provide solutions for position and velocity, encoded in a binary stream as described in \citep{novatel}. Timestamps are updated every second, and are accurate to the system sampling clock / PPS to $\pm 50$ ns. Together, the two data products occupy 180 bytes, and include position, velocity, and several metrics of quality-of-fit. Decoding can be done using the NovAtel Convert4 application, or our provided MATLAB script.
+VPM uses a NovAtel OEM 615 embedded GPS receiver which communicates directly with the DPU via RS232. When the system is reset, or when GPS synchronization is selected, the DPU requests two data products -- BESTPOSB and BESTVALB -- which provide solutions for position and velocity, encoded in a binary stream. Timestamps are updated every second, and are accurate to the system sampling clock / PPS to $\pm 50$ ns. Together, the two data products occupy 180 bytes, and include position, velocity, and several metrics of quality-of-fit. Decoding can be done using the NovAtel Convert4 application, or our provided MATLAB script.
 
 Figure \ref{fig:example_data} shows an example of a frequency-domain experiment, which has been windowed on both the time and frequency axes, and its corresponding survey data.
 
@@ -398,7 +392,7 @@ VPM has facilities for six unique datastreams: Survey data; two channels of VLF 
 
 Header and footer bytes are both 0x7E; however bytes in the datastream can take on all possible values between 0x00 and 0xFF. To prevent confusion when reading packets, we escape all instances of 0x7E within the datastream and insert a two-byte sequence 0x7D7D. Additionally, instances of 0x7D are replaced with 0x7D5D. To guarantee realtime streaming, escaping and external SDRAM reads and writes operate on a full-speed 20 MHz clock. 
 
-VPM's packet structure is shown in figure \ref{fig:datastructure}. The following metadata are included in each packet:
+VPM's packet structure is shown in Figure \ref{fig:datastructure}. The following metadata are included in each packet:
 \begin{itemize}
 \item Packet Start Index (4 bytes): A four-byte integer representing the sample index of the first value within the packet -- used in assembling many thousands of packets from a burst experiment into a contiguous field.
 \item Data Type (1 byte): Each channel is tagged with a single-byte label, denoting the packet's source: ASCII ``S" for Survey; ``E" for VLF 1; ``B" for VLF 2; ``L" for spectrometer data; ``G" for GPS data; and ``I" for system information / status messages.
