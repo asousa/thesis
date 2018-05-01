@@ -1,6 +1,8 @@
 Having discussed the various steps in the LEP process, and the nuance required in modeling, we now turn to a more practical discussion, regarding direct measurement of pitch angle scattering due to wave-particle interactions. 
 
-In the first few years of my time at Stanford, I worked on a hardware design for a CubeSat-based measurement platform, designed specifically for the study of these interactions. The project, named the VLF Wave-Particle Precipitation Mapper, or VPM, formed a nexus of several research projects within the Stanford VLF group -- numerical modeling, fault-tolerant chip design, and embedded systems development -- and granted our small team of graduate students and research scientists design experience for a space-based mission. VPM was designed to provide simultaneous measurements of electron pitch angle distributions and incident whistler waves, which will provide direct and quantitative measurements of whistler-induced pitch angle scattering efficiency.
+In the first few years of my time at Stanford, I worked on a hardware design for a CubeSat-based measurement platform, designed specifically for the study of these interactions. CubeSats are a class of nanosatellite, with a form factor made up of one or more 10-cm units (typically 3 units, and increasingly 6 units per satellite). Originally developed in 2000 as a classroom exercise, CubeSats have gained substantial popularity for university-scale missions, due to their comparably low development and launch costs \citep{Heidt2000}. CubeSats can ``piggyback'' onto larger commercial rocket launches, or be deployed from the Poly-Picosat Orbital Deployer (P-POD) aboard the International Space Station. A thriving, international ecosystem of CubeSats and associated products now exist, from university-scale missions, to government-sponsored projects, to commercial startups deploying large constellations of distributed sensors \citep{Woellert2011, Swartwout2013}.
+
+Our project, named the VLF Wave-Particle Precipitation Mapper (VPM), formed a nexus of several research projects within the Stanford VLF group -- numerical modeling, fault-tolerant chip design, and embedded systems development -- and granted our small team of graduate students and research scientists design experience for a space-based mission. VPM was designed to provide simultaneous measurements of electron pitch angle distributions and incident whistler waves, which will provide direct and quantitative measurements of whistler-induced pitch angle scattering efficiency.
 
 In order to quantify the relative effect of waves on particle distributions, one needs to measure two quantities: The incident wave, in the form of electric and magnetic fields, and the pitch angles of the particles impinging on the satellite. VPM samples the wave by measuring two of the six wave components -- one $E$ and one $B$ field measurement, perpendicular to each other -- and the electron pitch angle distribution using two energetic particle spectrometers, oriented such that one samples only particles within the loss cone, and the other only trapped particles.
 
@@ -102,7 +104,7 @@ FPGAs consist of a network of assignable logic gates and interconnections, which
 
 FPGAs find common use in embedded systems for peripheral interfacing and low-level data handling. A hybrid CPU / FPGA design was considered, wherein a ``soft" CPU is implemented within the FPGA fabric -- however such a design needlessly increased verification complexity, while similarly reducing system reliability. It should be noted, however, that the VPM instrument acts only as a peripheral for a separate satellite bus, and is not tasked with a myriad of other responsibilities required of a satellite mission -- telemetry, communication, power management and so forth -- the complexity of which would necessitate a full CPU solution.
 
-VPM uses the Actel ProAsic3 series of FPGAs. Actel FPGAs were selected largely for their focus on reliability, and simple upgrade path to a radiation-tolerant model. Development and prototyping was done using an A3PE/3000 chip (the largest available at time of design), which provides 3 million gates assignable in 75,264 tiles, and 604 kilobits of onboard SRAM . Additional functionality onboard the ProAsic3 series includes clock conditioning circuits, differential signaling drivers, and 1 kilobit of flash ROM used to store lookup tables, which combined allow for a single-chip data processing system. %\citep{actel_a3pe_datasheet}.
+VPM uses the Actel ProAsic3 series of FPGAs. Actel FPGAs were selected largely for their focus on reliability, and simple upgrade path to a radiation-tolerant model. Development and prototyping was done using an A3PE/3000 chip (the largest available at time of design), which provides 3 million gates assignable in 75,264 tiles, and 604 kilobits of onboard SRAM. Additional functionality onboard the ProAsic3 series includes clock conditioning circuits, differential signaling drivers, and 1 kilobit of flash ROM used to store lookup tables, which combined allow for a single-chip data processing system. %\citep{actel_a3pe_datasheet}.
 
 
 \subsection{Power and GPS}
@@ -285,7 +287,7 @@ y_f = {\rm round}(S \cdot {\rm log}_2(\frac{1}{n}\sum_1^n{(\rm{re}(x_f)^2 + \rm{
 where $x_f$ are the outputs of the windowed, overlapped FFT.
 
 
-\begin{figure}[htbp]
+\begin{figure}[t]
 \begin{center}
 \includegraphics[width=20pc]{figures/vpm_figures/log2_v5.png}
 
@@ -357,7 +359,7 @@ Figure \ref{fig:example_data} shows an example of a frequency-domain experiment,
 \begin{center}
 %\includegraphics{Figures/burst_example.eps}
 \includegraphics[width=20pc]{figures/vpm_figures/burst_example.png}
-\caption[Example of a frequency-domain burst experiment and corresponding survey data]{An example of a burst experiment. Plot (a) shows the data returned from a frequency-domain burst experiment, which has been windowed in time using mode 6 -- five seconds on, five seconds off. Only every other frequency bin has been enabled. Input to the $\mu$BBR is a 10-second frequency sweep. Plot (b) shows the corresponding survey data, using the highest-resolution setting ($\approx$ 6.5-second bins). The dashed black overlay shows the approximate input frequency. Amplitudes are shown in decibels relative to full-scale.}
+\caption[Example of a frequency-domain burst experiment]{An example of a burst experiment. Plot (a) shows the data returned from a frequency-domain burst experiment, which has been windowed in time using mode 6 -- five seconds on, five seconds off. Only every other frequency bin has been enabled. Input to the $\mu$BBR is a 10-second frequency sweep. Plot (b) shows the corresponding survey data, using the highest-resolution setting ($\approx$ 6.5-second bins). The dashed black overlay shows the approximate input frequency. Amplitudes are shown in decibels relative to full-scale.}
 \label{fig:example_data}
 \end{center}
 \end{figure}
@@ -367,7 +369,7 @@ Figure \ref{fig:example_data} shows an example of a frequency-domain experiment,
 VPM includes provisions for a single, comprehensive system status message. A system status message is logged at the beginning and end of each burst experiment; at the beginning of an antenna arm or deploy command; if the GPS receiver times out; or upon request by the host spacecraft.
 
 Status messages include the following information:
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item Source of the status request
 \item Last command received by the system
 \item System uptime in seconds
