@@ -3,7 +3,7 @@ The ionosphere, extending from $\approx$ 85 km to 1000 km, is the highly-variabl
 
 \subsection{Trans-Ionosphere Attenuation}
 \label{section:trans_ionosphere_atten}
-The ionosphere is a region of high variability, and a significant factor in the LEP process. As discussed earlier, the majority of VLF energy emitted by a lightning flash propagates efficiently in the Earth-Ionosphere waveguide; however a fraction of emitted energy can propagate upwards through the ionosphere, where the wave experiences significant losses via Joule heating in the D-region ionosphere \citep{Graf2013, Blaes2016}.
+The ionosphere is a region of high variability, and a significant factor in the LEP process. As discussed earlier, the majority of VLF energy emitted by a lightning flash propagates efficiently in the Earth-Ionosphere waveguide; however a fraction of emitted energy can propagate upwards through the ionosphere, where the wave experiences significant losses via Joule heating in the D-region ionosphere \citep{Graf2013, Marshall2014, Blaes2016}.
 
 Propagation through the ionosphere can be studied using a raytracing approach; however the techniques required differ substantially from the raytracing implementation used in section \ref{section:raytracing}. First, a key assumption in raytracing is that the background medium is smoothly-varying over each timestep (known as the WKB approximation, in reference to the three researchers Wentzel, Kramers, and Brillouin, who independently developed the technique in 1926 \citep{Bender1999}). Maintaining this assumption requires different time steps and error bounds than within the plasmasphere, and would need to be computed separately. Second, the Landau calculations used to compute ray damping are designed for warm, but collisionless plasmas; the ionosphere is collisional, and only partially ionized, requiring different treatment.
 
@@ -11,7 +11,7 @@ Ionospheric propagation is further complicated by reflection and transmission at
 
 For computational simplicity, and to more-easily generalize to a variety of conditions, we treat the ionosphere as a single absorbing slab, ranging from 100 to 1000 km in altitude. We assume that waves propagate directly upwards (normal to the Earth's surface), and are not deflected by ionospheric irregularities or the inclination of the background magnetic field.
 
-Numerous researchers \citep{Lauben1998, Bortnik2005, Kulkarni2009, Graf2013} have used the classic ``Helliwell" curves, taken from \cite{Helliwell1965}, figure 3-35. Helliwell performs an analysis similar to Landau damping -- first deriving a dispersion relation for a collisional plasma, then separating out the imaginary component, which will result in a real-valued attenuation term. The resulting attenuation term is dependent on electron density as a function of altitude, which was extrapolated from sounding rocket campaigns for day and night. The net attenuation is then computed by integrating from 65 to 1500 km in altitude.
+Numerous researchers \citep{Lauben1998, Bortnik2005, Kulkarni2009, Graf2013} have used the classic ``Helliwell" curves, taken from \cite{Helliwell1965}, Figure 3-35. Helliwell performs an analysis similar to Landau damping -- first deriving a dispersion relation for a collisional plasma, then separating out the imaginary component, which will result in a real-valued attenuation term. The resulting attenuation term is dependent on electron density as a function of altitude, which was extrapolated from sounding rocket campaigns for day and night. The net attenuation is then computed by integrating from 65 to 1500 km in altitude.
 
 Helliwell's curves have persisted as the default record of trans-ionospheric attenuation; however it has been shown that Helliwell's curves overestimate trans-ionosphere attenuation by 10 to 20 dB \citep{Starks2008}, due mainly to the coarse measurement of the ionosphere electron density profile.
 
@@ -33,12 +33,12 @@ Figure \ref{fig:graf_curves} compares the \cite{Graf2013} and \cite{Helliwell196
 
 
 \subsection{Models of the Ionosphere}
-In general, our treatment of wave propagation in the ionosphere is abstracted using the method described in section \ref{section:trans_ionosphere_atten}. However, in raytracing through the plasmasphere, we require a smoothly-varying transition between the plasmasphere and ionosphere models. Here we discuss two models of ionosphere electron density.
+In general, our treatment of wave propagation in the ionosphere is abstracted using the method described in Section \ref{section:trans_ionosphere_atten}. However, in raytracing through the plasmasphere, we require a smoothly-varying transition between the plasmasphere and ionosphere models. Here we discuss two models of ionosphere electron density.
 
-\paragraph{IRI}
+\paragraph{IRI:}
 The International Reference Ionosphere (IRI) is a standard model of several key plasma parameters -- electron density, electron and ion temperatures, ion composition, and so forth. IRI provides detailed outputs as a function of location, altitude, and local time. The GCPM plasma model (a comprehensive model of the plasmasphere, described in section \ref{section:gcpm}) uses the IRI-2007 implementation \citep{Bilitza2008}; the simplified IRI model is derived from the IRI-2016 model (the most-current available version at time of writing).
 
-\paragraph{Simplified IRI}
+\paragraph{Simplified IRI:}
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/iono_profile.pdf}

@@ -1,9 +1,9 @@
 \section{Lightning Illumination Model}
 \label{section:input_power}
 %\subsection{Emission Spectrum}
-A single lightning flash is a stochastic dielectric breakdown process. While a terrestrial lightning flash consists of several repeated strokes at varying incident angles, we adopt the simplified model used by \cite{Lauben1998}, \cite{Bortnik2005}, and subsequent workers, and encapsulate the entire discharge process in a single return stroke.
+A single lightning flash is a stochastic dielectric breakdown process. While a terrestrial lightning flash consists of several repeated strokes with varying orientations with respect to the Earth's surface, we adopt the simplified model used by \cite{Lauben1998}, \cite{Bortnik2005}, and subsequent workers, and encapsulate the entire discharge process in a single return stroke, oriented perpendicular to the ground.
 
-The lightning flash is modeled as a single, vertical current pulse from a height $H_E$, with a double-exponential time profile given by equation \ref{eqn:td_pulse}. The double-exponential current profile is simple and common in the literature, originating with \cite{Bruce_Golde_1941}:
+The lightning flash is modeled as a single, vertical current pulse from a height $H_E$, with a double-exponential time profile given by equation \eqref{eqn:td_pulse}. The double-exponential current profile is simple and common in the literature, originating with \cite{Bruce_Golde_1941}:
 \begin{equation}
 \label{eqn:td_pulse}
 I(t)=I_0(e^{-a t} - e^{-b t}) \unit{A}
@@ -12,8 +12,8 @@ I(t)=I_0(e^{-a t} - e^{-b t}) \unit{A}
 We relate the time-domain current profile to radiated power using the far-field approximation for an arbitrary source, given by \cite{Griffiths1999}, page 457:
 \begin{equation}
 \label{eqn:griffiths_power}
-S(t) 
- \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0}{16\pi^2c}\left[\frac{d^2\mathrm{p}(t)}{dt^2}\right]^2 \left(\frac{\sin^2\theta}{r^2}\right)\mathbf{\hat{r}} \unit{J/m^2/sec}
+S(t) =
+ \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0}{16\pi^2c}\left[\frac{d^2p(t)}{dt^2}\right]^2 \left(\frac{\sin^2\theta}{r^2}\right)\mathbf{\hat{r}} \unit{J/m^2/sec}
 \end{equation}
 
 where $p(t)$ is the dipole moment given by $p=2 H_E \int_0^t{I(t)}dt$, r is the distance from the flash in meters, and $\theta$ is the angle to the flash. Taking the second derivative of the dipole moment (the first derivative of the current profile) gives us the far-field time-domain power equation:
@@ -24,9 +24,9 @@ S(t) = \frac{1}{Z_0}\left(\frac{\mu_0 H_E I_0}{2 \pi}\right)^2\left(\frac{\sin^2
 \unit{J/m^2/sec}
 \end{equation}
 
-where we have used the relation $Z_0 = \mu_0 c$. Equation \ref{eqn:farfield_power_td} gives energy flux density in units of Watts per square meter ($J/m^2/$sec).
+where we have used the relation $Z_0 = \mu_0 c$. Equation \eqref{eqn:farfield_power_td} gives energy flux density in units of Watts per square meter ($J/m^2/$sec).
 
-To determine the frequency spectrum of the radiated power, we take the Fourier transform of equation \ref{eqn:farfield_power_td}:
+To determine the frequency spectrum of the radiated power, we take the Fourier transform of equation \eqref{eqn:farfield_power_td}:
 
 \begin{equation}
 \label{eqn:farfield_power_fd}
@@ -36,7 +36,7 @@ S(\omega) = \frac{1}{Z_0}\left(\frac{\mu_0 H_E I_0}{2 \pi}\right)^2\left(\frac{\
 
 which gives spectral energy flux, in units of J/m$^2$/Hz.
 
-Throughout this work we assume a flash height $H_e$ = 5 km, and model parameters $a=5\E{3}\,\mathrm{sec}^{-1}$ and $b=1\E{5}\,\mathrm{sec}^{-1}$, resulting in a spectrum peaked at approximately 4 kHz; any lightning flash can then be parameterized solely by its peak current $I_0$ and its location on the surface of the Earth. Figure \ref{fig:lightning_spectrum} shows the current profile and associated spectrum.
+Throughout this work we assume a flash height $H_e$ = 5 km, and model parameters $a=5\E{3}\,\mathrm{sec}^{-1}$ and $b=1\E{5}\,\mathrm{sec}^{-1}$, which correspond to the exponential rise and fall times respectively, resulting in a spectrum peaked at approximately 4 kHz; any lightning flash can then be parameterized solely by its peak current $I_0$ and its location on the surface of the Earth. Figure \ref{fig:lightning_spectrum} shows the current profile and associated spectrum.
 
 The total energy released in a single discharge is determined by integrating equation \ref{eqn:farfield_power_td} over time and a half-sphere surface:
 
@@ -44,15 +44,15 @@ The total energy released in a single discharge is determined by integrating equ
 \label{eqn:total_energy_below_iono}
 E &= &\int_{t=0}^\infty \int_{\phi=0}^{2\pi} \int_{\theta=0}^\pi  S(t) r^2 \sin\theta\,d\theta\,d\phi\,dt \\
  & = & \frac{1}{Z_0}\bigg(\frac{\mu_0}{2\pi}\bigg)^2 \, \frac{(a - b)^2}{2 (a + b)}  \, \frac{4 \pi}{3} \, H_e^2 I_0^2 \\
- & \approx & 1.9\E{-14}H_e^2 I_0^2 \unit{Joules}
+ & \approx & 1.9\E{-14}H_e^2 I_0^2 \unit{kJ}
 \end{eqnarray}
 
-
-\begin{figure*}
+For a typical discharge ($H_E$ = 5 km, $I_0$ = 10 kA), $E \approx$ 48 kJ. A strong, but not uncommon discharge ($I_0 = 100$ kA), E $\approx$ 48 MJ.
+\begin{figure}[t]
 \begin{center}
-\includegraphics{figures/Lightning_spectra.pdf}
+\includegraphics{figures/Lightning_spectra_v2.pdf}
 
 \caption[Time and frequency profiles of the lightning illumination model]{Double-exponential current pulse model of a lightning stroke. The top panel shows the stroke current vs time; the middle panel shows the total energy flux, integrated over space, vs time; the bottom panel shows the energy flux in the frequency domain.}
 \label{fig:lightning_spectrum}
 \end{center}
-\end{figure*}
+\end{figure}

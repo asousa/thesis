@@ -3,7 +3,7 @@ The Earth's magnetic field dictates the morphology and natural coordinate system
 \subsection{Models of the magnetic field}
 \paragraph{Dipole}
 \label{section:dipole_model}
-To first order, the Earth's magnetic field can be approximated as a dipole, with origin at the Earth's center, and a tilt of $\approx 11^\circ$ from the axis of rotation. The dipole model, sometimes referred to as the ``centered dipole'' or ``tilted dipole'', is reasonably accurate for midlatitude field measurements over the continental United States, but can deviate significantly from the true field elsewhere. Similarly, the dipole field model is reasonably accurate for middle latitudes, below $\approx$ 10 Earth radii, but becomes increasingly inaccurate at higher latitudes, and at larger distances from the Earth, where the Earth's internal field is no longer dominant.
+To first order, the Earth's magnetic field can be approximated as that of a magnetic dipole, with origin at the Earth's center, and a tilt of $\approx 11^\circ$ from the axis of rotation. The dipole model, sometimes referred to as the ``centered dipole'' or ``tilted dipole'', is reasonably accurate for midlatitude field measurements over the continental United States, but can deviate significantly from the true field elsewhere. Similarly, the dipole field model is reasonably accurate for middle latitudes and below $\approx$ 10 Earth radii, but becomes increasingly inaccurate at higher latitudes, and at larger distances from the Earth, where the Earth's internal field is no longer dominant.
 
 The dipole model, however, excels in its simplicity -- the dipole magnetic field can be completely described in a closed form, and can be computed rapidly and reliably.
 
@@ -39,7 +39,7 @@ The International Geomagnetic Reference Field (IGRF) is a 13th-order spherical e
 
 IGRF is quick and simple to calculate at any given location, and is much closer to reality than a simple dipole field. However, due to the added complexity, there are not closed-form expressions for field line trajectories or L-shells, which can make dealing with IGRF (and any higher-order model) more cumbersome.
 
-Figure \ref{fig:Lshell_example} contrasts lines of constant L-shell between the dipole and IGRF models.
+Figure \ref{fig:Lshell_example} contrasts lines of constant L-shell between the dipole and IGRF models. IGRF is realistic for the ionosphere and plasmasphere, but becomes increasingly inaccurate with distance from the Earth, as the Earth's magnetic field becomes less dominant.
 
 \paragraph{Tsyganenko Corrections}
 The dipole and IGRF models represent the Earth's internally-generated magnetic field. However, as one moves further away from the Earth ($L > \sim 8$), the Earth's internal field becomes less dominant, and external fields, namely forcing from the solar wind, cannot be ignored. The total field present in the space environment is the sum of both internal and external contributions.
@@ -53,7 +53,7 @@ Figure \ref{fig:fieldline_example} contrasts the dipole, IGRF, and T05-corrected
 \includegraphics{figures/fieldline_models.pdf}
 \end{center}
 
-\caption[Magnetic field models]{Three different magnetic field models, shown in the meridional plane, in geomagnetic coordinates: the tilted dipole, the IGRF model, and the Tsyganenko-Corrected IGRF model. Solar wind is incident on the right side.}
+\caption[Magnetic field models]{Three different magnetic field models, shown in the meridional plane, in geomagnetic coordinates: the tilted dipole, the IGRF model, and the Tsyganenko-Corrected IGRF model. Solar wind is incident on the right side. The Tsyganenko and IGRF models, which vary with day of year, are plotted for June 1st, 2010, at 12:00~UT.}
 \label{fig:fieldline_example}
 \end{figure}
 \begin{figure}

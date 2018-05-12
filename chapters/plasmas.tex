@@ -14,9 +14,9 @@ The fundamental equation of motion for a charged particle in an electromagnetic 
 \end{equation}
 Where $q$ represents the particle's charge, $\vec{E}$ and $\vec{B}$ represent the electric and magnetic fields, and $\vec{v}$ the particle's velocity, shown here in a non-relativistic frame.
 
-Electric fields simply apply a force in the direction of the field. However, note that a cross product is perpendicular to both terms -- therefore any forces induced by the magnetic field will be perpendicular to the particle's velocity. The magnetic field is a \emph{conservative} force, in that a stationary magnetic field cannot directly impart energy into a particle, but can alter a particle's trajectory. The particle will therefore have a net drift in the direction of the electric field, while exhibiting a helical motion around the magnetic field.
+Electric fields simply apply a force in the direction of the field. However, note that a cross product is perpendicular to both terms -- therefore any forces induced by the magnetic field will be perpendicular to the particle's velocity. The magnetic field is a \emph{conservative} force, in that a stationary magnetic field cannot directly impart energy into a particle, but can alter a particle's trajectory. The particle will therefore incur an acceleration in the direction of the electric field, while exhibiting a helical motion around the magnetic field.
 
-We can then split the velocity vector into two quantities -- $v_\parallel$ parallel to the magnetic field, and $v_\perp$ perpendicular to the magnetic field. Two characteristic values arise from this motion: the radius of the particle's rotation around the magnetic field, known as the \emph{gyroradius} or the \emph{Larmor radius}:
+We can then split the velocity vector into two quantities: $v_\parallel$ parallel to the magnetic field, and $v_\perp$ perpendicular to the magnetic field. Two characteristic values arise from this motion: the radius of the particle's rotation around the magnetic field, known as the \emph{gyroradius} or the \emph{Larmor radius}:
 \begin{equation}
 r_l = \frac{m v_\perp}{qB} \unit{m}
 \end{equation}
@@ -54,11 +54,11 @@ Combining the first adiabatic invariant with conservation of kinetic energy, we 
 \mathrm{sin}^2(\alpha)=\frac{B_0}{B_1} 
 \label{eqn:loss_cone_def}
 \end{eqnarray}
-\noindent A charged particle in a magnetic field will therefore be constrained to rotate around a field line, and feel an opposing longitudinal force as the field intensity increases. If the magnetic field is such that there are two regions of increasing intensity, separated by a reasonable distance,  the particle may bounce back and forth, reflecting at turning points given by equation \ref{eqn:loss_cone_def}. Such a field configuration is known as a ``magnetic bottle'' particle trap, as shown in Figure \ref{fig:bottle}. A key observation is that the reflection point is independent of energy, and depends only on the ratio of magnetic field strengths and the particle's initial pitch angle.
+\noindent A charged particle in a magnetic field will therefore be constrained to rotate around a field line, and feel an opposing longitudinal force as the field intensity increases. If the magnetic field is such that there are two regions of increasing intensity, separated by a reasonable distance,  the particle may bounce back and forth, reflecting at turning points given by equation \eqref{eqn:loss_cone_def}. Such a field configuration is known as a ``magnetic bottle'' particle trap, as shown in Figure \ref{fig:bottle}. The red lines represent a constricting magnetic field, while the blue line represents the trajectory of a charged electron with an initial pitch angle $\alpha_0$. A key observation is that the reflection point is independent of energy, and depends only on the ratio of magnetic field strengths and the particle's initial pitch angle.
 \begin{figure}[ht]
 \begin{center}
-\includegraphics{figures/bottle.pdf}
-\caption[An example of a ``magnetic bottle'' particle trap]{An example of a ``magnetic bottle" particle trap. The top plot shows the trajectory of an electron with an initial pitch angle $\alpha_0=20^\circ$. The bottom plot shows the magnetic field ratio $B_0/B_1$, with the particle's reflection points shown as vertical lines. }
+\includegraphics{figures/bottle_inverted.pdf}
+\caption[An example of a ``magnetic bottle'' particle trap]{An example of a ``magnetic bottle" particle trap. The top plot shows the trajectory of an electron with an initial pitch angle $\alpha_0=20^\circ$. The bottom plot shows the magnetic field ratio $B_1/B_0$ in red, and the analytical turning point ($B_1/B_0 = \cos^{-2}\alpha_0)$ in black. Turning points are marked by vertical blue lines.}
 \label{fig:bottle}
 \end{center}
 \end{figure}
@@ -67,9 +67,9 @@ Combining the first adiabatic invariant with conservation of kinetic energy, we 
 
 A magnetic bottle trap need not be linearly-arranged, as it is in Figure \ref{fig:bottle}; we require only that the magnetic field be slowly-varying with respect to the particle's gyroradius. The Earth's dipole magnetic field forms a natural and effective particle trap, which dominates the morphology of charged particle populations surrounding the Earth. The motion of a charged particle in the Earth's magnetic field can be broken into three components (see Figure \ref{fig:adiabatic_motions}): 
 \begin{itemize}
-\item a rapid gyrorotation around the background magnetic field
+\item a rapid gyrorotation around the background magnetic field;
 \item a ``bouncing'' motion between the north and south poles, with periods ranging from milliseconds to several seconds; and
-\item a slower, longitudinal drift, causing the particles to precess around the earth on the order of minutes to days, resulting from the magnetic field gradient
+\item a slower, longitudinal drift, causing the particles to precess around the earth on the order of minutes to days, resulting from the magnetic field gradient.
 \end{itemize}
 
 \begin{figure}[t]
@@ -84,7 +84,7 @@ A magnetic bottle trap need not be linearly-arranged, as it is in Figure \ref{fi
 
 As described previously, a trapped particle's reflection points are defined by the particle's initial pitch angle, and the strength of the magnetic field. In the case of the Earth, however, these turning points are limited in feasibility as well -- for instance, a particle naturally cannot have a reflection point lower than the Earth's surface. Moreover, the Earth's neutral atmosphere becomes exponentially more-dense with decreasing altitude; particles reflecting at an altitude below $\approx 100$ km will encounter a significant neutral molecule population, and stand a very good chance of colliding. A collision with atmospheric constituents can result in the particle losing some, or all, of it's kinetic energy through ionization, and may be completely lost from the system, or return onto a different fieldline, with a different energy and/or pitch angle \citep{Cotts2011}.
 
-With an understanding of the dense neutral atmosphere, we can define a critical altitude -- 100 km here and in previous work -- and thus a critical pitch angle, known as the (bounce) \emph{loss-cone angle}:
+With an understanding of the dense neutral atmosphere, we can define a critical altitude -- 100 km here and in previous work \citep{Marshall2018}-- and thus a critical pitch angle, known as the (bounce) \emph{loss-cone angle}:
 \begin{equation}
 \sin \alpha_{lc} = \sqrt{\frac{B(\vec{r})}{B_{h_m}}}
 \end{equation}
@@ -114,7 +114,7 @@ Under a simple dipole magnetic field model, the bounce loss cone is uniform arou
 
 \subsection{Waves in Plasmas}
 \label{section:waves_in_plasmas}
-Previously, we have described the motion of a charged particle under the influence of an electromagnetic field. the single-particle approximation provides enormous insight into the dynamics of a sparsely-populated plasma. Next, we must consider the corresponding case: how the charged particles in a plasma dictate the characteristic behaviors of an electromagnetic wave propagating through it.
+Previously, we have described the motion of a charged particle under the influence of a static magnetic field. the single-particle approximation provides enormous insight into the dynamics of a sparsely-populated plasma. Next, we must consider the corresponding case: how the charged particles in a plasma dictate the characteristic behaviors of an electromagnetic wave propagating through it.
 
 An electromagnetic wave can accelerate a charged particle; conversely, an accelerating or decelerating particle induces its own electromagnetic field. It would seem, then, that the behavior of an electromagnetic field in a plasma is simply the summation of the contributions of each particle and some incident wave source. However, the complexity of this brute-force approach quickly becomes intractable for even a handful of particles. One common approach taken is to abstract the complicated interplay of waves and particles into a wave moving through a dielectric medium, described only by the various constituent densities, temperatures, and background fields within a given volume. 
 
@@ -129,7 +129,7 @@ As with any electromagnetic problem, we begin with Maxwell's equations, shown he
 
 $\vec{E}$ and $\vec{B}$ denote the electric and magnetic fields; $\mu_0$ and $\epsilon_0$ denote the magnetic permeability and electric permittivity of free space; and $c=\sqrt{\frac{1}{\mu_0\epsilon_0}}$ is the speed of light in vacuum. The terms $\rho$ and $\vec{J}$ represent the local charge density and current density, both of which may be functions of position and time.
 
-By taking the curl of equation \ref{eqn:maxwell3} and substituting in the time derivative of equation \ref{eqn:maxwell4}, and making use of the vector identity $\nabla \times \nabla \times \vec{E} = \nabla(\nabla \cdot \vec{E}) - \nabla^2\vec{E}$, we have:
+By taking the curl of equation \eqref{eqn:maxwell3} and substituting in the time derivative of equation \eqref{eqn:maxwell4}, and making use of the vector identity $\nabla \times \nabla \times \vec{E} = \nabla(\nabla \cdot \vec{E}) - \nabla^2\vec{E}$, we have:
 
 \begin{equation}
 \nabla^2\vec{E} - \frac{\nabla\rho}{\epsilon_0} = \mu_0 \frac{\partial \vec{J}}{\partial t} + \frac{1}{c^2}\frac{\partial^2\vec{E}}{\partial t^2}
@@ -164,7 +164,7 @@ Next, we note that, in a cold plasma assumption, the Lorentz force (equation \re
 m_s\frac{d\vec{u_s}}{dt} = q_s\big(\vec{E} + \vec{u_s}\times\vec{B}\big) 
 \label{eqn:lorentz_2}
 \end{equation}
-Combining equations \ref{eqn:linear1} -- \ref{eqn:linear3}, \ref{eqn:J}, and \ref{eqn:lorentz_2}, and assuming a coordinate system with the background magnetic field $\vec{B_0}$ aligned with the z-axis, we arrive at an expression for the \emph{cold-plasma dielectric tensor}:
+Combining equations \eqref{eqn:linear1} -- \eqref{eqn:linear3}, \eqref{eqn:J}, and \eqref{eqn:lorentz_2}, and assuming a coordinate system with the background magnetic field $\vec{B_0}$ aligned with the z-axis, we arrive at an expression for the \emph{cold-plasma dielectric tensor}:
 
 \begin{equation}
 \mvec{\epsilon}\cdot\vec{E}=\begin{pmatrix}
@@ -186,7 +186,7 @@ R = 1 - \sum_s\frac{\omega_{ps}^2}{\omega(\omega + \omega_{cs})}; \quad L = 1 - 
 where $\omega_{ps} = n_sq_s^2/{\epsilon_0 m_s}$ and $\omega_{cs}=q_sB_0/m_s$ are the plasma and cyclotron frequencies for species $s$.
 
 \subsubsection{Dispersion Relation}
-With the dielectric tensor now determined, we can derive the relationship between $\omega$ and $\vec{k}$, known as the dispersion relation. Equation \ref{eqn:dielectric_tensor_derivation_1} can be written as:
+With the dielectric tensor now determined, we can derive the relationship between $\omega$ and $\vec{k}$, known as the dispersion relation. Equation \eqref{eqn:dielectric_tensor_derivation_1} can be written as:
 \begin{equation}
 \mvec{\eta}\times \mvec{\eta} \times \vec{E} +  \mvec{\epsilon}\cdot\vec{E} = 0
 \end{equation}
@@ -208,9 +208,9 @@ Taking the determinant of \ref{eqn:dispersion_relation_matrix} yields the \emph{
 &C& = PRL
 \end{eqnarray}
 
-Equation \ref{eqn:disp_rln} is biquadratic -- we can solve for $\eta^2 = k^2c^2/\omega^2$ using the quadratic formula.
+Equation \eqref{eqn:disp_rln} is biquadratic -- we can solve for $\eta^2 = k^2c^2/\omega^2$ using the quadratic formula.
 
-Finally, it is worth noting that when considering a single-species plasma (e.g., electrons only), equation \ref{eqn:disp_rln} reduces to the well-known single-species \emph{Appleton-Hartree Equation} (\cite{Appleton1932}):
+Finally, it is worth noting that when considering a single-species plasma (e.g., electrons only), equation \eqref{eqn:disp_rln} reduces to the well-known single-species \emph{Appleton-Hartree Equation} (\cite{Appleton1932}):
 
 
 \begin{equation}
@@ -220,9 +220,9 @@ Finally, it is worth noting that when considering a single-species plasma (e.g.,
 
 %For a simpler derivation of the Appleton-Hartree equation alone, see the classic, approachable text by \cite{Chen1983}.  %% (CHEN DOESN'T SEEM TO DO IT x.x) 
 
-The dispersion relation in equation \ref{eqn:disp_rln} reveals a wealth of information about the characteristics of waves in plasmas. For various plasma densities and background magnetic field strength, we can infer which wave frequencies may propagate, if any, and with which wave polarizations. Through the remainder of this work, we will be concerned with the \emph{whistler} mode -- a right-hand, circularly-polarized (RHCP) wave. Within a typical magnetospheric plasma, the whistler mode spans the VLF band, roughly between 30 Hz and 300 kHz.
+The dispersion relation in equation \eqref{eqn:disp_rln} reveals a wealth of information about the characteristics of waves in plasmas. For various plasma densities and background magnetic field strength, we can infer which wave frequencies may propagate, if any, and with which wave polarizations. Through the remainder of this work, we will be concerned with the \emph{whistler} mode -- a right-hand, circularly-polarized (RHCP) wave. Within a typical magnetospheric plasma, the whistler mode spans the VLF band, roughly between 30 Hz and 300 kHz.
 
-It is difficult to gain much insight directly from the dispersion relation (equations \ref{eqn:disp_rln} or \ref{eqn:appleton_hartree}). However, we can plot the spatial vs temporal frequencies for a fixed angle with respect to the background magnetic field, known as an $\omega$-k diagram, to reveal the various modes of propagation.
+It is difficult to gain much insight directly from the dispersion relation (equations \eqref{eqn:disp_rln} or \eqref{eqn:appleton_hartree}). However, we can plot the spatial vs temporal frequencies for a fixed angle with respect to the background magnetic field, known as an $\omega$-k diagram, to reveal the various modes of propagation.
 
 Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($\eta = k c/\omega$). The whistler mode is the lower branch of the RHCP mode.
 \begin{figure}[!t]

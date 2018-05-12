@@ -2,7 +2,7 @@ Having discussed the various steps in the LEP process, and the nuance required i
 
 In the first few years of my time at Stanford, I worked on a hardware design for a CubeSat-based measurement platform, designed specifically for the study of these interactions. CubeSats are a class of nanosatellite, with a form factor made up of one or more 10-cm units (typically 3 units, and increasingly 6 units per satellite). Originally developed in 2000 as a classroom exercise, CubeSats have gained substantial popularity for university-scale missions, due to their comparably low development and launch costs \citep{Heidt2000}. CubeSats can ``piggyback'' onto larger commercial rocket launches, or be deployed from the Poly-Picosat Orbital Deployer (P-POD) aboard the International Space Station. A thriving, international ecosystem of CubeSats and associated products now exist, from university-scale missions, to government-sponsored projects, to commercial startups deploying large constellations of distributed sensors \citep{Woellert2011, Swartwout2013}.
 
-Our project, named the VLF Wave-Particle Precipitation Mapper (VPM), formed a nexus of several research projects within the Stanford VLF group -- numerical modeling, fault-tolerant chip design, and embedded systems development -- and granted our small team of graduate students and research scientists design experience for a space-based mission. VPM was designed to provide simultaneous measurements of electron pitch angle distributions and incident whistler waves, which will provide direct and quantitative measurements of whistler-induced pitch angle scattering efficiency.
+Our project, named the VLF Wave-Particle Precipitation Mapper (VPM), formed a nexus of several research projects within the Stanford VLF group -- numerical modeling, fault-tolerant chip design, and embedded systems development -- and granted our small team of graduate students and research scientists design experience for a space-based mission. VPM was designed to provide simultaneous measurements of electron pitch angle distributions and incident whistler waves, in order to provide direct and quantitative measurements of whistler-induced pitch angle scattering efficiency.
 
 In order to quantify the relative effect of waves on particle distributions, one needs to measure two quantities: The incident wave, in the form of electric and magnetic fields, and the pitch angles of the particles impinging on the satellite. VPM samples the wave by measuring two of the six wave components -- one $E$ and one $B$ field measurement, perpendicular to each other -- and the electron pitch angle distribution using two energetic particle spectrometers, oriented such that one samples only particles within the loss cone, and the other only trapped particles.
 
@@ -11,32 +11,32 @@ The VPM team was led by Dr. Robert Marshall and Dr. Ivan Linscott; the bulk of t
 %One disclaimer to those embarking on a CubeSat design, or other space-based system: It seems to me that the final design of a project is dictated as much by well-intentioned engineering practices as it is by the constraints levied on the project. 
 The design was dictated by two primary constraints: 1) design with the ability to exchange all commercial-grade components with space-rated components, and 2) in an effort to reduce the risk of catastrophic computer failures, to include no embedded firmware or programs stored in volatile memory. These constraints left a marked imprint on our final design. In a sense, we designed for a conventional satellite mission, with the notable exception that our instrument was small.
 
-Were I to do this project again, from scratch, I would strongly advocate following the CubeSat ethos: Sacrifice bulletproof reliability in exchange for rapid design and prototyping, and affordability of flight components. CubeSat missions generally fly in low-earth orbit ($\sim 400$ km altitude), and have mission lifetimes on the order of a few years, at maximum, due to atmospheric drag. While the idea of a fully radiation-tolerant design is alluring, it is hard to justify the price increase in parts (often $\sim 1000$ times greater than commercial, off-the-shelf components), and the difficulty in designing for them, for a short-duration, academic mission.
+It is worth noting, however, that CubeSat missions generally fly in low-earth orbit ($\sim 400$ km altitude), and have mission lifetimes on the order of a few years, at maximum, due to atmospheric drag. While the idea of a fully radiation-tolerant design is alluring, it is hard to justify the price increase in parts (often $\sim 1000$ times greater than commercial, off-the-shelf components), and the difficulty in designing for them, for a short-duration, academic mission. To future students exploring potential CubeSat designs, I would advocate sacrificing bulletproof reliability in exchange for rapid design and prototyping, and affordability of flight components. Of course, a more-exotic mission such as an interplanetary probe or an asteroid orbiter would very much benefit from a fault-tolerant design.
 
 The initial VPM prototype was delivered to the Air Force Research Lab (AFRL) in January, 2015. Both VPM and DSX were delayed several years afterward; as of this writing, VPM has been scheduled to launch in January, 2019.
 
 \section{VPM Mission Overview}
 The VLF Wave and Particle Precipitation Mapper (VPM) is a 3U CubeSat designed to measure wave activity and relativistic electrons in the Earth's radiation belts from low-Earth orbit (LEO). The VPM payload consists of an electric field dipole antenna and a magnetic field search coil to measure waves in the VLF frequency band from 100 Hz to 30 kHz; and two electron detectors, designed to measure electron energies from 100 keV to 1 MeV. In addition to single-spacecraft scientific goals outlined below, VPM is a companion to the Wave-Induced Precipitation of Electron Radiation (WIPER) experiment on the Demonstration and Science Experiments (DSX) mission \citep{Schoenberg2006, Spanjers2006}, a small spacecraft designed to investigate the Earth's radiation belts using active probing techniques. Both spacecraft are scheduled to be launched in 2019.
 
-VPM will study the Earth's radiation belts from Low-Earth Orbit (LEO). The radiation belts are comprised of relativistic electrons from hundreds of keV to tens of MeV, and protons from tens to hundreds of MeV. As described in chapter \ref{chapter:introduction}, these energetic particles can be highly damaging to spacecraft and to astronauts \citep[e.g.][]{Barth2003}, and comprise a vital component of space weather which affects satellite navigation and communication \citep{Bothmer:2007}. The distribution and evolution of radiation belt populations are controlled by geomagnetic activity and by wave activity in the plasmasphere. Radiation belt particles can be scattered in energy and pitch angle by magnetic reconfiguration, and by wave activity, which can include Alfvenic, electrostatic and electromagnetic waves. Waves can energize these particles, or cause them to precipitate and be lost to the Earth's upper atmosphere. The extent to which wave activity of different sources controls radiation belt distributions and lifetimes is still under considerable investigation. For example, the Van Allen Probes (VAP) mission, launched in 2012, is investigating the processes that accelerate and transport radiation belt electrons; radiation belt loss mechanisms; and the effects of geomagnetic storms on the radiation belts \citep{Spence2014}. %, Lanzerotti:2013 
+VPM will study the Earth's radiation belts from Low-Earth Orbit (LEO). The radiation belts are comprised of relativistic electrons from hundreds of keV to tens of MeV, and protons from tens to hundreds of MeV. As described in Chapter \ref{chapter:introduction}, these energetic particles can be highly damaging to spacecraft and to astronauts \citep[e.g.][]{Barth2003}, and comprise a vital component of space weather which affects satellite navigation and communication \citep{Bothmer:2007}. The distribution and evolution of radiation belt populations are controlled by geomagnetic activity and by wave activity in the plasmasphere. Radiation belt particles can be scattered in energy and pitch angle by magnetic reconfiguration, and by wave activity, which can include Alfvenic, electrostatic and electromagnetic waves. Waves can energize these particles, or cause them to precipitate and be lost to the Earth's upper atmosphere. The extent to which wave activity of different sources controls radiation belt distributions and lifetimes is still under considerable investigation. For example, the Van Allen Probes (VAP) mission, launched in 2012, is investigating the processes that accelerate and transport radiation belt electrons; radiation belt loss mechanisms; and the effects of geomagnetic storms on the radiation belts \citep{Spence2014}. %, Lanzerotti:2013 
 
 Specific science goals of the VPM mission are:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \item Improve climatology models of plasmaspheric hiss
 \item Conduct conjunction experiments with the DSX mission and WIPER instrument
-	\begin{enumerate}
+	\begin{enumerate}[noitemsep]
 	\item Measure the Antenna Radiation Pattern of the WIPER VLF transmitter known as the TNT (Transmitter, Narrow-band receiver, and Tuners)
 	\item Measure the Radiation Efficiency of the TNT
 	\item Estimate the efficiency of wave-particle interactions using WIPER-injected waves
 	\end{enumerate}
 \item Improve understanding of the effects of lightning in the near-Earth space environment
-	\begin{enumerate}
+	\begin{enumerate}[noitemsep]
 	\item Improve climatology models of lightning and whistler activity
 	\item Estimate the efficiency of lightning whistler-induced wave-particle interactions
 	\end{enumerate}
 \item Improve understanding of the effects of VLF transmitters in the near-Earth space environment
-	\begin{enumerate}
+	\begin{enumerate}[noitemsep]
 	\item Measure the efficiency of propagation in the earth-ionosphere waveguide and leakage into the ionosphere and magnetosphere
 	\item Estimate the efficiency of VLF transmitter whistler-induced wave-particle interactions
 	\end{enumerate}
@@ -72,14 +72,14 @@ Here we present the design of the VPM payload instrumentation and data processin
 
 \section{Hardware Architecture}
 VPM's system design was governed by three primary constraints:
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \item Facilitate integration with a 3U CubeSat bus. The payload must fit into a 1.5U (10 $\times$ 10 $\times$ 15 $\times$ cm) volume. The bus provides 3.3V and 5V power rails, an RS422 serial data communication connection, and a single, 1-Hz-sampled analog connection.
 \item Provide an upgrade path for high-reliability, radiation-tolerant components wherever possible.
 \item Design simple operation modes with high reliability and low verification complexity. 
 \end{enumerate}
 
 \noindent The VPM payload consists of five hardware systems:
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \item A power and interface board;
 \item A two-channel VLF broadband receiver ($\mu$BBR);
 \item Two deployable VLF antennas for sampling the electric and magnetic field respectively;
@@ -88,13 +88,13 @@ VPM's system design was governed by three primary constraints:
 \end{enumerate}
 All circuit boards are connected by a common stack connector and housed in an aluminum enclosure to reduce parasitic RF interference. A rendering of the system is shown in Figure \ref{fig:hardware_stack}.
 
-\begin{figure*}[htbp]
+\begin{figure}[t]
 \begin{center}
 \includegraphics[width=32pc]{figures/vpm_figures/payload_figure.png}
 \caption[VPM payload hardware instrument arrangement]{Rendering of the VPM payload hardware, showing locations of the E and B-field antenna deployers; the two particle detectors for the Loss-Cone Spectrometer, and the electronic card stack, shown without aluminum enclosure.}
 \label{fig:hardware_stack}
 \end{center}
-\end{figure*}
+\end{figure}
 
 
 \subsection{FPGAs}
@@ -136,14 +136,14 @@ An intermediate buffering stage provides an additional 10 V/V gain; an active tw
 
 \begin{figure*}[t]
 \begin{center}
-\includegraphics[width=35pc]{figures/vpm_figures/ubbr_schem.png}
+\includegraphics[width=35pc]{figures/vpm_figures/ubbr_schem_with_preamps-2.pdf}
 
 \caption{Simplified schematic of the $\mu$BBR signal conditioning and data conversion chain}
 \label{fig:ubbr_schem}
 \end{center}
 \end{figure*}
 
-Channel 1 features a differential input, which is capacitively coupled to the electric dipole antenna. Channel 2 is single-ended, and connects to the output of a magnetic-field search coil, which contains its own active signal conditioning circuitry. Filtering and amplification is done differentially, using parallel single-ended circuits. 
+Channel 1 features a differential input, which is capacitively coupled to the electric dipole antenna preamplifier. Channel 2 is single-ended, and connects to the output of a magnetic-field search coil, which contains its own active signal conditioning circuitry. Filtering and amplification is done differentially, using parallel single-ended circuits. 
 
 The ADCs use a 5-stage pipeline architecture; digital assembly and calibration of the first three stages is performed in an FPGA. The resulting FPGA module returns 13-bit equivalent resolution, packed as 16-bit samples \citep{Wang2009}. 
 
@@ -211,7 +211,7 @@ The range of measurable amplitudes is comparable to other in-situ VLF measuremen
 \begin{figure}[t]
 \begin{center}
 \includegraphics[width=20pc]{figures/vpm_figures/searchcoil_response_2up.eps}
-\caption[Characteristics of the search coil and associated preamp]{Characteristics of the search coil and associated preamp. Plot (a) shows the transfer function in dB-scaled volts per nanotesla. Plot (b) shows the search coil and preamp's noise spectral density in units of $nT/Hz^{1/2}$}
+\caption[Characteristics of the search coil and associated preamp]{Characteristics of the search coil and associated preamp. Plot (a) shows the transfer function in dB-scaled volts per nanotesla. Plot (b) shows the search coil and preamp's noise spectral density in units of $\mathrm{nT/Hz}^{1/2}$}
 \label{fig:searchcoil}
 \end{center}
 \end{figure}

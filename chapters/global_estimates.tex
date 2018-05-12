@@ -1,4 +1,4 @@
-The purpose of this chapter is to provide quantitative upper and lower-bound estimates on the expected electron flux due to LEP, as a function of location and time of year. We expand on the raytracing and interpolation method described in chapter \ref{chapter:power}, by incorporating a resonant-particle scattering code. We compute global electron fluxes in a similar manner as in chapter \ref{chapter:power}, using an array of precomputed stencils, which we scale and shift according to GLD360 data. Finally, we can examine the relative timescales on which LEP could deplete a populated magnetic field line, in the absence of any other loss processes.
+The purpose of this chapter is to provide quantitative upper and lower-bound estimates on the expected electron flux due to LEP, as a function of location and time of year. We expand on the raytracing and interpolation method described in chapter \ref{chapter:power}, by incorporating a resonant-particle scattering code. We compute global electron fluxes in a similar manner as in Chapter \ref{chapter:power}, using an array of precomputed stencils, which we scale and shift according to GLD360 data. Finally, we can examine the relative timescales on which LEP could deplete a populated magnetic field line, in the absence of any other loss processes.
 
 \section{Resonant Interactions}
 As discussed in section \ref{section:wpi}, the interaction between waves and trapped particles has a cumulative effect only when certain resonant conditions are met. The condition for resonance is given by:
@@ -6,23 +6,23 @@ As discussed in section \ref{section:wpi}, the interaction between waves and tra
 \frac{d\eta}{dt} = m \omega_c/\gamma - \omega - k_z v_z = 0
 \label{eqn:resonance_cond}
 \end{equation} 
-where m is the resonance order number, $\gamma = (1 - v^2/c^2)^{-1/2}$ is the Lorentz relativistic correction factor, $\omega_c$ is the local Cyclotron frequency, and $k_z$ and $v_z$ are the parallel components of the wavenormal vector and particle velocity with respect to the background magnetic field. $\eta$ represents the angle between the wave magnetic field vector and $v_\perp$.
+where m is the resonance order number, $\gamma = (1 - v^2/c^2)^{-1/2}$ is the Lorentz relativistic correction factor, $\omega_c$ is the local cyclotron frequency, and $k_z$ and $v_z$ are the parallel components of the wavenormal vector and particle velocity with respect to the background magnetic field. The angle between the wave magnetic field vector and $v_\perp$ is given by $\eta$.
 
 We assume any perturbation in pitch angle is small, and can therefore only concern ourselves with particles very near the edge of the loss cone. We can therefore relate the total velocity $v$ and the parallel velocity $v_z$ via $v^2 = v_z^2/\cos^2\alpha_{lc}$ \citep{Lauben2001, Bortnik2006}.
 
-Plugging in the above terms for $\gamma$ and $v_z$ gives us the following closed expression for the resonant particle velocity for an incident wave:
+Plugging in the above terms for $\gamma$ and $v_z$ gives us the following closed-form expression for the resonant particle velocity for an incident wave:
 \begin{eqnarray}
 v_z^{res} & = & \bigfrac{\pm \sqrt{\omega^2 k_z^2 + \left[ (m \omega_c)^2 - \omega^2 \right] \left[k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2\right]} - \omega k_z}{k_z^2 + (\frac{m \omega_c}{c \cos \alpha_{lc}})^2} \unit{m/sec}
 \label{eqn:vzres}
 \end{eqnarray}
 
-% The resonant kinetic energy can then be related by:
+The resonant kinetic energy can then be related by:
 \begin{eqnarray}
-v_{res} = \|v_z^{res}\|\cos\alpha_{lc}  \unit{m/sec}\\ 
-E = \frac{E_{0}}{\sqrt{1 - v_{res}^2/c^2}} - 1 \unit{J}
+v_z^{res} = \|v_{res}\|\cos\alpha_{lc}  \unit{m/sec}\\ 
+E_{res} = \frac{E_{0}}{\sqrt{1 - v_{res}^2/c^2}} - 1 \unit{J}
 \end{eqnarray}
 
-where $E_{0}$ is the particle rest energy ($\approx$ 511 keV for an electron).
+\noindent where $E_{0}$ is the particle rest energy ($\approx$ 511 keV for an electron).
 
 Equation \eqref{eqn:vzres} is a function of the incident wave, which is dependent on the wavenormal angle and the background plasma through $k_z$. We can illustrate broad trends by plotting resonant frequency vs kinetic energy along the geomagnetic equator, for normal incidence ($k = k_z$). Figure \ref{fig:vzres_vs_modes} shows the resonant frequency for a range of L-shells, for m = $\{0,1,2\}$. Somewhat counterintuitively, lower-energy particles resonate with higher-frequency waves.
 
@@ -33,7 +33,7 @@ L-shell dependence is due both to the background electron density through $k_z$,
 %\includegraphics{figures/wave_frequency_vs_energy_vs_mode.pdf}
 \includegraphics{figures/wave_frequency_vs_energy_vs_mode_3up.pdf}
 
-\caption[Resonant frequency vs particle energy for resonant modes 0, 1, and 2]{Resonant wave frequency vs trapped electron kinetic energy, for resonant modes m = 0, 1, and 2. Shown here for resonances along the geomagnetic equator, with normal incidence. The background plasma is modeled for $K_p=0$ using the Simplified GCPM model in section \ref{section:plasmasphere_models}.}
+\caption[Resonant frequency vs particle energy for resonant modes 0, 1, and 2]{Resonant wave frequency vs trapped electron kinetic energy, for resonant modes m = 0, 1, and 2. Shown here for resonances along the geomagnetic equator, with normal incidence. The background plasma is modeled for \kp{}=0 using the Simplified GCPM model in section \ref{section:plasmasphere_models}.}
 \label{fig:vzres_vs_modes}
 \end{center}
 \end{figure}
@@ -42,15 +42,15 @@ At lower energies, the resonant modes are integer multiples of each other; howev
 
 \subsection{Calculating pitch-angle scattering vs time}
 
-Calculating pitch-angle perturbation incurs additional complexity as compared to the energy density estimate in section \ref{chapter:power}. Pitch-angle scattering is dependent on wave amplitude and frequency, as well as incident wavenormal angle $\theta$ and gyrophase $\eta$. Additionally, the formulation for pitch-angle scattering requires wave amplitudes with units of (Poynting) energy flux, $\sim 1/m^2/s$, rather than volumetric densities, $\sim 1/m^3$.
+Calculating pitch-angle perturbations incurs additional complexity as compared to the energy density estimate in Section \ref{chapter:power}. Pitch-angle scattering is dependent on wave amplitude and frequency, as well as incident wavenormal angle $\theta$ and gyrophase $\eta$. Additionally, the formulation for pitch-angle scattering requires wave amplitudes with units of (Poynting) energy flux, $\mathrm{1/m^2/s}$, rather than volumetric densities, $\mathrm{1/m^3}$.
 
-The fundamental pitch-angle scattering equation is given in \eqref{eqn:bell_dadt}, and reproduced below:
+The fundamental pitch-angle scattering equation is given in equation \eqref{eqn:bell_dadt}, and reproduced below:
 \begin{equation}
 \frac{d\alpha}{dt} = \underbrace{\frac{m_e \omega_{\tau m}^2}{k_z p_\perp} \bigg( 1 + \frac{\cos^2\alpha}{m\,\omega_c / \omega - 1}\bigg)}_{T_1}\underbrace{\sin \eta}_{T_2} + \underbrace{\frac{1}{m_e \gamma}\frac{p_\perp}{2 \omega_c}\frac{\partial \omega_c}{\partial z}}_{T_3} \unit{rad/sec}
 \label{eqn:bell_dadt_with_labels}
 \end{equation}
 
-Terms $T_1$ and $T_3$ are slowly-varying, and can be treated as pseudo-constant at a fixed position in space. Term $T_2$ in \eqref{eqn:bell_dadt_with_labels} is the resonant component. Outside of resonance this term oscillates between $\pm 1$. At resonance, however, this term remains constant, allowing coherent changes to accumulate over the interaction period. Resonance implies only that $d\eta/dt = 0$, and provides no information on the value of $\eta$. We assume $\eta$ is uniformly distributed, in which case the perturbation in pitch angle will be sinusoidally distributed, symmetrically about 0 \citep{Inan1977}. Since we are concerned only with the distribution of particles which are perturbed into the loss cone ($d\alpha/dt < 0$), we can then track the RMS-average pitch angle change $\Delta \alpha_{RMS}$, and calculate the precipitated fraction using the uniform distribution (see section \ref{section:flux_from_pitch_angle}).
+Terms $T_1$ and $T_3$ are slowly-varying, and can be treated as pseudo-constant at a fixed position in space. Term $T_2$ in \eqref{eqn:bell_dadt_with_labels} is the resonant component. Outside of resonance this term oscillates between $\pm 1$. At resonance, however, this term remains constant, allowing coherent changes to accumulate over the interaction period. Resonance implies only that $d\eta/dt = 0$, and provides no information on the value of $\eta$. We assume $\eta$ is uniformly distributed, in which case the perturbation in pitch angle $d\alpha/dt$ will be sinusoidally distributed, symmetrically about zero \citep{Inan1977}. Since we are concerned only with the distribution of particles which are perturbed into the loss cone ($d\alpha/dt < 0$), we can then track the RMS-average pitch angle change $\Delta \alpha_{RMS}$, and calculate the precipitated fraction using the uniform distribution (see section \ref{section:flux_from_pitch_angle}).
 Figure \ref{fig:test_particle_sims} shows an example of a test-particle simulation, in which a set of particles with different initial $\eta$ values are subjected to the same perturbing wave.
 
 \begin{figure}[t]
@@ -121,7 +121,7 @@ Figure \ref{fig:dA_spectra} shows a typical pitch-angle scattering matrix, as a 
 \begin{figure}[h]
 \begin{center}
 \includegraphics{figures/dA_E-t_spectra.png}
-\caption[Pitch angle scattering matrix for a flash at 35$^\circ$ latitude and L=3]{Pitch angle scattering matrix along a fieldine with L=3, for a 10 kA flash at 35$^\circ$ latitude, through a nightside ionosphere at $K_p=0$. Scattering is centered directly over the input flash longitude, within a width of $\pm0.25^\circ.$}
+\caption[Pitch angle scattering matrix for a flash at 35$^\circ$ latitude and L=3]{Pitch angle scattering matrix along a fieldine with L=3, for a 10 kA flash at 35$^\circ$ latitude, through a nightside ionosphere at \kp{}=0. Scattering is centered directly over the input flash longitude, within a width of $\pm0.25^\circ.$}
 \label{fig:dA_spectra}
 \end{center}
 \end{figure}
@@ -156,7 +156,7 @@ We use the solution from \cite{Bortnik2005} for a ``ramp'' distribution in pitch
 \begin{figure}[t]
 \begin{center}
 \includegraphics{figures/da_dist_and_pdf.pdf}
-\caption[Pitch angle perturbation vs gyrophase, and corresponding PDF]{(a) Pitch angle perturbation vs particle gyrophase, with $\Delta \alpha_{rms}$ marked, and (b) The corresponding probability density function (PDF, equation \ref{eqn:pdf}). Modified from \cite{Bortnik2005}, Figure 5.8.}
+\caption[Pitch angle perturbation vs gyrophase, and corresponding PDF]{(a) Pitch angle perturbation vs particle gyrophase, with $\Delta \alpha_{rms}$ marked, and (b) The corresponding probability density function (PDF, equation \eqref{eqn:pdf}). Modified from \cite{Bortnik2005}, Figure 5.8.}
 \label{fig:da_vs_eta_and_pdf}
 \end{center}
 \end{figure}
@@ -200,7 +200,7 @@ The perturbed flux density $\Phi(E,t,\alpha)$ is given by convolving equations \
 \begin{figure}[ht]
 \begin{center}
 \includegraphics{figures/phi_E-t_spectra.png}
-\caption[Precipitating flux density E-t spectra for $\lambda_s=35^\circ$ and L=3]{Precipitating flux density $\Phi(E,t)$ along a fieldine with L=3, for a 10 kA flash at $\lambda_s=35^\circ$ latitude, through a nightside ionosphere at $K_p=0$. Scattering is centered directly over the input flash longitude, within a width of $\pm0.25^\circ.$}
+\caption[Precipitating flux density E-t spectra for $\lambda_s=35^\circ$ and L=3]{Precipitating flux density $\Phi(E,t)$ along a fieldine with L=3, for a 10 kA flash at $\lambda_s=35^\circ$ latitude, through a nightside ionosphere at \kp{}=0. Scattering is centered directly over the input flash longitude, within a width of $\pm0.25^\circ.$}
 \label{fig:phi_E-t_spectra}
 \end{center}
 \end{figure}
@@ -236,7 +236,7 @@ Q(t) &=& \int_{E_1}^{E_2} E \Phi(E,t)\,dE
 
 \section{LEP stencils and the behavior of a single flash}
 \label{section:lep_stencils}
-Having developed a method of computing the precipitating electron energy-time spectrum along a single fieldline, we can compute the global precipitation flux due to terrestrial lightning, using a similar ``stencil'' structure as in chapter \ref{chapter:power}. We then sum over the time axis to compute the electron flux density in equation \eqref{eqn:phi} for each flash, repeating the calculation for a grid of output L-shells and longitudes, for an array of input latitudes, MLT, and K$_p$.
+Having developed a method of computing the precipitating electron energy-time spectrum along a single fieldline, we can compute the global precipitation flux due to terrestrial lightning, using a similar ``stencil'' structure as in Chapter \ref{chapter:power}. We then sum over the time axis to compute the electron flux density in equation \eqref{eqn:phi} for each flash, repeating the calculation for a grid of output L-shells and longitudes, for an array of input latitudes, MLT, and \kp{}.
 
 Table \ref{tab:stencil_params} lists the various parameters used in the stencil simulation. The collection of guide rays are the same as those in chapter \ref{chapter:power}.
 
@@ -263,7 +263,7 @@ Energy bands & 256, log-spaced between 10 eV and 10 Mev\end{tabular}
 \label{tab:stencil_params}
 \end{table}%
 
-After integrating over the time axis, the resulting stencils each have dimensions (lat $\times$ lon $\times$ energy), for both the northern and southern hemispheres. Figure \ref{fig:precip_stencils} shows a set of energy-integrated number flux stencils for a variety of input latitudes and $K_p$ for a 10kA, nightside flash. Figure \ref{fig:precip_stencils_day} shows the corresponding stencils for the dayside.
+After integrating over the time axis, the resulting stencils each have dimensions (lat $\times$ lon $\times$ energy), for both the northern and southern hemispheres. Figure \ref{fig:precip_stencils} shows a set of energy-integrated number flux stencils for a variety of input latitudes and \kp{} for a 10kA, nightside flash. Figure \ref{fig:precip_stencils_day} shows the corresponding stencils for the dayside.
 
 \begin{figure}[]
 \begin{center}
@@ -291,7 +291,7 @@ By integrating over latitude and longitude, we can compute the total energy prec
 \end{center}
 \end{figure}
 
-Several trends are apparent in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}: First, it is apparent that increased K$_p$ has little impact on precipitation, up until high activity (K$_p > \sim 6$). We can attribute this to our plasmasphere density model, which is consistent across K$_p$ values within the plasmapause. Generally, if a flash is launched within the plasmapause (at a latitude lower than that of the plasmapause), then the rays experience relatively little attenuation due to Landau damping in the cold medium, and reflect back and forth several times. Rays launched outside the plasmapause are attenuated much more quickly. The sharp gradient of the plasmapause constrains energy within the plasmasphere, as indicated by the sharp dropoff of precipitation around the plasmasphere latitude. At the highest values of K$_p$, the plasmapause is brought in to L $\sim$, about 45$^\circ$, at which point substantial energy is launched outside the plasmapause (and quickly damped), or is very strongly deflected by the plasmapause gradient. The effect of the plasmapause is consistent in both the nightside and dayside stencils.
+Several trends are apparent in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}: First, it is apparent that increased \kp{} has little impact on precipitation, up until high activity (\kp{}$ > \sim 6$). We can attribute this to our plasmasphere density model, which is consistent across \kp{} values within the plasmapause. Generally, if a flash is launched within the plasmapause (at a latitude lower than that of the plasmapause), then the rays experience relatively little attenuation due to Landau damping in the cold medium, and reflect back and forth several times. Rays launched outside the plasmapause are attenuated much more quickly. The sharp gradient of the plasmapause constrains energy within the plasmasphere, as indicated by the sharp dropoff of precipitation around the plasmasphere latitude. At the highest values of \kp{}, the plasmapause is brought in to L $\sim$, about 45$^\circ$, at which point substantial energy is launched outside the plasmapause (and quickly damped), or is very strongly deflected by the plasmapause gradient. The effect of the plasmapause is consistent in both the nightside and dayside stencils.
 
 Examining the dayside stencils in Figure \ref{fig:precip_stencils_day}, the increased attenuation of the ionosphere becomes apparent, notably at lower-latitude flashes. The effect of both ionosphere attenuation and of the lower-latitude plasmapause is apparent when looking at the integrated totals in Figure \ref{fig:total_energy_per_stencil}.
 
@@ -301,13 +301,13 @@ In both figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}, pre
 
 An additional point of interest is the ratio of precipitated energy in Figure \ref{fig:total_energy_per_stencil} vs the radiated energy above the ionosphere in Figure \ref{fig:illumination_totals}. Radiation on the order of megajoules will induce precipitation several orders of magnitude lower in energy. 
 
-Finally we can examine the energy spectrum of precipitating electrons, as shown in Figure \ref{fig:stencil_energy_spectrum}. As in the precipitation stencil maps, increasing K$_p$ has little effect until very active conditions. The flux is dominated by lower-energy electrons, owing to the stronger scattering of the lowest resonant mode (also visible in Figure \ref{fig:phi_E-t_spectra}).
+Finally we can examine the energy spectrum of precipitating electrons, as shown in Figure \ref{fig:stencil_energy_spectrum}. As in the precipitation stencil maps, increasing \kp{} has little effect until very active conditions. The flux is dominated by lower-energy electrons, owing to the stronger scattering of the lowest resonant mode (also visible in Figure \ref{fig:phi_E-t_spectra}).
 
 \begin{figure}[t]
 \begin{center}
 \includegraphics[clip]{figures/stencil_energy_spectrum.pdf}
 \includegraphics[clip]{figures/stencil_energy_spectrum_AE8MIN_flux_0.pdf}
-\caption[Energy spectrum of LEP stencils]{Energy spectrum of precipitating electrons, for K$_p$= 0 and 8, for a range of input latitudes, for day and night. Fluxes are drawn from the AE8MAX population model in the top row, and from the AE8MIN population model in the bottom row.}
+\caption[Energy spectrum of LEP stencils]{Energy spectrum of precipitating electrons, for \kp{}= 0 and 8, for a range of input latitudes, for day and night. Fluxes are drawn from the AE8MAX population model in the top row, and from the AE8MIN population model in the bottom row.}
 \label{fig:stencil_energy_spectrum}
 \end{center}
 \end{figure}
@@ -352,9 +352,9 @@ Figure \ref{fig:CGM_vs_MAG_GLD} shows the relative difference between GLD averag
 
 Having computed the precipitation for a single flash across a variety of input parameters, we can examine global energy deposition by shifting, scaling, and summing the LEP stenciles according to the GLD360 lightning dataset. The resulting electron precipitation is heavily dependent on the population of radiation belt electrons; rather than leverage historical data, we provide two estimates, using the AE8 model for maximal and minimal filling, in effort to determine the upper and lower bounds on precipitation. 
 
-LEP stencils are computed using the parameters in table \ref{tab:stencil_params}. Stencils are computed for canonical 10 kA flashes, in 5$^\circ$ steps in latitude, between 15$^\circ$ and 55$^\circ$, for dayside and nightside (MLT = 12 and 0 respectively), for an array of K$_p$ = \{0, 2, 4, 6, 8\}. The resulting stencils are then interpolated onto a fixed 0.5$^\circ$x0.5$^\circ$ grid in geomagnetic latitude and longitude, and for all valid values of $K_p$ (0 - 9 in $\sim$ 0.3 steps). Noting the relatively quick transition at the day/night terminator, we bin each flash in the GLD360 dataset into dayside or nightside. The 256 energy bands are summed into 64 sub-bands to reduce memory requirements. 
+LEP stencils are computed using the parameters in table \ref{tab:stencil_params}. Stencils are computed for canonical 10 kA flashes, in 5$^\circ$ steps in latitude, between 15$^\circ$ and 55$^\circ$, for dayside and nightside (MLT = 12 and 0 respectively), for an array of \kp{} = \{0, 2, 4, 6, 8\}. The resulting stencils are then interpolated onto a fixed 0.5$^\circ$x0.5$^\circ$ grid in geomagnetic latitude and longitude, and for all valid values of \kp{} (0 - 9 in $\sim$ 0.3 steps). Noting the relatively quick transition at the day/night terminator, we bin each flash in the GLD360 dataset into dayside or nightside. The 256 energy bands are summed into 64 sub-bands to reduce memory requirements. 
 
-Figure \ref{fig:global_precip_map_max_min} shows the global average energy precipitation resulting from LEP, for maximum and minimum conditions. Precipitation is integrated over the energy band of interest (10 eV - 10 MeV), and averaged over a three year period between August 2014 and July 2017. We use historical data for K$_p$, which is reported in three-hour segments.
+Figure \ref{fig:global_precip_map_max_min} shows the global average energy precipitation resulting from LEP, for maximum and minimum conditions. Precipitation is integrated over the energy band of interest (10 eV - 10 MeV), and averaged over a three year period between August 2014 and July 2017. We use historical data for \kp{}, which is reported in three-hour segments.
 
 The pitch-angle scattering model scales linearly with respect to wave amplitude, and therefore scales quadratically with respect to flash peak current. To account for arbitrary peak current values, we scale the resulting precipitation stencils accordingly:
 
@@ -362,7 +362,7 @@ The pitch-angle scattering model scales linearly with respect to wave amplitude,
 \phi(I) = \phi(I_{ref})\frac{I^2}{I_{ref}^2} 
 \end{equation}
 
-The two sources of stochasticity in our model are 1) the location and intensity of lightning, and 2) the value of K$_p$. Lightning activity and K$_p$ are generally uncorrelated, as K$_p$ is driven by activity within the magnetosphere, and lightning activity by terrestrial weather patterns. As shown in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}, fluctuations in K$_p$ have little effect on our precipitation model in most situations (K$_p < 6$). Unexplored in this work, however, is the correlation between radiation belt filling conditions and K$_p$; e.g., radiation belt filling events generally occur alongside geomagnetically-active conditions, in which K$_p$ will be high.
+The two sources of stochasticity in our model are 1) the location and intensity of lightning, and 2) the value of \kp{}. Lightning activity and \kp{} are generally uncorrelated, as \kp{} is driven by activity within the magnetosphere, and lightning activity by terrestrial weather patterns. As shown in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}, fluctuations in \kp{} have little effect on our precipitation model in most situations (\kp{}$ < 6$). Unexplored in this work, however, is the correlation between radiation belt filling conditions and \kp{}; e.g., radiation belt filling events generally occur alongside geomagnetically-active conditions, in which \kp{} will be high.
 
 \begin{figure}[]
 \begin{center}
@@ -442,7 +442,7 @@ In order to examine the effectiveness of LEP across all energies, and avoid nume
 \begin{figure}[]
 \begin{center}
 \includegraphics{figures/stencil_energy_spectrum_flat_distribution.pdf}
-\caption[Energy spectrum of LEP stencils, drawn from a uniform radiation belt population]{Energy spectrum of precipitating electrons, for K$_p$= 0 and 8, for a range of input latitudes, for day and night, from a uniform (differential flux = 1/cm$^2$/sec/eV) fieldline population.}
+\caption[Energy spectrum of LEP stencils, drawn from a uniform radiation belt population]{Energy spectrum of precipitating electrons, for \kp{}= 0 and 8, for a range of input latitudes, for day and night, from a uniform (differential flux = 1/cm$^2$/sec/eV) fieldline population.}
 \label{fig:stencil_energy_spectrum_flat_distribution}
 \end{center}
 \end{figure}

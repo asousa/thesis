@@ -20,7 +20,7 @@ An essential characteristic of resonant wave-particle interactions is that while
 
 \subsection{Resonant Interactions}
 
-We begin by considering the resonant interaction between a monochromatic, elliptically-polarized wave, propagating obliquely (i.e., not strictly aligned with the background magnetic field). We can then calculate the resonant, doppler-shifted perturbative fields $\vec{E_w}$, $\vec{B_w}$, and calculate the change to a test particle's momentum using the relativistic Lorentz force. This analysis stems from \cite{Bell1984}, and has been used in numerous successive studies -- \cite{Ristic1993, Lauben1998, Bortnik2005}, and others.
+We begin by considering the resonant interaction between a monochromatic, elliptically-polarized wave, propagating obliquely (i.e., not strictly aligned with the background magnetic field). We can then calculate the resonant, doppler-shifted perturbative fields $\vec{E_w}$, $\vec{B_w}$, and calculate the change to a test particle's momentum using the relativistic Lorentz force. This analysis stems from \cite{Bell1984}, and has been used in numerous successive studies \citep[][and others]{Ristic1993, Lauben1998, Bortnik2005}.
 
 The condition for resonance is given by \cite{Chang1983a}:
 \begin{equation}
@@ -29,7 +29,7 @@ The condition for resonance is given by \cite{Chang1983a}:
 
 where $\eta$ is the angle between the right-hand circular component of the wave magnetic field ($B_r$) and the resonant particle's perpendicular velocity vector ($v_\perp$), $\omega$ is the wave frequency, $m \in \mathbb Z$ is the resonance order, and $\gamma = (1 - (v^{res}/c)^2)^{-1/2}$ is the relativistic correction factor.
 
-We use the \cite{Bell1984} expression for change in pitch angle with respect to time, corrected for relativistic factors by \cite{Ristic1993, Bortnik2006}:
+We use the \cite{Bell1984} expression for change in pitch angle with respect to time, corrected for relativistic factors by \cite{Ristic1993} and \cite{Bortnik2006}:
 \begin{equation}
 \frac{d\alpha}{dt} = \frac{m_e \omega_{\tau m}^2}{k_z p_\perp} \bigg( 1 + \frac{\cos^2\alpha}{m\,\omega_c / \omega - 1}\bigg)\sin \eta + \frac{1}{m_e \gamma}\frac{p_\perp}{2 \omega_c}\frac{\partial \omega_c}{\partial z}
 \label{eqn:bell_dadt}
@@ -51,9 +51,9 @@ R_1 & = & \frac{E_x^w + E_y^w}{B_x^w + B_y^w}; \qquad R_2 =  \frac{E_x^w - E_y^w
 
 where $e$ and $m_e$ are the electron charge and rest mass, $p_\perp$ is the perpendicular component of the particle's momentum, $J_i$ are Bessel functions of the first kind, and $E_{x,y,z}^w$, $B_{x,y,z}^w$ are the vector components of the incident wave, oriented such that the z-component is parallel to the background magnetic field. The wavenormal angle (the angle between $\vec{k}$ and the background magnetic field, taken to be along the z axis) is given by $\theta$.
 
-A full derivation of equations \eqref{eqn:bell_dadt} - \eqref{eqn:dadt_subparams} is beyond the scope of this dissertation; however the full derivation is explained in the theses of \cite{Bortnik2005}, \cite{Ristic1993}, and \cite{Bell1984}.
+A full derivation of equations \eqref{eqn:bell_dadt} -- \eqref{eqn:dadt_subparams} is beyond the scope of this dissertation; however the full derivation is explained in the theses of \cite{Bortnik2005}, \cite{Ristic1993}, and \cite{Bell1984}.
 
-While the full set of equations \eqref{eqn:bell_dadt} - \eqref{eqn:dadt_subparams} is complex, we can identify several broad trends: First, $\partial \alpha / \partial t \propto \sin \eta$, which implies that, when the resonance condition is not met, oscillating changes will have no cumulative effect. Second, $\partial \alpha / \partial t \propto \cos \alpha$, which increases the complexity of the solution space; however we can introduce a simplification by assuming that changes in pitch-angle are small, and therefore only particles with pitch angles very near the loss cone will be of significance. 
+While the full set of equations \eqref{eqn:bell_dadt} -- \eqref{eqn:dadt_subparams} is complex, we can identify several broad trends: First, $\partial \alpha / \partial t \propto \sin \eta$, which implies that, when the resonance condition is not met, oscillating changes will have no cumulative effect. Second, $\partial \alpha / \partial t \propto \cos \alpha$, which increases the complexity of the solution space; however we can introduce a simplification by assuming that changes in pitch-angle are small, and therefore only particles with pitch angles very near the loss cone will be of significance. 
 
 %By examining only particles at the edge of the loss cone, we can derive an expression for a resonant particle`s velocity, as a function of the incident wave \citep{Bortnik2006}:
 %
@@ -62,7 +62,7 @@ While the full set of equations \eqref{eqn:bell_dadt} - \eqref{eqn:dadt_subparam
 %\end{eqnarray}
 
 \subsection{Recovering Wave Amplitudes from Poynting Flux}
-Required in our modeling is the ability to link the results of raytracing to the wave-particle interaction model. However, raytracing tracks only coarse-grained wave parameters -- wavenormal vector, propagation angle with respect to the background magnetic field, and the background plasma parameters. We use the formulation from \cite{Bell1984}, which has since been used by \cite{Ristic1993, Lauben1998, Bortnik2006}, to relate the Poynting flux and the individual wave components $B_x^w, B_y^w, B_z^w$.
+Required in our modeling is the ability to link the results of raytracing to the wave-particle interaction model. However, raytracing tracks only coarse-grained wave parameters -- wavenormal vector, propagation angle with respect to the background magnetic field, and the background plasma parameters. We use the formulation from \cite{Bell1984}, which has since been used by \cite{Ristic1993}, \cite{Lauben1998}, and \cite{Bortnik2006}, to relate the Poynting flux and the individual wave components $B_x^w, B_y^w, B_z^w$.
 
 Starting from the definition of Poynting flux $\vec{S}^w = (1/2) \mathrm{Re}(\vec{E}^w\times\vec{H}^w)$, \cite{Bell1984} finds a relation to a single magnetic field component, $B_y^w$:
 
@@ -71,7 +71,7 @@ Starting from the definition of Poynting flux $\vec{S}^w = (1/2) \mathrm{Re}(\ve
 X = \frac{P}{P - \eta^2\sin^2\theta} \\
 \rho_1 = \frac{E_z^w}{E_y^w} = \frac{(\eta^2 - S) \eta^2 \sin\theta\cos\theta}{D (\eta^2 \sin^2 \theta - P)} \quad \rho_2 = \frac{E_x^w}{E_y^w} = \frac{\eta^2 - S}{D}
 \end{gather}
-\noindent where $\rho_1, \rho_2$ are the wave polarization ratios, $\eta$ is the wave refractive index, $\theta$ is the angle between the wavenormal and the background magnetic field, $\vec{S^w}$ is the Poynting flux, and S, D, and P are the Stix parameters defined in \eqref{eqn:stix_params_1} and \eqref{eqn:stix_params_2}.
+\noindent where $\rho_1, \rho_2$ are the wave polarization ratios, $\eta$ is the wave refractive index, $\theta$ is the angle between the wavenormal and the background magnetic field, $\vec{S^w}$ is the Poynting flux, and S, D, and P are the Stix parameters defined in equations \eqref{eqn:stix_params_1} and \eqref{eqn:stix_params_2}.
 
 The remaining five wave components are given by:
 \begin{eqnarray}
