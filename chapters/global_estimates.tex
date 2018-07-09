@@ -72,7 +72,7 @@ Thus, for each set of guide rays $F$, using the interpolation scheme from sectio
 
 The decision to calculate RMS pitch-angle scattering versus a full test-particle approach is the fundamental difference between \cite{Lauben1998} and \cite{Bortnik2005}, the two most-closely related works to ours. \citeauthor{Bortnik2005} uses the above method, while \citeauthor{Lauben1998} infers expected distributions from a set of test particles. 
 
-As noted by \cite{Lauben1998, Lauben2001}, a subset of particles, when subjected to ideal conditions, can ``ride'' a perturbing wavefront across several degrees in latitude, and experience sustained, coherent perturbation. These particles would then precipitate very deeply into the ionosphere, which may account for the lowest-altitude ionization as measured using VLF sub-ionosphere sensing. However these particles represent only a small fraction of the precipitating electrons, the bulk of which experience a random walk through the set of perturbing waves, and are well-modeled by the stochastic RMS formulation of \citeauthor{Bortnik2005}.
+As noted by \cite{Lauben1998} and \cite{Lauben2001}, a subset of particles, when subjected to ideal conditions, can ``ride'' a perturbing wavefront across several degrees in latitude, and experience sustained, coherent perturbation. These particles would then precipitate very deeply into the ionosphere, which may account for the lowest-altitude ionization as measured using VLF sub-ionosphere sensing. However these particles represent only a small fraction of the precipitating electrons, the bulk of which experience a random walk through the set of perturbing waves, and are well-modeled by the stochastic RMS formulation of \citeauthor{Bortnik2005}.
 
 \citeauthor{Bortnik2005} makes several approximations which allow for quick numerical integration of \eqref{eqn:bell_dadt_with_labels}, the details of which are beyond the scope of this dissertation. For a concise description of the methodology, see \cite{Bortnik2006}. Table \ref{alg:RMS_change} shows the algorithm in pseudocode. Using the assumptions of incoherence described above, we can independently calculate squared pitch-angle change for every enumerated combination of: a) guide ray sets $F$, b) latitudes along an output fieldline $\lambda$, c) time steps $t$, d) resonant modes $m$, and e) resonant particle energies $E$. 
 
@@ -128,7 +128,7 @@ Figure \ref{fig:dA_spectra} shows a typical pitch-angle scattering matrix, as a 
 
 Several key features are apparent: First, the descending curve shape is due to the time delay from the interaction region to the precipitation altitude, with slower moving electrons taking longer to reach the ionosphere. Two banded structures are visible with respect to energy: the dominant band, below $E \sim 10$ keV, is due to the 0-order resonance mode. The upper band with energies above $E  \sim 100$ keV, is due largely to the $\pm$ 1 resonance modes. Scattering efficiency decreases with increasing resonance order, due to the presence of order number $m$ in the denominator of equation \eqref{eqn:bell_dadt_with_labels}, term T1. While some asymmetry exists between the northern and southern hemispheres, the magnitude remains similar due to the numerous bounces of the incident waves, and because the higher-order modes resonate with particles traveling in either direction.
 
-Perturbations in pitch angle due to LEP are generally small; well below $0.1^\circ$. However, due to the exponentially-increasing density of the ionosphere below our threshold height of 100 km, and thus the very small change in reflection altitude required, small changes in pitch angle can greatly increase an electron's likelihood of precipitating. Figure \ref{fig:pitch_angle_vs_altitude}(a) shows the perturbed reflection altitudes versus L-shell, for an array of $\Delta \alpha$ values. Figure \ref{fig:pitch_angle_vs_altitude}(b) shows the minimum perturbation value required in order for a particle to reflect at a given altitude.
+Perturbations in pitch angle due to LEP are generally small; well below $0.1^\circ$. However, due to the exponentially-increasing density of the ionosphere within our precipitation region ($\sim 85 - 100 $ km altitude), and thus the very small change in reflection altitude required, small changes in pitch angle can greatly increase an electron's likelihood of precipitating. Figure \ref{fig:pitch_angle_vs_altitude}(a) shows the perturbed reflection altitudes versus L-shell, for an array of $\Delta \alpha$ values. Figure \ref{fig:pitch_angle_vs_altitude}(b) shows the minimum perturbation value required in order for a particle to reflect at a given altitude.
 
 \begin{figure}[t]
 \begin{center}
@@ -147,11 +147,11 @@ Along each target fieldline, we use our calculated pitch angle changes $\Delta \
 
 We use the solution from \cite{Bortnik2005} for a ``ramp'' distribution in pitch angle, which can be applied to any general pitch angle distribution by computing a series approximation about $\alpha = \alpha_{lc}$.
 
-\begin{equation}
-% Bortnik figure 5.8, equation d.  
-% Maybe you should include a figure here too?
-\end{equation}
-
+%\begin{equation}
+%% Bortnik figure 5.8, equation d.  
+%% Maybe you should include a figure here too?
+%\end{equation}
+%
 
 \begin{figure}[t]
 \begin{center}
@@ -291,7 +291,7 @@ By integrating over latitude and longitude, we can compute the total energy prec
 \end{center}
 \end{figure}
 
-Several trends are apparent in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}: First, it is apparent that increased \kp{} has little impact on precipitation, up until high activity (\kp{}$ > \sim 6$). We can attribute this to our plasmasphere density model, which is consistent across \kp{} values within the plasmapause. Generally, if a flash is launched within the plasmapause (at a latitude lower than that of the plasmapause), then the rays experience relatively little attenuation due to Landau damping in the cold medium, and reflect back and forth several times. Rays launched outside the plasmapause are attenuated much more quickly. The sharp gradient of the plasmapause constrains energy within the plasmasphere, as indicated by the sharp dropoff of precipitation around the plasmasphere latitude. At the highest values of \kp{}, the plasmapause is brought in to L $\sim$, about 45$^\circ$, at which point substantial energy is launched outside the plasmapause (and quickly damped), or is very strongly deflected by the plasmapause gradient. The effect of the plasmapause is consistent in both the nightside and dayside stencils.
+Several trends are apparent in figures \ref{fig:precip_stencils} and \ref{fig:precip_stencils_day}: First, it is apparent that increased \kp{} has little impact on precipitation, up until high activity (\kp{}$ > \sim 6$). We can attribute this to our plasmasphere density model, which is consistent across \kp{} values within the plasmapause. Generally, if a flash is launched within the plasmapause (at a latitude lower than that of the plasmapause), then the rays experience relatively little attenuation due to Landau damping in the cold medium, and reflect back and forth several times. Rays launched outside the plasmapause are attenuated much more quickly. The sharp gradient of the plasmapause constrains energy within the plasmasphere, as indicated by the sharp dropoff of precipitation around the plasmasphere latitude. At the highest values of \kp{}, the plasmapause is brought in to L $\sim 2$, about 45$^\circ$, at which point substantial energy is launched outside the plasmapause (and quickly damped), or is very strongly deflected by the plasmapause gradient. The effect of the plasmapause is consistent in both the nightside and dayside stencils.
 
 Examining the dayside stencils in Figure \ref{fig:precip_stencils_day}, the increased attenuation of the ionosphere becomes apparent, notably at lower-latitude flashes. The effect of both ionosphere attenuation and of the lower-latitude plasmapause is apparent when looking at the integrated totals in Figure \ref{fig:total_energy_per_stencil}.
 
@@ -350,7 +350,7 @@ Figure \ref{fig:CGM_vs_MAG_GLD} shows the relative difference between GLD averag
 
 \section{Global and Seasonal Energy Fluxes}
 
-Having computed the precipitation for a single flash across a variety of input parameters, we can examine global energy deposition by shifting, scaling, and summing the LEP stenciles according to the GLD360 lightning dataset. The resulting electron precipitation is heavily dependent on the population of radiation belt electrons; rather than leverage historical data, we provide two estimates, using the AE8 model for maximal and minimal filling, in effort to determine the upper and lower bounds on precipitation. 
+Having computed the precipitation for a single flash across a variety of input parameters, we can examine global energy deposition by shifting, scaling, and summing the LEP stencils according to the GLD360 lightning dataset. The resulting electron precipitation is heavily dependent on the population of radiation belt electrons; we provide two estimates, using the AE8 model for maximal and minimal filling, in effort to determine the upper and lower bounds on precipitation. \footnote{An interesting opportunity for future work would be to incorporate historical data, as filling events and \kp{} activity are likely correlated.}
 
 LEP stencils are computed using the parameters in table \ref{tab:stencil_params}. Stencils are computed for canonical 10 kA flashes, in 5$^\circ$ steps in latitude, between 15$^\circ$ and 55$^\circ$, for dayside and nightside (MLT = 12 and 0 respectively), for an array of \kp{} = \{0, 2, 4, 6, 8\}. The resulting stencils are then interpolated onto a fixed 0.5$^\circ$x0.5$^\circ$ grid in geomagnetic latitude and longitude, and for all valid values of \kp{} (0 - 9 in $\sim$ 0.3 steps). Noting the relatively quick transition at the day/night terminator, we bin each flash in the GLD360 dataset into dayside or nightside. The 256 energy bands are summed into 64 sub-bands to reduce memory requirements. 
 
@@ -413,7 +413,7 @@ Once summed over the GLD360 dataset, our model delivers electron losses impingin
 
 The total electrons along a given fieldline above a cm$^2$ ionosphere patch is computed by integrating the (energy) differential, omnidirectional equatorial flux, such as from the AE8 model. As in the precipitation code, we ascribe a sinusoidal pitch-angle distribution (e.g., Figure \ref{fig:pitchangledistributions}) to the electrons in the omnidirectional flux value. 
 
-The AE8 energy-differential, omnidirectional flux models have units J $\sim$ [$\#$/cm$^2$/sec/ev], which represent the total flux of electrons through a cross-sectional area at the equator, per unit energy. We use a change of variables and integrate over the sinusoidal pitch-angle distribution P(L, $\alpha$), using the relationship in equation \eqref{eqn:bounce_time} to relate an electron's bounce time $\tau_b$ to it's pitch angle $\alpha$ and total kinetic energy $E$.
+The AE8 energy-differential, omnidirectional flux models deliver data with units J $\sim$ [$\#$/cm$^2$/sec/ev], representing the total flux of electrons through a cross-sectional area at the equator, per unit energy. We use a change of variables and integrate over the sinusoidal pitch-angle distribution P(L, $\alpha$), using the relationship in equation \eqref{eqn:bounce_time} to relate an electron's bounce time $\tau_b$ to it's pitch angle $\alpha$ and total kinetic energy $E$.
 
 \begin{equation}
   P(L,\alpha)=\begin{cases}
@@ -428,7 +428,7 @@ The AE8 energy-differential, omnidirectional flux models have units J $\sim$ [$\
 N_{0,equator} = \int_0^{\pi/2} J(E)P(L,\alpha) \tau_b(L, \alpha)\,\sin{\alpha}\,\cos{\alpha}\,d\alpha \unit{\#/cm^2/eV}
 \end{equation}
 
-We then convert the integrated value $N_0$ from an equatorial cross-sectional area to an equivalent cross-sectional area at the ionosphere, using a ``crunch'' term $C_b$ according to the constricting dipole magnetic field:
+We then convert the integrated value $N_0$ from an equatorial cross-sectional area to an equivalent cross-sectional area at the ionosphere, using a ``focusing'' term $C_b$, given by the ratio of cross-sectional areas bounded by a pair of field lines:
 
 \begin{eqnarray}
 \epsilon_m &= & \frac{1}{L}(R_E + H_{iono})/R_E \\

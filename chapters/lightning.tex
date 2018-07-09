@@ -72,14 +72,14 @@ Output fieldline latitude spacing & 1$^\circ$ \\
 \end{table}%
 
 \subsection{Radiated power above the ionosphere}
-Figure \ref{fig:illumination} shows the illumination below the ionosphere resulting from a single 100 kA discharge, as a function of frequency and radial distance. The illumination pattern given in equation \eqref{eqn:farfield_power_fd} is independent of location along the Earth's surface. We multiply this illumination pattern by the absorption model in section \ref{section:trans_ionosphere_atten} to determine illumination above the ionosphere. Figure \ref{fig:illumination} shows example illumination patterns for a set of flash latitudes and MLT.
+Figure \ref{fig:illumination_radial} shows the illumination below the ionosphere resulting from a single 100 kA discharge, as a function of frequency and radial distance. The illumination pattern given in equation \eqref{eqn:farfield_power_fd} is independent of location along the Earth's surface. We multiply this illumination pattern by the absorption model in section \ref{section:trans_ionosphere_atten} to determine illumination above the ionosphere. Figure \ref{fig:illumination} shows example illumination patterns for a set of flash latitudes and MLT.
 
 % Illumination pattern
 \begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/power_scaling_below_ionosphere.pdf}
 \caption[Illumination pattern below the ionosphere]{Vertically-propagating power density below the ionosphere from a single 100kA cloud-to-ground discharge with $H_E= $5 km, as a function of frequency and radial distance. Adapted from \cite{Marshall2011}.}
-\label{fig:illumination}
+\label{fig:illumination_radial}
 \end{center}
 \end{figure}
 % Illumination pattern
@@ -113,22 +113,22 @@ We make the assumption that the energy bounded by the set of 8 guide rays (two l
 
 Next, we map the energy within each voxel to our output grid coordinates -- chosen here to be 1$^\circ$ steps in latitude, 0.25$^\circ$ in longitude, and 0.05 in L-shell. We accomplish this task using an n-dimensional Delaunay triangulation construction \citep{Delaunay1934, Lee1980}. A Delaunay triangulation breaks the convex hull of a volume, as defined by a set of points in $\mathbb R^n$, into a set of primitive shapes called ``simplexes''. Each simplex is an n-dimensional triangle. 
 
-At each timestep, we compute a Delaunay triangulation for the 16 points defined by corners at \{($t_{n-1}, t_n$), (lat$_1$, lat$_2$), (lon$_1$, lon$_2$), (f$_1$, f$_2$)\}. Once a Delaunay triangulation has been made, it is a computationally-efficient task to check whether or not an arbitrary new point is within any of the simplexes. We use the Scipy Delaunay implementation, which is based on the open-source \emph{qhull} code \citep{Barber1996}. For any point within the volume, we assign to it the average energy density in $J/m^3$ within the voxel at the given timestep, multiplied by the average Landau damping factor. Figure \ref{fig:delaunay_1} illustrates the interpolation method.
+At each timestep, we compute a Delaunay triangulation for the 16 points defined by corners at \{($t_{n-1}, t_n$), ($\mathrm{lat}_1$, $\mathrm{lat}_2$), ($\mathrm{lon}_1$, $\mathrm{lon}_2$), ($f_1$, $f_2$)\}. Once a Delaunay triangulation has been made, it is a computationally-efficient task to check whether or not an arbitrary new point is within any of the simplexes. We use the Scipy Delaunay implementation, which is based on the open-source \emph{qhull} code \citep{Barber1996}. For any point within the volume, we assign to it the average energy density in $J/m^3$ within the voxel at the given timestep, multiplied by the average Landau damping factor. Figure \ref{fig:delaunay_1} illustrates the interpolation method.
 
 \subsubsection{Fine-scale frequency interpolation}
-Our output grid coordinates are given in three dimensions -- latitude, longitude, and L-shell. However, our Delaunay construction adds an additional dimension, frequency. We can perform a fine-scale interpolation on the frequency axis by selecting a linearly-spaced grid of sub-frequencies between the two ray frequencies $f_1, f_2$. Checking and logging whether or not each new point is within the four-dimensional voxel is equivalent to interpolating and checking in three dimensions, as illustrated in Figure \ref{fig:delaunay_2}.
+Our output grid coordinates are given in three dimensions -- latitude, longitude, and L-shell. However, our Delaunay construction adds an additional dimension -- frequency. We can perform a fine-scale interpolation on the frequency axis by selecting a linearly-spaced grid of sub-frequencies between the two ray frequencies $f_1, f_2$. Checking and logging whether or not each new point is within the four-dimensional voxel is equivalent to interpolating and checking in three dimensions, as illustrated in Figure \ref{fig:delaunay_2}.
 
     \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
     \centering
-        	\includegraphics{figures/input_energy_with_grid.png}
+        	\includegraphics[width=1.2\textwidth]{figures/input_energy_with_grid.png}
 	\caption{Input energy gridding}
         \label{fig:input_energy_grid}
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.45\textwidth}
     \centering
-        	\includegraphics[trim={1cm 0.25cm 1cm 1cm},clip]{figures/interpolation_globe1.pdf}
+        	\includegraphics[trim={1cm 1cm 1cm 1cm},clip]{figures/interpolation_globe1.pdf}
 	\caption{``guide ray'' construction}
         \label{fig:guide_rays}
     \end{subfigure}
@@ -150,7 +150,7 @@ Our output grid coordinates are given in three dimensions -- latitude, longitude
 \begin{figure}[h!]
 \begin{center}
 \includegraphics{figures/delaunay_2.pdf}
-\caption[Fine-scale frequency interpolation]{An illustration of fine-scale frequency interpolation. Here we show a three-dimensional voxel being linearly interpolated between two sets of guide rays, at $f_1=200$ Hz and $f_2=300$ Hz. Our implementation operates on a four-dimensional voxel, facilitating rapid checking across fine-scale frequency interpolation steps.}
+\caption[Fine-scale frequency interpolation]{An illustration of fine-scale frequency interpolation. Here we show a three-dimensional voxel being linearly interpolated between two sets of guide rays, at $f_1=100$ Hz and $f_2=300$ Hz. Our implementation operates on a four-dimensional voxel, facilitating rapid checking across fine-scale frequency interpolation steps.}
 \label{fig:delaunay_2}
 \end{center}
 \end{figure}
@@ -325,8 +325,7 @@ An additional feature of note in Figure \ref{fig:energy_density_vs_L_vs_freq} is
 \end{center}
 \end{figure}
 
-
-
+Having simulated the persistent VLF energy from both a single lightning flash, and an ensemble of flashes, we now have the tools necessary to study the interactions between these waves and the relativistic electrons of the radiation belts.
 
 
 

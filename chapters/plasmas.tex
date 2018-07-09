@@ -26,7 +26,8 @@ r_l = \frac{m v_\perp}{qB} \unit{m}
 \omega_c = \frac{v_\perp}{r_l} = \frac{q B}{m} \unit{rad/sec}
 \end{equation}
 
-\noindent By integrating the particle's momentum over a single gyrorotation, we arrive at a third fundamental quantity known as the magnetic moment, or the \emph{first adiabatic invariant}:
+\noindent with $m$ denoting the particle's rest mass.
+By integrating the particle's momentum over a single gyrorotation, we arrive at a third fundamental quantity known as the magnetic moment, or the \emph{first adiabatic invariant}:
 \begin{equation}
 \mu = \frac{m v_\perp^2}{2B}
 \label{eqn:first_adiabatic_invariant}
@@ -47,7 +48,7 @@ Combining the first adiabatic invariant with conservation of kinetic energy, we 
  & &= \frac{1}{2}mv^2(\mathrm{cos}^2\alpha + \mathrm{sin}^2\alpha) \unit{Joules}
 \end{eqnarray}
 
-\noindent At a reflection point, the particle's kinetic energy will be entirely in the perpendicular mode:
+\noindent We equate the first adiabatic invariant at an initial point, denoted by subscript 0, and a turning point, denoted by subscript 1. At the reflection point, the particle's kinetic energy will be entirely in the perpendicular mode:
 \begin{eqnarray}
 \frac{v_{\perp0}^2}{B_0} = \frac{v_{\perp1}^2}{B_1} \\
 \frac{v^2\mathrm{sin}^2(\alpha)}{B_0} = \frac{v^2}{B_1} \\
@@ -98,12 +99,11 @@ where $h_m$ is the reflection height, and $B(\vec{r})$ is measured at the refere
 \end{center}
 \end{figure}
 
-
 In the case of a dipole magnetic field model, we can determine the equatorial loss cone explicitly:
 \begin{equation}
 \sin \alpha_{lc} = \sqrt{\frac{\zeta_m^3}{\sqrt{1 + 3 (1 - \zeta_m)}}} \qquad \zeta_m = (R_e + h_m) / (L R_e)
 \end{equation}
-where $R_e = 6371$ km is the radius of the Earth, and L is the \emph{L-shell} of interest (see section \ref{section:dipole_model}).
+where $R_e = 6378$ km is the radius of the Earth, and L is the \emph{L-shell} of interest (see section \ref{section:dipole_model}).
 
 
 
@@ -188,33 +188,33 @@ where $\omega_{ps} = n_sq_s^2/{\epsilon_0 m_s}$ and $\omega_{cs}=q_sB_0/m_s$ are
 \subsubsection{Dispersion Relation}
 With the dielectric tensor now determined, we can derive the relationship between $\omega$ and $\vec{k}$, known as the dispersion relation. Equation \eqref{eqn:dielectric_tensor_derivation_1} can be written as:
 \begin{equation}
-\mvec{\eta}\times \mvec{\eta} \times \vec{E} +  \mvec{\epsilon}\cdot\vec{E} = 0
+\mvec{n}\times \mvec{n} \times \vec{E} +  \mvec{\epsilon}\cdot\vec{E} = 0
 \end{equation}
-where $\mvec{\eta} = \vec{k}c/\omega$ is the wave refractive index. Assuming a wave propagating with some angle $\theta$ between $\mvec{\eta}$ and the background magnetic field, we arrive at:
+where $\mvec{n} = \vec{k}c/\omega$ is the wave refractive index. Assuming a wave propagating with some angle $\theta$ between $\mvec{n}$ and the background magnetic field, we arrive at:
 \begin{equation}
 \begin{pmatrix}
-S - \eta^2\cos^2\theta & -iD & \eta^2\cos{\theta}\sin{\theta} \\
-iD & S - \eta^2 & 0 \\
-\eta^2\cos{\theta}\sin{\theta} & 0 & P - \eta^2\sin^2{\theta} \end{pmatrix}\begin{pmatrix}E_x \\ E_y \\ E_z\end{pmatrix} = 0
+S - n^2\cos^2\theta & -iD & n^2\cos{\theta}\sin{\theta} \\
+iD & S - n^2 & 0 \\
+n^2\cos{\theta}\sin{\theta} & 0 & P - n^2\sin^2{\theta} \end{pmatrix}\begin{pmatrix}E_x \\ E_y \\ E_z\end{pmatrix} = 0
 \label{eqn:dispersion_relation_matrix}
 \end{equation}
 
 Taking the determinant of \ref{eqn:dispersion_relation_matrix} yields the \emph{cold-plasma dispersion relation}:
 
 \begin{eqnarray}
-&A\eta^4 - B\eta^2 + C &= 0 \label{eqn:disp_rln}  \\
+&An^4 - Bn^2 + C &= 0 \label{eqn:disp_rln}  \\
 &A& = S \sin^2\theta + P\cos^2\theta \\
 &B& = RL\sin^2\theta + PS(1 + \cos^2\theta) \\
 &C& = PRL
 \end{eqnarray}
 
-Equation \eqref{eqn:disp_rln} is biquadratic -- we can solve for $\eta^2 = k^2c^2/\omega^2$ using the quadratic formula.
+Equation \eqref{eqn:disp_rln} is biquadratic -- we can solve for $n^2 = k^2c^2/\omega^2$ using the quadratic formula.
 
 Finally, it is worth noting that when considering a single-species plasma (e.g., electrons only), equation \eqref{eqn:disp_rln} reduces to the well-known single-species \emph{Appleton-Hartree Equation} (\cite{Appleton1932}):
 
 
 \begin{equation}
-\eta^2 = 1 - \bigfrac{\frac{\omega_{pe}^2}{\omega^2}}{1 - \frac{\omega_{ce}^2\sin^2\theta}{2(\omega^2 - \omega_{pe}^2)} \pm\big[\big(\frac{\omega_{ce}^2\sin^2\theta}{2(\omega^2 - \omega_{pe}^2)}\big)^2 + \frac{\omega_{ce}^2}{\omega^2}\cos^2\theta\big]^{1/2}}
+n^2 = 1 - \bigfrac{\frac{\omega_{pe}^2}{\omega^2}}{1 - \frac{\omega_{ce}^2\sin^2\theta}{2(\omega^2 - \omega_{pe}^2)} \pm\big[\big(\frac{\omega_{ce}^2\sin^2\theta}{2(\omega^2 - \omega_{pe}^2)}\big)^2 + \frac{\omega_{ce}^2}{\omega^2}\cos^2\theta\big]^{1/2}}
 \label{eqn:appleton_hartree}
 \end{equation}
 
@@ -224,7 +224,7 @@ The dispersion relation in equation \eqref{eqn:disp_rln} reveals a wealth of inf
 
 It is difficult to gain much insight directly from the dispersion relation (equations \eqref{eqn:disp_rln} or \eqref{eqn:appleton_hartree}). However, we can plot the spatial vs temporal frequencies for a fixed angle with respect to the background magnetic field, known as an $\omega$-k diagram, to reveal the various modes of propagation.
 
-Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($\eta = k c/\omega$). The whistler mode is the lower branch of the RHCP mode.
+Figure \ref{fig:whistler_mode_dispersion} shows a typical dispersion relation for a magnetospheric plasma (L $\approx$ 2) by plotting frequency vs wavenumber ($n = k c/\omega$). The whistler mode is the lower branch of the RHCP mode.
 \begin{figure}[!t]
 \begin{center}
 \includegraphics{figures/omega-k_diagram_parallel}

@@ -33,7 +33,7 @@ The Global Core Plasmasphere Model, initially developed in 2000 by \cite{Gallagh
 
 \paragraph{Simplified GCPM}
 
-GCPM aims to provide a dynamic, complete picture of the plasmasphere as a function of time and \kp{}; however for our purposes GCPM provides too much variation. Additionally, the combination and smoothing between many models is computationally slow. In order to provide quicker computation and to reduce the number of parameters to adjust, we have implemented a simplified version of GCPM.
+GCPM aims to provide a dynamic, complete picture of the plasmasphere as a function of time, location, and \kp{}; however for our purposes GCPM provides much more detail than we require. Additionally, the combination and smoothing between many models is computationally slow. In order to provide quicker computation and to reduce the number of parameters to adjust, we have implemented a simplified version of GCPM.
 
 This model uses the equatorial-plane GCPM model, including the plasmapause location. However we omit any variation in electron density along latitude, and assume densities are constant along each field line. As our region of interest lies primarily within low and mid latitudes, we omit the polar cap model altogether and simply merge the ionosphere into the equatorial trough model. Finally, to simplify computation, we model the ionosphere using an empirical fit to IRI -- one for noon, and one for midnight, with a smooth transition along longitude. Figure \ref{fig:plasma_model_comparison} shows a side-by-side comparison of the three models, for \kp{}$=2$.
 \begin{figure}[h]
